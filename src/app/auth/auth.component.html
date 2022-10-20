@@ -1,3 +1,76 @@
-<p>auth works!</p>
-<!-- <a *ngIf="!user" [href]="link">Login</a>
-<p *ngIf="user">{{ user }} is here</p> -->
+<div class="auth">
+  <div class="auth-form">
+    <img
+      src="./assets/img/logo_nobg.png"
+      alt="Logo 'leanrly.'"
+      class="auth-form__logo"
+    />
+    <div class="auth-form__box">
+      <div class="auth-form__greeting">
+        <h1>Welcome back!</h1>
+        <p class="auth-form__greeting-text">
+          Sign in to your account to continue
+        </p>
+      </div>
+      <form>
+        <ng-container>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="form-group">
+            <select name="course" id="course">
+              <option value="BM">Business Management</option>
+              <option value="CL">Commercial Law</option>
+              <option value="ECO">Economics</option>
+              <option value="FIN">Finance</option>
+              <option value="BIS">Business Information Systems</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select name="level" id="level">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+        </ng-container>
+
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </form>
+      <p class="auth-form__switch">
+        Don't have an account? <span>Sign up for free</span>
+      </p>
+    </div>
+  </div>
+</div>

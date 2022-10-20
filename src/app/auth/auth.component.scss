@@ -1,0 +1,62 @@
+@import "~src/styles/index.scss";
+
+.auth {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 6rem;
+
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &__logo {
+    width: 20rem;
+    margin-bottom: -5rem;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+  }
+
+  &__greeting {
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  &__switch {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+
+    span {
+      cursor: pointer;
+      color: $color-secondary;
+    }
+  }
+}

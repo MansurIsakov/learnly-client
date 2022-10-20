@@ -7,14 +7,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent,
+    component: HomeComponent,
   },
   {
     path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'login',
+    path: 'auth',
     component: AuthComponent,
   },
   {
