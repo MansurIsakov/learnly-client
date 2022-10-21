@@ -9,43 +9,74 @@
       <div class="auth-form__greeting">
         <h1>Welcome back!</h1>
         <p class="auth-form__greeting-text">
-          Sign in to your account to continue
+          {{ isLoginMode ? "Sign in" : "Sing up" }} to your account to continue
         </p>
       </div>
-      <form>
-        <ng-container>
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <ng-container *ngIf="!isLoginMode">
           <div class="form-group">
             <input
               type="text"
               class="form-control"
+              name="firstName"
               id="firstName"
               placeholder="First Name"
+              [required]="!isLoginMode"
+              formControlName="firstName"
             />
+            <!-- <span class="error" *ngIf="!firstName.valid && firstName.touched">
+              Enter a first name.
+            </span> -->
           </div>
           <div class="form-group">
             <input
               type="text"
               class="form-control"
+              name="lastName"
               id="lastName"
               placeholder="Last Name"
+              [required]="!isLoginMode"
+              formControlName="lastName"
             />
+            <!-- <span class="error" *ngIf="!lastName.valid && lastName.touched">
+              Enter a last name.
+            </span> -->
           </div>
           <div class="form-group">
-            <select name="course" id="course">
+            <select
+              name="course"
+              id="course"
+              [required]="!isLoginMode"
+              formControlName="course"
+            >
+              <option value="" disabled selected>Select a course</option>
               <option value="BM">Business Management</option>
               <option value="CL">Commercial Law</option>
               <option value="ECO">Economics</option>
               <option value="FIN">Finance</option>
               <option value="BIS">Business Information Systems</option>
             </select>
+
+            <!-- <span class="error" *ngIf="!course.valid && course.touched">
+              Please, choose the course.
+            </span> -->
           </div>
           <div class="form-group">
-            <select name="level" id="level">
+            <select
+              name="level"
+              id="level"
+              [required]="!isLoginMode"
+              formControlName="level"
+            >
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
               <option value="6">6</option>
             </select>
+
+            <!-- <span class="error" *ngIf="!level.valid && level.touched">
+              Please, choose the level.
+            </span> -->
           </div>
         </ng-container>
 
@@ -53,23 +84,46 @@
           <input
             type="email"
             class="form-control"
+            name="email"
             id="email"
             placeholder="Email"
+            required
+            email
+            formControlName="email"
           />
+          <!-- <span class="error" *ngIf="!email.valid && email.touched">
+            Please, provide the email.
+          </span> -->
         </div>
         <div class="form-group">
           <input
             type="password"
+            name="password"
             class="form-control"
             id="password"
             placeholder="Password"
+            required
+            minlength="6"
+            formControlName="password"
           />
+          <!-- <span class="error" *ngIf="!password.valid && password.touched">
+            Please, provide the password.
+          </span> -->
         </div>
 
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!authForm.valid"
+        >
+          {{ isLoginMode ? "Log in" : "Sing up" }}
+        </button>
       </form>
       <p class="auth-form__switch">
-        Don't have an account? <span>Sign up for free</span>
+        {{ isLoginMode ? "Don't have an account?" : "" }}
+        <span (click)="onSwitchMode()">
+          {{ isLoginMode ? "Sign up for free" : "Log in to account" }}
+        </span>
       </p>
     </div>
   </div>
