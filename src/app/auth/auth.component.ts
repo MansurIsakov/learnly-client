@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { UserModel } from '../models/user.model';
 import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
@@ -10,7 +11,6 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  course = 'BM';
   isLoginMode: boolean = true;
   authForm: FormGroup;
 
@@ -57,10 +57,9 @@ export class AuthComponent implements OnInit {
         this.authForm.value.password
       );
     } else {
-      authObs = this.authService.signup(
-        this.authForm.value,
-        this.authForm.value.password
-      );
+      const user: UserModel = new UserModel(this.authForm.value);
+
+      authObs = this.authService.signup(user, this.authForm.value.password);
     }
     authObs.subscribe(
       (resData) => {
