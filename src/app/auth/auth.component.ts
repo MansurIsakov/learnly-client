@@ -1,9 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { UserModel } from '../models/user.model';
-import { AuthResponseData, AuthService } from './auth.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-auth',
@@ -12,65 +7,12 @@ import { AuthResponseData, AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
-  authForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.initForm();
-  }
+  ngOnInit(): void {}
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
-  }
-
-  private initForm() {
-    let firstName = '';
-    let lastName = '';
-    let email = '';
-    let password = '';
-    let course = 'BIS';
-    let level = 3;
-
-    this.authForm = new FormGroup({
-      firstName: new FormControl(firstName),
-      lastName: new FormControl(lastName),
-      email: new FormControl(email, [Validators.required, Validators.email]),
-      password: new FormControl(password, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      course: new FormControl(course),
-      level: new FormControl(level),
-    });
-  }
-
-  onSubmit() {
-    if (!this.authForm.valid) {
-      return;
-    }
-
-    let authObs: Observable<AuthResponseData>;
-    if (this.isLoginMode) {
-      authObs = this.authService.login(
-        this.authForm.value.email,
-        this.authForm.value.password
-      );
-    } else {
-      const user: UserModel = new UserModel(this.authForm.value);
-
-      authObs = this.authService.signup(user, this.authForm.value.password);
-    }
-    authObs.subscribe(
-      (resData) => {
-        console.log(resData);
-        this.router.navigate(['/']);
-      },
-      (errorMessage) => {
-        console.log(errorMessage);
-      }
-    );
-
-    this.authForm.reset();
   }
 }
