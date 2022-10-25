@@ -12,7 +12,7 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild([{ path: 'auth', component: AuthComponent }]),
+    RouterModule.forChild([{ path: '', component: AuthComponent }]),
   ],
   exports: [AuthComponent, LoginComponent, SignupComponent],
 })
