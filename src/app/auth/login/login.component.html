@@ -6,13 +6,19 @@
       name="email"
       id="email"
       placeholder="Email"
-      required
-      email
       formControlName="email"
     />
-    <!-- <span class="error" *ngIf="!email.valid && email.touched">
-      Please, provide the email.
-    </span> -->
+    <span
+      class="error"
+      *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+    >
+      <span *ngIf="loginForm.get('email').errors['required']">
+        Please, provide the email.
+      </span>
+      <span *ngIf="loginForm.get('email').errors['restrictedEmail']">
+        This email is prohibated!
+      </span>
+    </span>
   </div>
   <div class="form-group">
     <input
@@ -21,13 +27,16 @@
       class="form-control"
       id="password"
       placeholder="Password"
-      required
-      minlength="6"
       formControlName="password"
     />
-    <!-- <span class="error" *ngIf="!password.valid && password.touched">
+    <span
+      class="error"
+      *ngIf="
+        !loginForm.get('password').valid && loginForm.get('password').touched
+      "
+    >
       Please, provide the password.
-    </span> -->
+    </span>
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">

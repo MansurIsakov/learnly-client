@@ -1,71 +1,108 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      name="firstName"
-      id="firstName"
-      placeholder="First Name"
-      formControlName="firstName"
-    />
-    <!-- <span class="error" *ngIf="!firstName.valid && firstName.touched">
+  <div formGroupName="userData">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        id="firstName"
+        placeholder="First Name"
+        formControlName="firstName"
+      />
+      <span
+        class="error"
+        *ngIf="
+          !signupForm.get('userData.firstName').valid &&
+          signupForm.get('userData.firstName').touched
+        "
+      >
         Enter a first name.
-      </span> -->
-  </div>
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      name="lastName"
-      id="lastName"
-      placeholder="Last Name"
-      formControlName="lastName"
-    />
-    <!-- <span class="error" *ngIf="!lastName.valid && lastName.touched">
+      </span>
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        id="lastName"
+        placeholder="Last Name"
+        formControlName="lastName"
+      />
+      <span
+        class="error"
+        *ngIf="
+          !signupForm.get('userData.lastName').valid &&
+          signupForm.get('userData.lastName').touched
+        "
+      >
         Enter a last name.
-      </span> -->
-  </div>
-  <div class="form-group">
-    <select name="course" id="course" formControlName="course">
-      <option value="" disabled selected>Select a course</option>
-      <option value="BM">Business Management</option>
-      <option value="CL">Commercial Law</option>
-      <option value="ECO">Economics</option>
-      <option value="FIN">Finance</option>
-      <option value="BIS">Business Information Systems</option>
-    </select>
+      </span>
+    </div>
+    <div class="form-group">
+      <select name="course" id="course" formControlName="course">
+        <option value="" disabled selected>Select a course</option>
+        <option value="BM">Business Management</option>
+        <option value="CL">Commercial Law</option>
+        <option value="ECO">Economics</option>
+        <option value="FIN">Finance</option>
+        <option value="BIS">Business Information Systems</option>
+      </select>
 
-    <!-- <span class="error" *ngIf="!course.valid && course.touched">
+      <span
+        class="error"
+        *ngIf="
+          !signupForm.get('userData.course').valid &&
+          signupForm.get('userData.course').touched
+        "
+      >
         Please, choose the course.
-      </span> -->
-  </div>
-  <div class="form-group">
-    <select name="level" id="level" formControlName="level">
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
+      </span>
+    </div>
+    <div class="form-group">
+      <select name="level" id="level" formControlName="level">
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
 
-    <!-- <span class="error" *ngIf="!level.valid && level.touched">
+      <span
+        class="error"
+        *ngIf="
+          !signupForm.get('userData.level').valid &&
+          signupForm.get('userData.level').touched
+        "
+      >
         Please, choose the level.
-      </span> -->
-  </div>
+      </span>
+    </div>
 
-  <div class="form-group">
-    <input
-      type="email"
-      class="form-control"
-      name="email"
-      id="email"
-      placeholder="Email"
-      required
-      email
-      formControlName="email"
-    />
-    <!-- <span class="error" *ngIf="!email.valid && email.touched">
-      Please, provide the email.
-    </span> -->
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        id="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <span
+        class="error"
+        *ngIf="
+          !signupForm.get('userData.email').valid &&
+          signupForm.get('userData.email').touched
+        "
+      >
+        <span *ngIf="signupForm.get('userData.email').errors['required']">
+          Please, provide the email.
+        </span>
+        <span
+          *ngIf="signupForm.get('userData.email').errors['restrictedEmail']"
+        >
+          This email is prohibated!
+        </span>
+      </span>
+    </div>
   </div>
   <div class="form-group">
     <input
@@ -74,13 +111,16 @@
       class="form-control"
       id="password"
       placeholder="Password"
-      required
-      minlength="6"
       formControlName="password"
     />
-    <!-- <span class="error" *ngIf="!password.valid && password.touched">
-      Please, provide the password.
-    </span> -->
+    <span
+      class="error"
+      *ngIf="
+        !signupForm.get('password').valid && signupForm.get('password').touched
+      "
+    >
+      Please, provide the password (Minimum: 6 characters).
+    </span>
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">

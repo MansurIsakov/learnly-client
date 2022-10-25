@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -20,15 +21,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    let email = '';
-    let password = '';
-
     this.loginForm = new FormGroup({
-      email: new FormControl(email, [Validators.required, Validators.email]),
-      password: new FormControl(password, [
+      email: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6),
+        Validators.email,
+        restrictedEmails,
       ]),
+      password: new FormControl(null, [Validators.required]),
     });
   }
 

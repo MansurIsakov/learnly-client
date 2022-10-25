@@ -55,11 +55,17 @@ a {
     border-bottom: 1px solid $color-primary;
     background-color: transparent;
     outline: $color-primary;
+    transition: 0.1s all;
 
     &::placeholder {
       color: $color-primary;
       font-family: "Poppins";
       font-weight: 500;
+    }
+
+    &.ng-invalid.ng-touched {
+      border-radius: 1rem;
+      border: 1px solid $color-primary;
     }
   }
 }
@@ -74,6 +80,11 @@ a {
   color: $white;
   font-weight: 600;
   cursor: pointer;
+
+  &:disabled {
+    background-color: $gray;
+    cursor: not-allowed;
+  }
 }
 
 // RESPONSE

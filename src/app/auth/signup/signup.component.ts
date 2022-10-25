@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 import { UserModel } from 'src/app/models/user.model';
 import { AuthService } from '../auth.service';
 
@@ -21,23 +22,22 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    let firstName = '';
-    let lastName = '';
-    let email = '';
-    let password = '';
-    let course = 'BIS';
-    let level = 3;
-
     this.signupForm = new FormGroup({
-      firstName: new FormControl(firstName, Validators.required),
-      lastName: new FormControl(lastName, Validators.required),
-      email: new FormControl(email, [Validators.required, Validators.email]),
-      password: new FormControl(password, [
+      userData: new FormGroup({
+        firstName: new FormControl(null, Validators.required),
+        lastName: new FormControl(null, Validators.required),
+        course: new FormControl('BIS', Validators.required),
+        level: new FormControl(3, Validators.required),
+        email: new FormControl(null, [
+          Validators.required,
+          Validators.email,
+          restrictedEmails,
+        ]),
+      }),
+      password: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      course: new FormControl(course, Validators.required),
-      level: new FormControl(level, Validators.required),
     });
   }
 
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const user: UserModel = new UserModel(this.signupForm.value);
+    const user: UserModel = new UserModel(this.signupForm.value.userData);
 
     this.subscription = this.authService
       .signup(user, this.signupForm.value.password)
