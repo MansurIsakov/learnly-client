@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  subscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService
+    this.subscription = this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         (resData) => {
@@ -47,5 +49,9 @@ export class LoginComponent implements OnInit {
       );
 
     this.loginForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }
