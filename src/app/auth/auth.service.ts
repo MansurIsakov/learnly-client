@@ -1,58 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
+import { User, UserModel } from '../models/user.model';
 
 export interface AuthResponseData {
   status: string;
   token: string;
-  data: User;
+  data: UserModel;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<UserModel>(null);
   role: string | undefined;
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(
-    firstName: string,
-    lastName: string,
-    course: string,
-    level: number,
-    email: string,
-    password: string
-  ) {
+  signup(signupData: User, password: string) {
     return this.http
       .post<AuthResponseData>('http://localhost:3000/api/v1/auth/signup', {
-        firstName,
-        lastName,
-        course,
-        level,
-        email,
+        ...signupData,
         password,
         passwordConfirm: password,
       })
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          this.role = resData.data.user.role;
+          this.role = resData.data.role;
 
-          this.handleAuthentication(
-            resData.data.user.email,
-            resData.data.user._id,
-            resData.data.user._token,
-            resData.data.user.firstName,
-            resData.data.user.lastName,
-            resData.data.user.role,
-            resData.data.user.level,
-            resData.data.user.course
-          );
+          this.handleAuthentication(resData.data);
         })
       );
   }
@@ -66,41 +46,23 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          this.role = resData.data.user.role;
+          this.role = resData.data.role;
 
-          this.handleAuthentication(
-            resData.data.user.email,
-            resData.data.user._id,
-            resData.data.user._token,
-            resData.data.user.firstName,
-            resData.data.user.lastName,
-            resData.data.user.role,
-            resData.data.user.level,
-            resData.data.user.course
-          );
+          this.handleAuthentication(resData.data);
         })
       );
   }
 
   autoLogin() {
-    const userData = JSON.parse(localStorage.getItem('userData')!);
+    const userData: User = JSON.parse(localStorage.getItem('userData')!);
 
     if (!userData) {
       return;
     }
 
-    const loadedUser = new User({
-      _id: userData.user._id,
-      _token: userData.user._token,
-      firstName: userData.user.firstName,
-      lastName: userData.user.lastName,
-      email: userData.user.email,
-      role: userData.user.role,
-      level: userData.user.level,
-      course: userData.user.course,
-    });
+    const loadedUser = new UserModel(userData);
 
-    if (loadedUser.token) {
+    if (loadedUser._token) {
       this.user.next(loadedUser);
 
       this.autoLogout(3600000);
@@ -123,26 +85,8 @@ export class AuthService {
     }, expirationDuration);
   }
 
-  private handleAuthentication(
-    email: string,
-    userId: string,
-    token: string,
-    firstName: string,
-    lastName: string,
-    role: string,
-    level: number,
-    course: string
-  ) {
-    const user = new User({
-      _id: userId,
-      _token: token,
-      firstName,
-      lastName,
-      email,
-      role,
-      level,
-      course,
-    });
+  private handleAuthentication(userData: User) {
+    const user = new UserModel(userData);
 
     this.user.next(user);
     this.autoLogout(3600000);

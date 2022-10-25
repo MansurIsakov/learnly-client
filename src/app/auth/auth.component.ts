@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
@@ -58,11 +58,7 @@ export class AuthComponent implements OnInit {
       );
     } else {
       authObs = this.authService.signup(
-        this.authForm.value.firstName,
-        this.authForm.value.lastName,
-        this.authForm.value.course,
-        this.authForm.value.level,
-        this.authForm.value.email,
+        this.authForm.value,
         this.authForm.value.password
       );
     }
