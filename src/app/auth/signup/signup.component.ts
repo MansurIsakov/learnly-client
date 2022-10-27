@@ -1,21 +1,17 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
-import { UserModel } from 'src/app/models/user.model';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  subscription: Subscription;
+  @Output() onEmitSubmit = new EventEmitter<FormGroup>();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.initForm();
@@ -42,28 +38,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if (!this.signupForm.valid) {
-      return;
-    }
-
-    const user: UserModel = new UserModel(this.signupForm.value.userData);
-
-    this.subscription = this.authService
-      .signup(user, this.signupForm.value.password)
-      .subscribe(
-        (resData) => {
-          console.log(resData);
-          this.router.navigate(['/']);
-        },
-        (errorMessage) => {
-          console.log(errorMessage);
-        }
-      );
-
-    this.signupForm.reset();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
+    this.onEmitSubmit.emit(this.signupForm);
   }
 }

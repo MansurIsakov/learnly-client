@@ -1,5 +1,13 @@
 <div class="auth">
-  <div class="auth-form">
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    (close)="onHandleError()"
+  ></app-alert>
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="auth-form" *ngIf="!isLoading">
     <img
       src="./assets/img/logo_nobg.png"
       alt="Logo 'leanrly.'"
@@ -13,8 +21,16 @@
         </p>
       </div>
 
-      <app-login class="form" *ngIf="isLoginMode"></app-login>
-      <app-signup class="form" *ngIf="!isLoginMode"></app-signup>
+      <app-login
+        class="form"
+        *ngIf="isLoginMode"
+        (onEmitSubmit)="onSubmit($event)"
+      ></app-login>
+      <app-signup
+        class="form"
+        *ngIf="!isLoginMode"
+        (onEmitSubmit)="onSubmit($event)"
+      ></app-signup>
 
       <p class="auth-form__switch">
         {{ isLoginMode ? "Don't have an account?" : "" }}

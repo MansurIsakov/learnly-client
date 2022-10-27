@@ -7,7 +7,7 @@ import { User, UserModel } from '../models/user.model';
 export interface AuthResponseData {
   status: string;
   token: string;
-  data: UserModel;
+  data: { user: UserModel };
 }
 
 @Injectable({
@@ -30,9 +30,9 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          this.role = resData.data.role;
+          this.role = resData.data.user.role;
 
-          this.handleAuthentication(resData.data);
+          this.handleAuthentication(resData.data.user, resData.token);
         })
       );
   }
@@ -46,23 +46,24 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          this.role = resData.data.role;
+          this.role = resData.data.user.role;
 
-          this.handleAuthentication(resData.data);
+          this.handleAuthentication(resData.data.user, resData.token);
         })
       );
   }
 
   autoLogin() {
+    const userToken: User = JSON.parse(localStorage.getItem('userToken')!);
     const userData: User = JSON.parse(localStorage.getItem('userData')!);
 
-    if (!userData) {
+    if (!userToken || !userData) {
       return;
     }
 
     const loadedUser = new UserModel(userData);
 
-    if (loadedUser._token) {
+    if (userToken) {
       this.user.next(loadedUser);
 
       this.autoLogout(3600000);
@@ -71,7 +72,7 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    localStorage.removeItem('userData');
+    localStorage.clear();
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -85,19 +86,20 @@ export class AuthService {
     }, expirationDuration);
   }
 
-  private handleAuthentication(userData: User) {
+  private handleAuthentication(userData: User, token: string) {
     const user = new UserModel(userData);
 
     this.user.next(user);
     this.autoLogout(3600000);
 
     localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('userToken', JSON.stringify(token));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
 
-    if (!errorRes.error || !errorRes.error.error) {
+    if (!errorRes.error || !errorRes.error.message) {
       return throwError(errorMessage);
     }
 
@@ -105,6 +107,7 @@ export class AuthService {
       case `E11000 duplicate key`:
         errorMessage = 'This email exists already';
         break;
+      //! MAKE ENUMS FOR ERRORS
       case 'Incorrect email or password':
         errorMessage = 'This password or email is not correct.';
         break;
