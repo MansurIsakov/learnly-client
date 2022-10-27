@@ -1,3 +1,43 @@
-<p>auth works!</p>
-<!-- <a *ngIf="!user" [href]="link">Login</a>
-<p *ngIf="user">{{ user }} is here</p> -->
+<div class="auth">
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    (close)="onHandleError()"
+  ></app-alert>
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="auth-form" *ngIf="!isLoading">
+    <img
+      src="./assets/img/logo_nobg.png"
+      alt="Logo 'leanrly.'"
+      class="auth-form__logo"
+    />
+    <div class="auth-form__box">
+      <div class="auth-form__greeting">
+        <h1>Welcome back!</h1>
+        <p class="auth-form__greeting-text">
+          {{ isLoginMode ? "Sign in" : "Sing up" }} to your account to continue
+        </p>
+      </div>
+
+      <app-login
+        class="form"
+        *ngIf="isLoginMode"
+        (onEmitSubmit)="onSubmit($event)"
+      ></app-login>
+      <app-signup
+        class="form"
+        *ngIf="!isLoginMode"
+        (onEmitSubmit)="onSubmit($event)"
+      ></app-signup>
+
+      <p class="auth-form__switch">
+        {{ isLoginMode ? "Don't have an account?" : "" }}
+        <span (click)="onSwitchMode()">
+          {{ isLoginMode ? "Sign up for free" : "Log in to account" }}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: $white;
+  color: $color-primary;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $white;
+}
+
+// FORMS
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  position: relative;
+
+  label {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    // position: absolute;
+    // top: 20%;
+    // left: 1rem;
+  }
+
+  input,
+  select {
+    width: 100%;
+    border: none;
+    padding: 1.5rem 0.5rem;
+    border-bottom: 1px solid $color-primary;
+    background-color: transparent;
+    outline: $color-primary;
+    transition: 0.1s all;
+
+    &::placeholder {
+      color: $color-primary;
+      font-family: "Poppins";
+      font-weight: 500;
+    }
+
+    &.ng-invalid.ng-touched {
+      border-radius: 1rem;
+      border: 1px solid $color-primary;
+    }
+  }
+}
+
+// BUTTONS
+.btn {
+  width: 100%;
+  padding: 1.5rem 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: $color-primary;
+  color: $white;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: $gray;
+    cursor: not-allowed;
+  }
+}
+
+// RESPONSE
+.error {
+  color: $warning;
+  font-size: 1.2rem;
+}
