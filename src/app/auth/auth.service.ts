@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User, UserModel } from '../models/user.model';
+import { RegistrationErrorCode, UserErrorCode } from '../common/types/errors';
 
 export interface AuthResponseData {
   status: string;
@@ -99,16 +100,15 @@ export class AuthService {
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
 
-    if (!errorRes.error || !errorRes.error.message) {
+    if (!errorRes.error || !errorRes.error.code) {
       return throwError(errorMessage);
     }
 
-    switch (errorRes.error.message) {
-      case `E11000 duplicate key`:
+    switch (errorRes.error.code) {
+      case RegistrationErrorCode.E11000_DUPLICATE_KEY:
         errorMessage = 'This email exists already';
         break;
-      //! MAKE ENUMS FOR ERRORS
-      case 'Incorrect email or password':
+      case UserErrorCode.INVALID_EMAIL_PASSWORD:
         errorMessage = 'This password or email is not correct.';
         break;
       default:
