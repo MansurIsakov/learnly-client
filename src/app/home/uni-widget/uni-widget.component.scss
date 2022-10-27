@@ -1,0 +1,24 @@
+.uni {
+  margin: 15rem 0 5rem;
+  text-align: center;
+
+  &__logo {
+    text-align: center;
+    width: 70%;
+    margin: 1rem auto;
+    background-color: white;
+    border-radius: 2rem;
+
+    img {
+      width: 30%;
+      border-radius: 50%;
+      object-fit: fill;
+    }
+  }
+  &__info {
+    font-size: 2rem;
+  }
+  &__student {
+    font-size: 1.4rem;
+  }
+}

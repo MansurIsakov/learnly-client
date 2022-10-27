@@ -10,9 +10,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { UniWidgetComponent } from './home/uni-widget/uni-widget.component';
+import { HomeNavComponent } from './home/home-nav/home-nav.component';
+import { GoalsWidgetComponent } from './home/goals-widget/goals-widget.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NotFoundComponent,
+    UniWidgetComponent,
+    HomeNavComponent,
+    GoalsWidgetComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

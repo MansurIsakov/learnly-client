@@ -4,7 +4,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  level: number;
+  level: string;
   course: string;
   role: string;
   emoji?: string;
@@ -19,7 +19,7 @@ export class UserModel implements User {
   firstName: string;
   lastName: string;
   email: string;
-  level: number;
+  level: string;
   course: string;
   role: string;
   emoji?: string;
