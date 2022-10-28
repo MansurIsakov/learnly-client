@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { User, UserModel } from '../models/user.model';
+import { IUser, UserModel } from '../models/user.model';
 import { RegistrationErrorCode, UserErrorCode } from '../common/types/errors';
 
 export interface AuthResponseData {
@@ -21,7 +21,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(signupData: User, password: string) {
+  signup(signupData: IUser, password: string) {
     return this.http
       .post<AuthResponseData>('http://localhost:3000/api/v1/auth/signup', {
         ...signupData,
@@ -55,8 +55,8 @@ export class AuthService {
   }
 
   autoLogin() {
-    const userToken: User = JSON.parse(localStorage.getItem('userToken')!);
-    const userData: User = JSON.parse(localStorage.getItem('userData')!);
+    const userToken: IUser = JSON.parse(localStorage.getItem('userToken')!);
+    const userData: IUser = JSON.parse(localStorage.getItem('userData')!);
 
     if (!userToken || !userData) {
       return;
@@ -87,7 +87,7 @@ export class AuthService {
     }, expirationDuration);
   }
 
-  private handleAuthentication(userData: User, token: string) {
+  private handleAuthentication(userData: IUser, token: string) {
     const user = new UserModel(userData);
 
     this.user.next(user);

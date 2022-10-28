@@ -1,4 +1,9 @@
 export interface ILevel {
-  level: string;
-  levelNumber: string;
+  name: string;
+  target: string;
+}
+
+export interface ICourse {
+  target: string;
+  name: string;
 }

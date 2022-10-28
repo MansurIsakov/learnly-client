@@ -1,9 +1,13 @@
-<div class="home">
+<div class="card">
   <div class="home-info">
     <app-uni-widget></app-uni-widget>
     <app-goals-widget></app-goals-widget>
   </div>
   <div class="home-desk">
     <app-home-nav></app-home-nav>
+
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
   </div>
 </div>

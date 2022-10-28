@@ -16,6 +16,9 @@ body {
   overflow-x: hidden;
   background-color: $white;
   color: $color-primary;
+
+  padding: 5rem;
+  background-color: $color-tertiary;
 }
 
 li {
@@ -65,9 +68,30 @@ a {
       font-weight: 500;
     }
 
+    &.emoji {
+      width: 10rem;
+      align-self: center;
+      background-color: $color-primary;
+      border-radius: 50%;
+      height: 10rem;
+      color: $white;
+      text-align: center;
+    }
+
     &.ng-invalid.ng-touched {
       border-radius: 1rem;
       border: 1px solid $color-primary;
+    }
+  }
+
+  &--dob {
+    flex-direction: row;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    input {
+      width: 30%;
     }
   }
 }
@@ -93,4 +117,30 @@ a {
 .error {
   color: $warning;
   font-size: 1.2rem;
+}
+
+// CARD
+.card {
+  width: 100%;
+  padding: 3rem;
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  min-height: 92vh;
+}
+
+// SPINNER
+.spinner {
+  text-align: center;
+  z-index: 101;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  .lds-ripple {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -4,5 +4,7 @@
   </div>
   <h2 class="uni__info">{{ uniName }}</h2>
   <!--! use async pipe below -->
-  <p class="uni__student">{{ course + " | " + levelFormat(level) }}</p>
+  <p class="uni__student">
+    {{ course + " | " + formatConstant(level, levelsConst) }}
+  </p>
 </div>

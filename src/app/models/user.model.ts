@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   _id: string;
   _token: string;
   firstName: string;
@@ -8,12 +8,14 @@ export interface User {
   course: string;
   role: string;
   emoji?: string;
+  status?: string[];
+  modules?: string[];
   dob?: string;
   _createdAt?: string;
   updatedAt?: string;
 }
 
-export class UserModel implements User {
+export class UserModel implements IUser {
   _id: string;
   _token: string;
   firstName: string;
@@ -24,10 +26,12 @@ export class UserModel implements User {
   role: string;
   emoji?: string;
   dob?: string;
+  status?: string[];
+  modules?: string[];
   _createdAt?: string;
   updatedAt?: string;
 
-  constructor(source: User) {
+  constructor(source: IUser) {
     this._id = source._id;
     this._token = source._token;
     this.firstName = source.firstName;
@@ -38,6 +42,8 @@ export class UserModel implements User {
     this.role = source.role;
     this.emoji = source.emoji;
     this.dob = source.dob;
+    this.status = source.status;
+    this.modules = source.modules;
     this._createdAt = source._createdAt;
     this.updatedAt = source.updatedAt;
   }

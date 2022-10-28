@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   restrictedEmail: 'admin@gmail.com',
+  API_ENDPOINT: 'http://localhost:3000/api/v1',
 
   getRestrictedEmail() {
     return this.restrictedEmail;

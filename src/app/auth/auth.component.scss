@@ -1,10 +1,10 @@
 @import "~src/styles/index.scss";
 
-.auth {
+.card {
   display: flex;
-  height: 100vh;
   align-items: center;
   justify-content: center;
+  background-color: white;
 }
 
 .auth-form {
@@ -14,9 +14,9 @@
   flex-direction: column;
   padding-bottom: 6rem;
 
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba($color-tertiary, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -56,7 +56,8 @@
 
     span {
       cursor: pointer;
-      color: $color-secondary;
+      color: $color-tertiary;
+      font-weight: 500;
     }
   }
 }

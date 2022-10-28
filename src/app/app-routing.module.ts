@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,17 @@ const routes: Routes = [
       return import('./auth/auth.module').then((m) => m.AuthModule);
     },
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile/edit',
+    component: ProfileEditComponent,
+    canActivate: [AuthGuard],
+  },
+
   {
     path: '**',
     component: NotFoundComponent,

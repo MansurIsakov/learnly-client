@@ -1,8 +1,8 @@
 import { ILevel } from '../types/interfaces';
 
 export const LEVELS: ILevel[] = [
-  { level: 'third year', levelNumber: '3' },
-  { level: 'fourth year', levelNumber: '4' },
-  { level: 'fifth year', levelNumber: '5' },
-  { level: 'sixth year', levelNumber: '6' },
+  { name: 'third year', target: '3' },
+  { name: 'fourth year', target: '4' },
+  { name: 'fifth year', target: '5' },
+  { name: 'sixth year', target: '6' },
 ];
