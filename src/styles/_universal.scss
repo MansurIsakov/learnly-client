@@ -16,8 +16,6 @@ body {
   overflow-x: hidden;
   background-color: $white;
   color: $color-primary;
-  padding: 5rem;
-  background-color: $color-secondary;
 }
 
 li {
@@ -58,6 +56,8 @@ a {
     background-color: transparent;
     outline: $color-primary;
     transition: 0.1s all;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
 
     &::placeholder {
       color: $color-primary;
