@@ -2,30 +2,73 @@
   <app-home-nav></app-home-nav>
   <div class="edit">
     <h2>Edit profile</h2>
-    <form>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div class="form-group" style="text-align: center">
         <label for="emoji">Enter Emoji</label>
-        <input type="text" placeholder="Emoji" class="emoji" />
+        <input
+          type="text"
+          name="emoji"
+          id="emoji"
+          placeholder="Emoji"
+          class="emoji"
+          formControlName="emoji"
+        />
       </div>
       <div class="form-group">
-        <input type="text" placeholder="First Name" />
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
       </div>
       <div class="form-group">
-        <input type="text" placeholder="Last Name" />
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
       </div>
       <div class="form-group">
-        <input type="text" placeholder="Email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+        />
       </div>
-      <div class="form-group">
-        <input type="text" placeholder="Email" />
-      </div>
-      <div class="form-group form-group--dob">
-        <input type="text" placeholder="Day" />
-        <input type="text" placeholder="Month" />
-        <input type="text" placeholder="Year" />
+      <div class="form-group form-group--dob" formGroupName="dobData">
+        <input
+          type="number"
+          name="day"
+          id="day"
+          min="1"
+          max="30"
+          placeholder="Day"
+          formControlName="dobDay"
+        />
+
+        <select name="month" id="month" formControlName="dobMonth">
+          <option *ngFor="let month of monthsConst" value="month.target">
+            {{ month.name }}
+          </option>
+        </select>
+
+        <input
+          type="number"
+          name="year"
+          id="year"
+          min="1900"
+          max="2022"
+          placeholder="Year"
+          formControlName="dobYear"
+        />
       </div>
       <button class="btn">Submit</button>
     </form>
-    <p>Joined 21 Jan 2020</p>
   </div>
 </div>

@@ -1,6 +1,6 @@
-import { ICourse } from '../types/interfaces';
+import { IConst } from '../types/interfaces';
 
-export const COURSES: ICourse[] = [
+export const COURSES: IConst[] = [
   { target: 'CL', name: 'Commercial Law' },
   { target: 'BIS', name: 'Business Information Systems' },
   { target: 'BM', name: 'Business Management' },

@@ -58,6 +58,11 @@
     position: absolute;
     cursor: pointer;
     right: 3rem;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     img {
       width: 2rem;

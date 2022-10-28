@@ -1,6 +1,6 @@
-import { ILevel } from '../types/interfaces';
+import { IConst } from '../types/interfaces';
 
-export const LEVELS: ILevel[] = [
+export const LEVELS: IConst[] = [
   { name: 'third year', target: '3' },
   { name: 'fourth year', target: '4' },
   { name: 'fifth year', target: '5' },
