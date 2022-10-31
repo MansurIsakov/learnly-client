@@ -1,0 +1,25 @@
+@import "~src/styles/index.scss";
+
+.card {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teachers {
+  margin: 10rem 0;
+  display: flex;
+  width: 150rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 3rem;
+  border-radius: 2rem;
+
+  &__list {
+    width: 60%;
+  }
+
+  &__details {
+    width: 40%;
+  }
+}

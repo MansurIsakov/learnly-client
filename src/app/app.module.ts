@@ -11,11 +11,11 @@ import { CoreModule } from './core.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { UniWidgetComponent } from './home/uni-widget/uni-widget.component';
-import { HomeNavComponent } from './home/home-nav/home-nav.component';
 import { GoalsWidgetComponent } from './home/goals-widget/goals-widget.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { TeachersModule } from './teachers/teachers.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     HomeComponent,
     NotFoundComponent,
     UniWidgetComponent,
-    HomeNavComponent,
     GoalsWidgetComponent,
     ProfileComponent,
     ProfileEditComponent,
@@ -35,6 +34,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
+    TeachersModule,
     CoreModule,
     SharedModule,
   ],
