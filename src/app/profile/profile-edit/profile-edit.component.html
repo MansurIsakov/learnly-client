@@ -112,7 +112,7 @@
           class="form-group form-group__status"
           *ngFor="let statusControl of getControls(); let i = index"
         >
-          <input type="text" [formControlName]="i" />
+          <input type="text" [formControlName]="i" maxlength="15" />
           <span (click)="onRemoveStatus(i)">x</span>
         </div>
       </div>

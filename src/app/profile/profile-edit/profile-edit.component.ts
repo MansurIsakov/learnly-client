@@ -70,7 +70,7 @@ export class ProfileEditComponent implements OnInit {
         dobMonth: new FormControl(null, Validators.required),
         dobYear: new FormControl(null, Validators.required),
       }),
-      status: new FormArray([], Validators.required),
+      status: new FormArray([]),
     });
   }
 
@@ -113,8 +113,8 @@ export class ProfileEditComponent implements OnInit {
       .updateProfile(this.userId, user)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
           this.location.back();
+          this.isLoading = false;
         })
       )
       .subscribe();

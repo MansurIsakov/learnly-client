@@ -29,13 +29,13 @@
     </div>
     <div class="profile-status">
       <h4 class="profile__heading">{{ "My Status" }}</h4>
-      <p *ngIf="user!.status">
+      <div *ngIf="!isEmpty(user.status)" class="profile-status__list">
+        <p *ngFor="let status of user.status">{{ status }}</p>
+      </div>
+      <p *ngIf="isEmpty(user.status)">
         You do not have any status! Set status in
         <a routerLink="edit">edit mode.</a>
       </p>
-      <div *ngIf="!user.status" class="profile-status__list">
-        <p *ngFor="let status of user.status">{{ "status" }}</p>
-      </div>
     </div>
     <div class="profile-modules">
       <h4 class="profile__heading">{{ "Modules" }}</h4>

@@ -75,14 +75,29 @@
 .profile-status {
   &__list {
     display: flex;
-    gap: 3rem;
     overflow-x: scroll;
+    flex-wrap: nowrap;
+    padding: 2rem;
+    gap: 2rem;
 
     p {
+      border: 1px solid $color-primary;
+      border-radius: 2rem;
       font-size: 1.6rem;
       font-weight: 600;
       color: $gray;
-      padding: 3rem;
+      padding: 1rem;
+      min-width: 15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    &::-webkit-scrollbar {
+      background: $color-tertiary;
+      border-radius: 1rem;
+      height: 1rem;
     }
   }
 }

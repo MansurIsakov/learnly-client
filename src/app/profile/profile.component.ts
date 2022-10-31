@@ -6,6 +6,7 @@ import { formatConstant } from '../common/helpers/formatConstant';
 import { LEVELS } from '../common/constants/levels.const';
 import { COURSES } from '../common/constants/courses.const';
 import { AuthService } from '../auth/auth.service';
+import { isEmpty } from '../common/helpers/isEmpty';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
   levelsConst = LEVELS;
   coursesConst = COURSES;
   error: string = null;
+  isEmpty = isEmpty;
 
   constructor(
     private profileService: ProfileService,
