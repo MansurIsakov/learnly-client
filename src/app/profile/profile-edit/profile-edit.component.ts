@@ -1,8 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { MONTHS } from 'src/app/common/constants/months.const';
 import { formatConstant } from 'src/app/common/helpers/formatConstant';
-import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 import { IUser } from 'src/app/models/user.model';
 import { ProfileService } from '../profile.service';
 
@@ -14,12 +15,14 @@ import { ProfileService } from '../profile.service';
 export class ProfileEditComponent implements OnInit {
   isLoading: boolean = false;
   userId = JSON.parse(localStorage.getItem('userData')!)._id;
-  user: IUser;
   editForm: FormGroup;
   formatConstant;
   monthsConst = MONTHS;
 
-  constructor(private profileService: ProfileService) {
+  constructor(
+    private profileService: ProfileService,
+    private location: Location
+  ) {
     this.formatConstant = formatConstant;
   }
 
@@ -28,26 +31,92 @@ export class ProfileEditComponent implements OnInit {
 
     this.initForm();
 
-    this.isLoading = false;
+    this.profileService
+      .getProfile(this.userId)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((user) => {
+        const [dobYear, dobMonth, dobDay] = user.dob.split('-');
+
+        this.editForm.patchValue({
+          emoji: user.emoji,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          dobData: {
+            dobDay,
+            dobMonth,
+            dobYear,
+          },
+        });
+
+        if (user.status) {
+          for (const status of user.status) {
+            this.populateFormArray(status);
+          }
+        }
+      });
   }
 
   private initForm() {
-    let userData: IUser; //! get user data from profile service
-
-    const userDob = userData.dob.split('-');
-
     this.editForm = new FormGroup({
-      emoji: new FormControl(userData.emoji, Validators.required),
-      firstName: new FormControl(userData.firstName, Validators.required),
-      lastName: new FormControl(userData.lastName, Validators.required),
-      email: new FormControl(userData.email, Validators.required),
+      emoji: new FormControl(null, Validators.required),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
       dobData: new FormGroup({
-        dobDay: new FormControl(userDob[2], Validators.required),
-        dobMonth: new FormControl(userDob[1], Validators.required),
-        dobYear: new FormControl(userDob[0], Validators.required),
+        dobDay: new FormControl(null, Validators.required),
+        dobMonth: new FormControl(null, Validators.required),
+        dobYear: new FormControl(null, Validators.required),
       }),
+      status: new FormArray([], Validators.required),
     });
   }
 
-  onSubmit() {}
+  getControls() {
+    return (<FormArray>this.editForm.get('status')).controls;
+  }
+
+  onAddStatus() {
+    this.populateFormArray(null);
+  }
+
+  onRemoveStatus(i: number) {
+    (<FormArray>this.editForm.get('status')).removeAt(i);
+  }
+
+  populateFormArray(data) {
+    const control = new FormControl(data, Validators.required);
+    (<FormArray>this.editForm.get('status')).push(control);
+  }
+
+  onSubmit() {
+    if (!this.editForm.valid) {
+      return;
+    }
+
+    this.isLoading = true;
+    const { emoji, firstName, lastName, dobData, status } = this.editForm.value;
+
+    const dob = `${dobData.dobYear}-${dobData.dobMonth}-${dobData.dobDay}`;
+
+    const user: Omit<IUser, 'course' | 'level' | 'email'> = {
+      emoji,
+      firstName,
+      lastName,
+      dob,
+      status,
+    };
+
+    this.profileService
+      .updateProfile(this.userId, user)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.location.back();
+        })
+      )
+      .subscribe();
+  }
 }

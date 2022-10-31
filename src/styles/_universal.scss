@@ -84,7 +84,7 @@ a {
     }
   }
 
-  &--dob {
+  &__dob {
     flex-direction: row;
     justify-content: space-between;
 
@@ -92,6 +92,17 @@ a {
 
     input {
       width: 30%;
+    }
+  }
+
+  &__status {
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 25%;
+      right: 1rem;
+      cursor: pointer;
     }
   }
 }
@@ -110,6 +121,12 @@ a {
   &:disabled {
     background-color: $gray;
     cursor: not-allowed;
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $color-primary;
+    color: $color-primary;
   }
 }
 

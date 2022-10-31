@@ -1,4 +1,7 @@
-<div class="card">
+<div *ngIf="isLoading" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<div class="card" *ngIf="!isLoading">
   <app-home-nav></app-home-nav>
   <div class="edit">
     <h2>Edit profile</h2>
@@ -13,6 +16,12 @@
           class="emoji"
           formControlName="emoji"
         />
+        <span
+          class="error"
+          *ngIf="!editForm.get('emoji').valid && editForm.get('emoji').touched"
+        >
+          Enter an emoji!
+        </span>
       </div>
       <div class="form-group">
         <input
@@ -22,6 +31,15 @@
           placeholder="First Name"
           formControlName="firstName"
         />
+        <span
+          class="error"
+          *ngIf="
+            !editForm.get('firstName').valid &&
+            editForm.get('firstName').touched
+          "
+        >
+          Enter a first name.
+        </span>
       </div>
       <div class="form-group">
         <input
@@ -31,17 +49,16 @@
           placeholder="Last Name"
           formControlName="lastName"
         />
+        <span
+          class="error"
+          *ngIf="
+            !editForm.get('lastName').valid && editForm.get('lastName').touched
+          "
+        >
+          Enter a last name.
+        </span>
       </div>
-      <div class="form-group">
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          formControlName="email"
-        />
-      </div>
-      <div class="form-group form-group--dob" formGroupName="dobData">
+      <div class="form-group form-group__dob" formGroupName="dobData">
         <input
           type="number"
           name="day"
@@ -53,7 +70,7 @@
         />
 
         <select name="month" id="month" formControlName="dobMonth">
-          <option *ngFor="let month of monthsConst" value="month.target">
+          <option *ngFor="let month of monthsConst" [value]="month.target">
             {{ month.name }}
           </option>
         </select>
@@ -68,7 +85,40 @@
           formControlName="dobYear"
         />
       </div>
-      <button class="btn">Submit</button>
+      <span
+        class="error"
+        *ngIf="
+          !editForm.get('dobData.dobDay').valid &&
+          editForm.get('dobData.dobDay').touched
+        "
+      >
+        Enter a day.
+      </span>
+      <span
+        class="error"
+        *ngIf="
+          !editForm.get('dobData.dobYear').valid &&
+          editForm.get('dobData.dobYear').touched
+        "
+      >
+        Enter the year.
+      </span>
+      <div class="form-group" formArrayName="status">
+        <h4>Your Status</h4>
+        <button class="btn btn--outline" type="button" (click)="onAddStatus()">
+          Add Status
+        </button>
+        <div
+          class="form-group form-group__status"
+          *ngFor="let statusControl of getControls(); let i = index"
+        >
+          <input type="text" [formControlName]="i" />
+          <span (click)="onRemoveStatus(i)">x</span>
+        </div>
+      </div>
+      <button type="submit" class="btn" [disabled]="!editForm.valid">
+        Submit
+      </button>
     </form>
   </div>
 </div>

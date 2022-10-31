@@ -24,12 +24,12 @@ const routes: Routes = [
     },
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'profile/edit',
+    path: 'profile/:id/edit',
     component: ProfileEditComponent,
     canActivate: [AuthGuard],
   },

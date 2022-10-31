@@ -29,12 +29,12 @@ export class AuthService {
         passwordConfirm: password,
       })
       .pipe(
-        catchError(this.handleError),
         tap((resData) => {
           this.role = resData.data.user.role;
 
           this.handleAuthentication(resData.data.user, resData.token);
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -45,12 +45,12 @@ export class AuthService {
         password,
       })
       .pipe(
-        catchError(this.handleError),
         tap((resData) => {
           this.role = resData.data.user.role;
 
           this.handleAuthentication(resData.data.user, resData.token);
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 

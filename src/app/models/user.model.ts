@@ -1,12 +1,11 @@
 export interface IUser {
-  _id: string;
-  _token: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
   level: string;
   course: string;
-  role: string;
+  role?: string;
   emoji?: string;
   status?: string[];
   modules?: string[];
@@ -33,7 +32,6 @@ export class UserModel implements IUser {
 
   constructor(source: IUser) {
     this._id = source._id;
-    this._token = source._token;
     this.firstName = source.firstName;
     this.lastName = source.lastName;
     this.email = source.email;

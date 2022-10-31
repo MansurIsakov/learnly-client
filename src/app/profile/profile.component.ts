@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
     this.isLoading = true;
 
     this.profileService.getProfile(this.userId).subscribe((user) => {
-      this.user = user.results;
+      this.user = user;
       this.isLoading = false;
     });
   }
