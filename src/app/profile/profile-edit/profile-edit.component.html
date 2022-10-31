@@ -1,0 +1,124 @@
+<div *ngIf="isLoading" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<div class="card" *ngIf="!isLoading">
+  <app-nav></app-nav>
+  <div class="edit">
+    <h2>Edit profile</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group" style="text-align: center">
+        <label for="emoji">Enter Emoji</label>
+        <input
+          type="text"
+          name="emoji"
+          id="emoji"
+          placeholder="Emoji"
+          class="emoji"
+          formControlName="emoji"
+        />
+        <span
+          class="error"
+          *ngIf="!editForm.get('emoji').valid && editForm.get('emoji').touched"
+        >
+          Enter an emoji!
+        </span>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
+        <span
+          class="error"
+          *ngIf="
+            !editForm.get('firstName').valid &&
+            editForm.get('firstName').touched
+          "
+        >
+          Enter a first name.
+        </span>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
+        <span
+          class="error"
+          *ngIf="
+            !editForm.get('lastName').valid && editForm.get('lastName').touched
+          "
+        >
+          Enter a last name.
+        </span>
+      </div>
+      <div class="form-group form-group__dob" formGroupName="dobData">
+        <input
+          type="number"
+          name="day"
+          id="day"
+          min="1"
+          max="30"
+          placeholder="Day"
+          formControlName="dobDay"
+        />
+
+        <select name="month" id="month" formControlName="dobMonth">
+          <option *ngFor="let month of monthsConst" [value]="month.target">
+            {{ month.name }}
+          </option>
+        </select>
+
+        <input
+          type="number"
+          name="year"
+          id="year"
+          min="1900"
+          max="2022"
+          placeholder="Year"
+          formControlName="dobYear"
+        />
+      </div>
+      <span
+        class="error"
+        *ngIf="
+          !editForm.get('dobData.dobDay').valid &&
+          editForm.get('dobData.dobDay').touched
+        "
+      >
+        Enter a day.
+      </span>
+      <span
+        class="error"
+        *ngIf="
+          !editForm.get('dobData.dobYear').valid &&
+          editForm.get('dobData.dobYear').touched
+        "
+      >
+        Enter the year.
+      </span>
+      <div class="form-group" formArrayName="status">
+        <h4>Your Status</h4>
+        <button class="btn btn--outline" type="button" (click)="onAddStatus()">
+          Add Status
+        </button>
+        <div
+          class="form-group form-group__status"
+          *ngFor="let statusControl of getControls(); let i = index"
+        >
+          <input type="text" [formControlName]="i" maxlength="15" />
+          <span (click)="onRemoveStatus(i)">x</span>
+        </div>
+      </div>
+      <button type="submit" class="btn" [disabled]="!editForm.valid">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

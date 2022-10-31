@@ -1,13 +1,13 @@
-<div class="auth">
+<div *ngIf="isLoading" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<div class="card" *ngIf="!isLoading">
   <app-alert
     *ngIf="error"
     [message]="error"
     (close)="onHandleError()"
   ></app-alert>
-  <div *ngIf="isLoading" style="text-align: center">
-    <app-spinner></app-spinner>
-  </div>
-  <div class="auth-form" *ngIf="!isLoading">
+  <div class="auth-form">
     <img
       src="./assets/img/logo_nobg.png"
       alt="Logo 'leanrly.'"

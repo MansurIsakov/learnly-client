@@ -1,0 +1,39 @@
+@import "~src/styles/index.scss";
+
+.home-nav {
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+  }
+  &__item {
+    font-size: 1.6rem;
+    color: $color-primary;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+
+    &:hover {
+      font-weight: 600;
+    }
+
+    &.active {
+      font-weight: 600;
+
+      &::after {
+        display: block;
+      }
+    }
+
+    &::after {
+      content: ".";
+      position: absolute;
+      bottom: -3rem;
+      right: 50%;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: $color-tertiary;
+      display: none;
+    }
+  }
+}

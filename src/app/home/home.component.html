@@ -1,2 +1,13 @@
-<p>home works!</p>
-<a (click)="onLogout()">Logout</a>
+<div class="card">
+  <div class="home-info">
+    <app-uni-widget></app-uni-widget>
+    <app-goals-widget></app-goals-widget>
+  </div>
+  <div class="home-desk">
+    <app-nav></app-nav>
+
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
+  </div>
+</div>

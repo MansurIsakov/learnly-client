@@ -1,6 +1,11 @@
 <div class="backdrop" (click)="onClose()"></div>
 <div class="alert-box">
-  <p>{{ message }}</p>
+  <h3>{{ message }}</h3>
+  <p>
+    You cahnges were saved, but we could not connect your account due to a
+    technical issue on our end. Please try connecting again. If the issue keeps
+    happening, <a href="/"> contact Customer Care. </a>
+  </p>
   <div class="alert-box-actions">
     <button class="btn" (click)="onClose()">Close</button>
   </div>

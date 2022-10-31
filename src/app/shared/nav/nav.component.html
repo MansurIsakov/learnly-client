@@ -1,0 +1,15 @@
+<nav class="home-nav">
+  <ul>
+    <li *ngFor="let page of navList">
+      <a
+        [routerLink]="page.link"
+        routerLinkActive="active"
+        class="home-nav__item"
+      >
+        {{ page.name }}
+      </a>
+    </li>
+
+    <li class="home-nav__item" (click)="onLogout()">Logout</li>
+  </ul>
+</nav>

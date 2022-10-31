@@ -1,0 +1,14 @@
+<div *ngIf="isLoading" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<div class="card" *ngIf="!isLoading">
+  <app-nav></app-nav>
+  <div class="teachers">
+    <div class="teachers__list">
+      <app-teachers-list></app-teachers-list>
+    </div>
+    <div class="teachers__details">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

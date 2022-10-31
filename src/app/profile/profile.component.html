@@ -1,0 +1,68 @@
+<div *ngIf="isLoading" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<div class="card" *ngIf="!isLoading">
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    (close)="onHandleError()"
+  ></app-alert>
+  <app-nav></app-nav>
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-header__avatar">
+        <p>{{ user?.emoji }}</p>
+      </div>
+      <div class="profile-header__info">
+        <h3>{{ user.firstName + " " + user.lastName }}</h3>
+        <p>{{ user.email }}</p>
+      </div>
+      <a routerLink="edit">
+        <img src="./assets/icons/edit-icon.svg" alt="" />
+      </a>
+    </div>
+    <div class="profile-edu">
+      <h4 class="profile__heading">Education</h4>
+      <p>Westminster International University in Tashkent, WIUT</p>
+      <p>{{ "Course: " + formatConstant(user.course, coursesConst) }}</p>
+      <p>{{ "Level: " + formatConstant(user.level, levelsConst) }}</p>
+    </div>
+    <div class="profile-status">
+      <h4 class="profile__heading">{{ "My Status" }}</h4>
+      <div *ngIf="!isEmpty(user.status)" class="profile-status__list">
+        <p *ngFor="let status of user.status">{{ status }}</p>
+      </div>
+      <p *ngIf="isEmpty(user.status)">
+        You do not have any status! Set status in
+        <a routerLink="edit">edit mode.</a>
+      </p>
+    </div>
+    <div class="profile-modules">
+      <h4 class="profile__heading">{{ "Modules" }}</h4>
+      <p *ngIf="user!.status">
+        You do not have any modules! Set modules
+        <a routerLink="/modules">here.</a>
+      </p>
+      <div class="profile-modules__item" *ngFor="let module of user.modules">
+        <div class="profile-modules__icon">
+          <img src="./assets/icons/bis.svg" alt="BIS Icon" />
+        </div>
+        <span>Computer Science Fundamentals</span>
+      </div>
+    </div>
+    <div class="profile-account">
+      <h4 class="profile__heading">
+        {{ "Account" }}
+      </h4>
+      <div class="profile-account__actions">
+        <a (click)="onLogout()">Switch to Other Account</a>
+        <a
+          class="profile-account__actions--delete"
+          (click)="deleteAccount(user._id)"
+        >
+          Delete Account
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
