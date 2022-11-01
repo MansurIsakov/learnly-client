@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../models/user.model';
 import { ProfileService } from './profile.service';
 import { formatConstant } from '../common/helpers/formatConstant';
@@ -16,7 +16,7 @@ import { isEmpty } from '../common/helpers/isEmpty';
 export class ProfileComponent implements OnInit {
   isLoading: boolean = false;
   user: IUser;
-  userId = JSON.parse(localStorage.getItem('userData')!)._id;
+  userId: string;
   formatConstant;
   levelsConst = LEVELS;
   coursesConst = COURSES;
@@ -26,9 +26,11 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {
     this.formatConstant = formatConstant;
+    this.userId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {

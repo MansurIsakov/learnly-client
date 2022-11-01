@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
 import { MONTHS } from 'src/app/common/constants/months.const';
 import { formatConstant } from 'src/app/common/helpers/formatConstant';
@@ -14,16 +15,18 @@ import { ProfileService } from '../profile.service';
 })
 export class ProfileEditComponent implements OnInit {
   isLoading: boolean = false;
-  userId = JSON.parse(localStorage.getItem('userData')!)._id;
+  userId: string;
   editForm: FormGroup;
   formatConstant;
   monthsConst = MONTHS;
 
   constructor(
     private profileService: ProfileService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     this.formatConstant = formatConstant;
+    this.userId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
