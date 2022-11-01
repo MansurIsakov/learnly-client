@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-
+    // ASK: How to unsubscribe?
     this.profileService.getProfile(this.userId).subscribe((user) => {
       this.user = user;
       this.isLoading = false;
@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteAccount(id: string) {
+    // unsubscribe?
     this.profileService.deleteProfile(id).subscribe();
     localStorage.clear();
     this.router.navigate(['/auth']);

@@ -41,6 +41,7 @@ export class ProfileEditComponent implements OnInit {
           this.isLoading = false;
         })
       )
+      // unsubsrcibe?
       .subscribe((user) => {
         const [dobYear, dobMonth, dobDay] = user.dob.split('-');
 
@@ -120,6 +121,7 @@ export class ProfileEditComponent implements OnInit {
           this.isLoading = false;
         })
       )
+      // need to subscribe? usubscribe?
       .subscribe();
   }
 }

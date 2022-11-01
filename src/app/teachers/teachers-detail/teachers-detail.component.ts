@@ -21,6 +21,7 @@ export class TeachersDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // unsubscribe?
     this.route.params.subscribe((params) => {
       this.teacherId = params['id'];
 
