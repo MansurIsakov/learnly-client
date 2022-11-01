@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { isEmpty } from 'src/app/common/helpers/isEmpty';
 import { ITeacher } from 'src/app/models/teacher.model';
 import { TeachersService } from '../teachers.service';
@@ -16,16 +17,15 @@ export class TeachersDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private tService: TeachersService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.teacherId = params['id'];
+
       this.tService.getTeacher(this.teacherId).subscribe((teacher) => {
         this.teacher = teacher;
-        console.log(this.teacher);
       });
     });
   }

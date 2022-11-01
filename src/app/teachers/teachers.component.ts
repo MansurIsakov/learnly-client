@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { finalize } from 'rxjs';
+import { ITeacher } from '../models/teacher.model';
+import { TeachersService } from './teachers.service';
 
 @Component({
   selector: 'app-teachers',
@@ -7,8 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeachersComponent implements OnInit {
   isLoading: boolean = false;
+  @Output() teachers: ITeacher[];
 
-  constructor() {}
+  constructor(private tService: TeachersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.tService
+      .getAllTeachers()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((teachers) => {
+        this.teachers = teachers;
+      });
+  }
 }
