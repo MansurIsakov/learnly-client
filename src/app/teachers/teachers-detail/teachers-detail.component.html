@@ -1,1 +1,40 @@
-<p>teachers-detail works!</p>
+<div class="teacher-detail">
+  <div class="teacher-detail__image">
+    <img
+      [src]="'./assets/memoji/Avatar-' + teacher.imageNum + '.png'"
+      [alt]="teacher.imageNum + ' image'"
+    />
+  </div>
+  <div class="teacher-detail__info">
+    <h2>{{ teacher.name }}</h2>
+    <span>{{ teacher.email }}</span>
+    <div class="teacher-detail__position">
+      <p>{{ teacher.position + " in " + teacher.department }}</p>
+      <h3>Teaches:</h3>
+      <ul>
+        <li *ngFor="let module of teacher.modules">{{ module }}</li>
+        <p *ngIf="isEmpty(teacher.modules)">
+          {{ teacher.position }} does not have any modules
+        </p>
+      </ul>
+    </div>
+  </div>
+  <div class="teacher-detail__reviews">
+    <h3>Reviews:</h3>
+    <ul>
+      <li *ngFor="let review of teacher.reviews">
+        <p>{{ "«" + review + "»" }}</p>
+      </li>
+      <p *ngIf="isEmpty(teacher.reviews)">
+        {{ teacher.position }} does not have any reviews
+      </p>
+    </ul>
+  </div>
+  <div class="teacher-detail__actions">
+    <!-- TODO: Connect Calendar Logic with Teachers -->
+    <button class="btn" type="submit">Find Lectures</button>
+    <a class="btn btn--outline" [href]="'mailto:' + teacher.email">
+      Send Message
+    </a>
+  </div>
+</div>

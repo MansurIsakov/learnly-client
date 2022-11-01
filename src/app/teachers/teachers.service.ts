@@ -8,7 +8,7 @@ export interface TeachersResponseData {
   message: string;
   error: boolean;
   code: number;
-  results: ITeacher[];
+  results: ITeacher[] & ITeacher;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -18,6 +18,17 @@ export class TeachersService {
   getAllTeachers() {
     return this.http
       .get<TeachersResponseData>(environment.API_ENDPOINT + '/teachers')
+      .pipe(
+        map((resData) => {
+          return resData.results;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getTeacher(id: string) {
+    return this.http
+      .get<TeachersResponseData>(environment.API_ENDPOINT + '/teachers/' + id)
       .pipe(
         map((resData) => {
           return resData.results;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { finalize, pipe } from 'rxjs';
 import { ITeacher } from 'src/app/models/teacher.model';
 import { TeachersService } from '../teachers.service';
 
@@ -8,17 +9,10 @@ import { TeachersService } from '../teachers.service';
   styleUrls: ['./teachers-list.component.scss'],
 })
 export class TeachersListComponent implements OnInit {
-  teachers: ITeacher[];
+  @Input() teachers: ITeacher[];
+  isLoading: boolean = false;
 
-  constructor(private tService: TeachersService) {}
+  constructor() {}
 
-  getRandomNumber(): number {
-    return Math.floor(Math.random() * (36 - 1 + 1)) + 1;
-  }
-
-  ngOnInit(): void {
-    this.tService.getAllTeachers().subscribe((teachers) => {
-      this.teachers = teachers;
-    });
-  }
+  ngOnInit(): void {}
 }

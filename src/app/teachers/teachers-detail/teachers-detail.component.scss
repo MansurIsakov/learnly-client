@@ -1,0 +1,59 @@
+@import "~src/styles/index.scss";
+
+.teacher-detail {
+  display: flex;
+  flex-direction: column;
+  border: 0.1rem solid $color-primary;
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+
+  &__image {
+    width: 30rem;
+    height: 30rem;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    h2 {
+      font-size: 2rem;
+    }
+
+    h2,
+    span {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  &__position {
+    margin-top: 1rem;
+  }
+  &__reviews {
+    p {
+      font-style: italic;
+
+      &:not(:first-child) {
+        margin: 1rem 0;
+      }
+    }
+  }
+
+  &__actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+      width: 30%;
+      padding: 1rem 0;
+    }
+  }
+}

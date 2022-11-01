@@ -1,0 +1,12 @@
+<li class="teachers-list__item">
+  <a [routerLink]="[teacherId]" routerLinkActive="active">
+    <img
+      class="teachers-list__img"
+      [src]="'./assets/memoji/Avatar-' + teacher.imageNum + '.png'"
+      [alt]="teacher.imageNum + ' image'"
+    />
+
+    <h2 class="teachers-list__name">{{ teacher.name }}</h2>
+    <p>{{ teacher.email }} | {{ teacher.position }}</p>
+  </a>
+</li>
