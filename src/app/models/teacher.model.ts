@@ -6,6 +6,7 @@ export interface ITeacher {
   position: string;
   modules: string[];
   reviews: string[];
+  imageNum: number;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -18,6 +19,7 @@ export class TeacherModel implements ITeacher {
   position: string;
   modules: string[];
   reviews: string[];
+  imageNum: number;
   createdAt?: string;
   updatedAt?: string;
 
@@ -29,6 +31,7 @@ export class TeacherModel implements ITeacher {
     this.position = source.position;
     this.modules = source.modules;
     this.reviews = source.reviews;
+    this.imageNum = source.imageNum;
     this.createdAt = source.createdAt;
     this.updatedAt = source.updatedAt;
   }

@@ -12,10 +12,6 @@ export class TeachersListComponent implements OnInit {
 
   constructor(private tService: TeachersService) {}
 
-  getRandomNumber(): number {
-    return Math.floor(Math.random() * (36 - 1 + 1)) + 1;
-  }
-
   ngOnInit(): void {
     this.tService.getAllTeachers().subscribe((teachers) => {
       this.teachers = teachers;

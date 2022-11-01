@@ -1,12 +1,8 @@
 <ul class="teachers-list">
-  <li *ngFor="let teacher of teachers" class="teachers-list__item">
-    <img
-      class="teachers-list__img"
-      [src]="'./assets/memoji/Avatar-' + getRandomNumber() + '.png'"
-      alt="teacher"
-    />
-
-    <h2 class="teachers-list__name">{{ teacher.name }}</h2>
-    <p>{{ teacher.email }} | {{ teacher.position }}</p>
-  </li>
+  <app-teachers-item
+    *ngFor="let teacherEL of teachers"
+    [teacher]="teacherEL"
+    [teacherId]="teacherEL._id"
+  >
+  </app-teachers-item>
 </ul>

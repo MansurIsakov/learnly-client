@@ -27,6 +27,7 @@ li {
 
 a {
   text-decoration: none;
+  padding: 0;
 }
 
 ::selection {
@@ -117,6 +118,8 @@ a {
   color: $white;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
+  height: 5rem;
 
   &:disabled {
     background-color: $gray;
