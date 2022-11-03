@@ -46,9 +46,6 @@ a {
     font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    // position: absolute;
-    // top: 20%;
-    // left: 1rem;
   }
 
   input,
@@ -149,18 +146,28 @@ a {
 }
 
 // SPINNER
-.spinner {
+.loading-container {
   text-align: center;
-  z-index: 101;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 10000;
+  background-color: $color-tertiary;
 
-  .lds-ripple {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Eye Icon
+.eye-icon {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

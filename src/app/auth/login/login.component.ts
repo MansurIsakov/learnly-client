@@ -1,12 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 
 @Component({
@@ -16,6 +9,7 @@ import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  activePassword: boolean = false;
   @Output() onEmitSubmit = new EventEmitter<FormGroup>();
 
   constructor() {}
@@ -33,6 +27,10 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl(null, [Validators.required]),
     });
+  }
+
+  togglePassword() {
+    this.activePassword = !this.activePassword;
   }
 
   onSubmit() {

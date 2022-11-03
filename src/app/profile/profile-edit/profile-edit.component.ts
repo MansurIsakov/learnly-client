@@ -14,7 +14,6 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./profile-edit.component.scss'],
 })
 export class ProfileEditComponent implements OnInit, OnDestroy {
-  isLoading: boolean = false;
   userId: string;
   editForm: FormGroup;
   formatConstant;
@@ -31,18 +30,11 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isLoading = true;
-
     this.initForm();
 
     this.sub.push(
       this.profileService
         .getProfile(this.userId)
-        .pipe(
-          finalize(() => {
-            this.isLoading = false;
-          })
-        )
 
         .subscribe((user) => {
           const [dobYear, dobMonth, dobDay] = user.dob.split('-');
@@ -103,7 +95,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isLoading = true;
     const { emoji, firstName, lastName, dobData, status } = this.editForm.value;
 
     const dob = `${dobData.dobYear}-${dobData.dobMonth}-${dobData.dobDay}`;
@@ -122,7 +113,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
         .pipe(
           finalize(() => {
             this.location.back();
-            this.isLoading = false;
           })
         )
         .subscribe()

@@ -11,7 +11,6 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  isLoading: boolean = false;
   error: string = null;
   isLoginMode: boolean = true;
   subscription: Subscription;
@@ -33,7 +32,6 @@ export class AuthComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isLoading = true;
     let authObs: Observable<AuthResponseData>;
 
     if (this.isLoginMode) {
@@ -46,12 +44,10 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     this.subscription = authObs.subscribe(
       (resData) => {
-        this.isLoading = false;
         this.router.navigate(['/home']);
       },
       (errorMessage) => {
         this.error = errorMessage;
-        this.isLoading = false;
       }
     );
 

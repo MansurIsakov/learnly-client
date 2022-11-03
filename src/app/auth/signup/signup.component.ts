@@ -9,6 +9,7 @@ import { restrictedEmails } from 'src/app/common/validators/restrictedEmails';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  activePassword: boolean = false;
   @Output() onEmitSubmit = new EventEmitter<FormGroup>();
 
   constructor() {}
@@ -35,6 +36,10 @@ export class SignupComponent implements OnInit {
         Validators.minLength(6),
       ]),
     });
+  }
+
+  togglePassword() {
+    this.activePassword = !this.activePassword;
   }
 
   onSubmit() {

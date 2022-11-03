@@ -14,9 +14,9 @@ import { UniWidgetComponent } from './home/uni-widget/uni-widget.component';
 import { GoalsWidgetComponent } from './home/goals-widget/goals-widget.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { TeachersModule } from './teachers/teachers.module';
-import { LoadingService } from './loading.service';
+import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,11 @@ import { LoadingService } from './loading.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true,
     },
   ],

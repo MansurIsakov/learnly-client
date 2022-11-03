@@ -1,6 +1,3 @@
-<div *ngIf="isLoading" class="spinner">
-  <app-spinner></app-spinner>
-</div>
 <div class="card" *ngIf="user$ | async as user">
   <app-alert
     *ngIf="error"

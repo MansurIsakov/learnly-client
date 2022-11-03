@@ -5,8 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './profile/profile.component';
-import { TeachersDetailComponent } from './teachers/teachers-detail/teachers-detail.component';
-import { TeachersComponent } from './teachers/teachers.component';
 
 const routes: Routes = [
   {
