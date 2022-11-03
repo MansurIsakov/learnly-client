@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { TeachersModule } from './teachers/teachers.module';
+import { LoadingService } from './loading.service';
 
 @NgModule({
   declarations: [

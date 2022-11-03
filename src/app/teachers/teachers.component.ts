@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { ITeacher } from '../models/teacher.model';
-import { TeachersService } from './teachers.service';
+import { TeachersResponseData, TeachersService } from './teachers.service';
 
 @Component({
   selector: 'app-teachers',
@@ -10,22 +10,11 @@ import { TeachersService } from './teachers.service';
 })
 export class TeachersComponent implements OnInit {
   isLoading: boolean = false;
-  @Output() teachers: ITeacher[];
+  teachers$: Observable<ITeacher[] & ITeacher>;
 
   constructor(private tService: TeachersService) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.tService
-      .getAllTeachers()
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      // unsubsrcibe?
-      .subscribe((teachers) => {
-        this.teachers = teachers;
-      });
+    this.teachers$ = this.tService.getAllTeachers();
   }
 }

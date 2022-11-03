@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<div *ngIf="isLoading$ | async" class="spinner">
+  <app-spinner></app-spinner>
+</div>
+<router-outlet *ngIf="!(isLoading$ | async)"></router-outlet>

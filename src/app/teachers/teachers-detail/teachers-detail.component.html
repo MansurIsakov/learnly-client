@@ -1,4 +1,4 @@
-<div class="teacher-detail">
+<div class="teacher-detail" *ngIf="teacher$ | async as teacher">
   <div class="teacher-detail__image">
     <img
       [src]="'./assets/memoji/Avatar-' + teacher.imageNum + '.png'"

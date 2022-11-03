@@ -7,6 +7,7 @@ import { LEVELS } from '../common/constants/levels.const';
 import { COURSES } from '../common/constants/courses.const';
 import { AuthService } from '../auth/auth.service';
 import { isEmpty } from '../common/helpers/isEmpty';
+import { finalize, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ import { isEmpty } from '../common/helpers/isEmpty';
 })
 export class ProfileComponent implements OnInit {
   isLoading: boolean = false;
-  user: IUser;
+  user$: Observable<IUser>;
   userId: string;
   formatConstant;
   levelsConst = LEVELS;
@@ -35,15 +36,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    // ASK: How to unsubscribe?
-    this.profileService.getProfile(this.userId).subscribe((user) => {
-      this.user = user;
-      this.isLoading = false;
-    });
+
+    this.user$ = this.profileService.getProfile(this.userId).pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    );
   }
 
   deleteAccount(id: string) {
-    // unsubscribe?
     this.profileService.deleteProfile(id).subscribe();
     localStorage.clear();
     this.router.navigate(['/auth']);

@@ -4,8 +4,5 @@ export interface IConst {
 }
 
 export interface ResponseData<T> {
-  message: string;
-  error: boolean;
-  code: number;
   results: T;
 }

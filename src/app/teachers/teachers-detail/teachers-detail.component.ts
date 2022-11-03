@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize } from 'rxjs';
+import { finalize, map, Observable, Subscription, switchMap } from 'rxjs';
 import { isEmpty } from 'src/app/common/helpers/isEmpty';
 import { ITeacher } from 'src/app/models/teacher.model';
 import { TeachersService } from '../teachers.service';
@@ -11,8 +11,7 @@ import { TeachersService } from '../teachers.service';
   styleUrls: ['./teachers-detail.component.scss'],
 })
 export class TeachersDetailComponent implements OnInit {
-  teacher: ITeacher;
-  teacherId: string;
+  teacher$: Observable<ITeacher[] & ITeacher>;
   isEmpty = isEmpty;
 
   constructor(
@@ -21,13 +20,11 @@ export class TeachersDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // unsubscribe?
-    this.route.params.subscribe((params) => {
-      this.teacherId = params['id'];
-
-      this.tService.getTeacher(this.teacherId).subscribe((teacher) => {
-        this.teacher = teacher;
-      });
-    });
+    this.teacher$ = this.route.params.pipe(
+      switchMap((params) => {
+        const teacherId = params['id'];
+        return this.tService.getTeacher(teacherId);
+      })
+    );
   }
 }

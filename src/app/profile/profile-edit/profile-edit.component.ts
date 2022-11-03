@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { finalize } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { MONTHS } from 'src/app/common/constants/months.const';
 import { formatConstant } from 'src/app/common/helpers/formatConstant';
 import { IUser } from 'src/app/models/user.model';
@@ -13,12 +13,13 @@ import { ProfileService } from '../profile.service';
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.scss'],
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   userId: string;
   editForm: FormGroup;
   formatConstant;
   monthsConst = MONTHS;
+  sub: Subscription[] = [];
 
   constructor(
     private profileService: ProfileService,
@@ -34,34 +35,36 @@ export class ProfileEditComponent implements OnInit {
 
     this.initForm();
 
-    this.profileService
-      .getProfile(this.userId)
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      // unsubsrcibe?
-      .subscribe((user) => {
-        const [dobYear, dobMonth, dobDay] = user.dob.split('-');
+    this.sub.push(
+      this.profileService
+        .getProfile(this.userId)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          })
+        )
 
-        this.editForm.patchValue({
-          emoji: user.emoji,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          dobData: {
-            dobDay,
-            dobMonth,
-            dobYear,
-          },
-        });
+        .subscribe((user) => {
+          const [dobYear, dobMonth, dobDay] = user.dob.split('-');
 
-        if (user.status) {
-          for (const status of user.status) {
-            this.populateFormArray(status);
+          this.editForm.patchValue({
+            emoji: user.emoji,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            dobData: {
+              dobDay,
+              dobMonth,
+              dobYear,
+            },
+          });
+
+          if (user.status) {
+            for (const status of user.status) {
+              this.populateFormArray(status);
+            }
           }
-        }
-      });
+        })
+    );
   }
 
   private initForm() {
@@ -113,15 +116,20 @@ export class ProfileEditComponent implements OnInit {
       status,
     };
 
-    this.profileService
-      .updateProfile(this.userId, user)
-      .pipe(
-        finalize(() => {
-          this.location.back();
-          this.isLoading = false;
-        })
-      )
-      // need to subscribe? usubscribe?
-      .subscribe();
+    this.sub.push(
+      this.profileService
+        .updateProfile(this.userId, user)
+        .pipe(
+          finalize(() => {
+            this.location.back();
+            this.isLoading = false;
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  ngOnDestroy() {
+    this.sub.forEach((s) => s.unsubscribe());
   }
 }

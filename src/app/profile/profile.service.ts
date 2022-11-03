@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../models/user.model';
+import { ResponseData } from '../common/types/interfaces';
 
 export interface ProfileResponseData {
-  message: string;
-  error: boolean;
-  code: number;
   results: IUser;
 }
 
@@ -17,7 +15,7 @@ export class ProfileService {
 
   getProfile(id: string) {
     return this.http
-      .get<ProfileResponseData>(environment.API_ENDPOINT + '/users/' + id)
+      .get<ResponseData<IUser>>(environment.API_ENDPOINT + '/users/' + id)
       .pipe(
         map((resData) => {
           return resData.results;
