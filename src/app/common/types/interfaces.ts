@@ -5,4 +5,5 @@ export interface IConst {
 
 export interface ResponseData<T> {
   results: T;
+  token?: string;
 }

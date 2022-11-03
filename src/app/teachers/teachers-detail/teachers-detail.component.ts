@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, map, Observable, Subscription, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { isEmpty } from 'src/app/common/helpers/isEmpty';
 import { ITeacher } from 'src/app/models/teacher.model';
 import { TeachersService } from '../teachers.service';
@@ -11,7 +11,7 @@ import { TeachersService } from '../teachers.service';
   styleUrls: ['./teachers-detail.component.scss'],
 })
 export class TeachersDetailComponent implements OnInit {
-  teacher$: Observable<ITeacher[] & ITeacher>;
+  teacher$: Observable<ITeacher>;
   isEmpty = isEmpty;
 
   constructor(

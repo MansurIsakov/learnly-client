@@ -8,7 +8,7 @@ import { RegistrationErrorCode, UserErrorCode } from '../common/types/errors';
 export interface AuthResponseData {
   status: string;
   token: string;
-  data: { user: UserModel };
+  user: UserModel;
 }
 
 @Injectable({
@@ -30,9 +30,9 @@ export class AuthService {
       })
       .pipe(
         tap((resData) => {
-          this.role = resData.data.user.role;
+          this.role = resData.user.role;
 
-          this.handleAuthentication(resData.data.user, resData.token);
+          this.handleAuthentication(resData.user, resData.token);
         }),
         catchError(this.handleError)
       );
@@ -46,9 +46,9 @@ export class AuthService {
       })
       .pipe(
         tap((resData) => {
-          this.role = resData.data.user.role;
+          this.role = resData.user.role;
 
-          this.handleAuthentication(resData.data.user, resData.token);
+          this.handleAuthentication(resData.user, resData.token);
         }),
         catchError(this.handleError)
       );

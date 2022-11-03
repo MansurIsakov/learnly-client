@@ -5,10 +5,6 @@ import { environment } from 'src/environments/environment';
 import { IUser } from '../models/user.model';
 import { ResponseData } from '../common/types/interfaces';
 
-export interface ProfileResponseData {
-  results: IUser;
-}
-
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
   constructor(private http: HttpClient) {}
@@ -29,7 +25,7 @@ export class ProfileService {
     userData: Omit<IUser, 'course' | 'level' | 'email'>
   ) {
     return this.http
-      .put<ProfileResponseData>(
+      .put<ResponseData<IUser>>(
         environment.API_ENDPOINT + '/users/' + id,
         userData
       )
@@ -43,7 +39,7 @@ export class ProfileService {
 
   deleteProfile(id: string) {
     return this.http
-      .delete<ProfileResponseData>(environment.API_ENDPOINT + '/users/' + id)
+      .delete<ResponseData<IUser>>(environment.API_ENDPOINT + '/users/' + id)
       .pipe(catchError(this.handleError));
   }
 

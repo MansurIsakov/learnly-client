@@ -2,14 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ResponseData } from '../common/types/interfaces';
 import { ITeacher } from '../models/teacher.model';
-
-export interface TeachersResponseData {
-  message: string;
-  error: boolean;
-  code: number;
-  results: ITeacher[] & ITeacher;
-}
 
 @Injectable({ providedIn: 'root' })
 export class TeachersService {
@@ -17,7 +11,7 @@ export class TeachersService {
 
   getAllTeachers() {
     return this.http
-      .get<TeachersResponseData>(environment.API_ENDPOINT + '/teachers')
+      .get<ResponseData<ITeacher[]>>(environment.API_ENDPOINT + '/teachers')
       .pipe(
         map((resData) => {
           return resData.results;
@@ -28,7 +22,7 @@ export class TeachersService {
 
   getTeacher(id: string) {
     return this.http
-      .get<TeachersResponseData>(environment.API_ENDPOINT + '/teachers/' + id)
+      .get<ResponseData<ITeacher>>(environment.API_ENDPOINT + '/teachers/' + id)
       .pipe(
         map((resData) => {
           return resData.results;

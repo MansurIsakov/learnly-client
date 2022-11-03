@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
 import { LoaderService } from './loader.service';
 
 @Component({

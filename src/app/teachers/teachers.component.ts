@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { finalize, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ITeacher } from '../models/teacher.model';
-import { TeachersResponseData, TeachersService } from './teachers.service';
+import { TeachersService } from './teachers.service';
 
 @Component({
   selector: 'app-teachers',
@@ -10,7 +10,7 @@ import { TeachersResponseData, TeachersService } from './teachers.service';
 })
 export class TeachersComponent implements OnInit {
   isLoading: boolean = false;
-  teachers$: Observable<ITeacher[] & ITeacher>;
+  teachers$: Observable<ITeacher[]>;
 
   constructor(private tService: TeachersService) {}
 
