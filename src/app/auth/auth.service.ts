@@ -105,7 +105,7 @@ export class AuthService {
     }
 
     switch (errorRes.error.code) {
-      case RegistrationErrorCode.E11000_DUPLICATE_KEY:
+      case RegistrationErrorCode.EMAIL_ALREADY_EXISTS:
         errorMessage = 'This email exists already';
         break;
       case UserErrorCode.INVALID_EMAIL_PASSWORD:
