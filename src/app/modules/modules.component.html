@@ -1,0 +1,17 @@
+<div class="card">
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    (close)="onHandleError()"
+  ></app-alert>
+  <app-nav></app-nav>
+  <div class="module">
+    <div class="module-view">
+      <app-module-nav></app-module-nav>
+      <app-module-list></app-module-list>
+    </div>
+    <div class="module-bar">
+      <app-module-info></app-module-info>
+    </div>
+  </div>
+</div>

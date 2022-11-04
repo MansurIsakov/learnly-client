@@ -17,6 +17,11 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { TeachersModule } from './teachers/teachers.module';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
+import { ModulesComponent } from './modules/modules.component';
+import { ModuleInfoComponent } from './modules/module-info/module-info.component';
+import { ModuleNavComponent } from './modules/module-nav/module-nav.component';
+import { ModuleListComponent } from './modules/module-list/module-list.component';
+import { ModuleItemComponent } from './modules/module-list/module-item/module-item.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
     GoalsWidgetComponent,
     ProfileComponent,
     ProfileEditComponent,
+    ModulesComponent,
+    ModuleInfoComponent,
+    ModuleNavComponent,
+    ModuleListComponent,
+    ModuleItemComponent,
   ],
   imports: [
     BrowserModule,
