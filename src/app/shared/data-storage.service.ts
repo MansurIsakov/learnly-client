@@ -14,15 +14,16 @@ export class DataStorageService {
     return this.http
       .get<ResponseData<ITeacher[]>>(environment.API_ENDPOINT + '/teachers')
       .pipe(
-        map((teachers) => {
-          return teachers.results.map((teacher) => {
+        map((teachersResponse) => {
+          const teachers = teachersResponse.results.map((teacher) => {
             return {
               ...teacher,
             };
           });
-        }),
-        tap((teachers) => {
+
           this.tServices.setTeachers(teachers);
+
+          return teachers;
         }),
         catchError(this.handleError)
       );

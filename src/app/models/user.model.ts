@@ -9,6 +9,7 @@ export interface IUser {
   emoji?: string;
   status?: string[];
   modules?: string[];
+  credits: number;
   dob?: string;
   _createdAt?: string;
   updatedAt?: string;
@@ -27,6 +28,7 @@ export class UserModel implements IUser {
   dob?: string;
   status?: string[];
   modules?: string[];
+  credits: number;
   _createdAt?: string;
   updatedAt?: string;
 
@@ -42,6 +44,7 @@ export class UserModel implements IUser {
     this.dob = source.dob;
     this.status = source.status;
     this.modules = source.modules;
+    this.credits = source.credits;
     this._createdAt = source._createdAt;
     this.updatedAt = source.updatedAt;
   }

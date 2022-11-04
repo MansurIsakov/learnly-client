@@ -99,7 +99,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
     const dob = `${dobData.dobYear}-${dobData.dobMonth}-${dobData.dobDay}`;
 
-    const user: Omit<IUser, 'course' | 'level' | 'email'> = {
+    const user: Omit<IUser, 'course' | 'level' | 'email' | 'credits'> = {
       emoji,
       firstName,
       lastName,

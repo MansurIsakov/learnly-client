@@ -22,7 +22,7 @@ export class ProfileService {
 
   updateProfile(
     id: string,
-    userData: Omit<IUser, 'course' | 'level' | 'email'>
+    userData: Omit<IUser, 'course' | 'level' | 'email' | 'credits'>
   ) {
     return this.http
       .put<ResponseData<IUser>>(
