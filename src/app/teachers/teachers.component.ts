@@ -10,11 +10,11 @@ import { TeachersService } from './teachers.service';
 })
 export class TeachersComponent implements OnInit {
   isLoading: boolean = false;
-  teachers$: Observable<ITeacher[]>;
+  teachers: ITeacher[];
 
   constructor(private tService: TeachersService) {}
 
   ngOnInit(): void {
-    this.teachers$ = this.tService.getAllTeachers();
+    this.teachers = this.tService.getTeachers();
   }
 }

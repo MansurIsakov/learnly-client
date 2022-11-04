@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
 import { isEmpty } from 'src/app/common/helpers/isEmpty';
 import { ITeacher } from 'src/app/models/teacher.model';
 import { TeachersService } from '../teachers.service';
@@ -11,7 +10,7 @@ import { TeachersService } from '../teachers.service';
   styleUrls: ['./teachers-detail.component.scss'],
 })
 export class TeachersDetailComponent implements OnInit {
-  teacher$: Observable<ITeacher>;
+  teacher: ITeacher;
   isEmpty = isEmpty;
 
   constructor(
@@ -20,11 +19,8 @@ export class TeachersDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.teacher$ = this.route.params.pipe(
-      switchMap((params) => {
-        const teacherId = params['id'];
-        return this.tService.getTeacher(teacherId);
-      })
-    );
+    this.route.params.subscribe((params) => {
+      this.teacher = this.tService.getTeacher(params['id']);
+    });
   }
 }

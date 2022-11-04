@@ -1,48 +1,24 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Subject, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { ResponseData } from '../common/types/interfaces';
+import { Subject } from 'rxjs';
 import { ITeacher } from '../models/teacher.model';
 
 @Injectable({ providedIn: 'root' })
 export class TeachersService {
-  teachers: ITeacher[] = [];
-  teacher = new Subject<ITeacher>();
+  private teachers: ITeacher[] = [];
+  teachersChanged = new Subject<ITeacher[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  getAllTeachers() {
-    return this.http
-      .get<ResponseData<ITeacher[]>>(environment.API_ENDPOINT + '/teachers')
-      .pipe(
-        map((resData) => {
-          this.teachers = resData.results;
-          console.log(this.teachers);
+  getTeachers() {
+    return this.teachers.slice();
+  }
 
-          return resData.results;
-        }),
-        catchError(this.handleError)
-      );
+  setTeachers(teachers: ITeacher[]) {
+    this.teachers = teachers;
+    this.teachersChanged.next(this.teachers.slice());
   }
 
   getTeacher(id: string) {
-    // this.teacher.next(this.teachers.find((t) => t._id === id));
-    // console.log(this.teacher);
-
-    return this.http
-      .get<ResponseData<ITeacher>>(environment.API_ENDPOINT + '/teachers/' + id)
-      .pipe(
-        map((resData) => {
-          return resData.results;
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
-
-    return throwError(errorMessage);
+    return this.teachers.find((teacher) => teacher._id === id);
   }
 }
