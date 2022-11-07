@@ -117,6 +117,7 @@ a {
   cursor: pointer;
   text-align: center;
   height: 5rem;
+  transition: all 0.3s ease;
 
   &:disabled {
     background-color: $gray;
@@ -127,6 +128,10 @@ a {
     background-color: transparent;
     border: 1px solid $black;
     color: $black;
+  }
+
+  &:active {
+    transform: translateY(3px);
   }
 }
 

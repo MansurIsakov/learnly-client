@@ -22,6 +22,7 @@ import { ModuleInfoComponent } from './modules/module-info/module-info.component
 import { ModuleNavComponent } from './modules/module-nav/module-nav.component';
 import { ModuleListComponent } from './modules/module-list/module-list.component';
 import { ModuleItemComponent } from './modules/module-list/module-item/module-item.component';
+import { CoreModulesComponent } from './modals/core-modules/core-modules.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ModuleItemComponent } from './modules/module-list/module-item/module-it
     ModuleNavComponent,
     ModuleListComponent,
     ModuleItemComponent,
+    CoreModulesComponent,
   ],
   imports: [
     BrowserModule,

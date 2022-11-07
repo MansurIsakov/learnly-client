@@ -15,3 +15,8 @@
     </div>
   </div>
 </div>
+<app-core-modules
+  *ngIf="isCoreModulesNeeded"
+  (fetchCoreModules)="onFetchCoreModules()"
+  (closeModal)="onCloseModal()"
+></app-core-modules>

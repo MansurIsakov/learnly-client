@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { IUser, UserModel } from '../models/user.model';
 import { RegistrationErrorCode, UserErrorCode } from '../common/types/errors';
+import { ModulesService } from '../modules/modules.service';
 
 export interface AuthResponseData {
   status: string;
@@ -19,7 +20,11 @@ export class AuthService {
   role: string | undefined;
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private modulesServie: ModulesService
+  ) {}
 
   signup(signupData: IUser, password: string) {
     return this.http
@@ -92,6 +97,9 @@ export class AuthService {
 
     this.user.next(user);
     this.autoLogout(3600000);
+
+    // Anton
+    this.modulesServie.userModules = user.modules;
 
     localStorage.setItem('userData', JSON.stringify(user));
     localStorage.setItem('userToken', JSON.stringify(token));

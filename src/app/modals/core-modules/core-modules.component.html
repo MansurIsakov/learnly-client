@@ -1,0 +1,12 @@
+<div class="modal">
+  <button class="btn--close-modal" (click)="closeModal.emit()">&times;</button>
+  <h2 class="modal__header">Welcome to module section!</h2>
+  <p>
+    Your core modules will be added by default and they cannot be changed. In
+    addition, you can choose optional modules based on credits per semester.
+  </p>
+  <div class="modal__actions">
+    <button class="btn" (click)="fetchCoreModules.emit()">Got it!</button>
+  </div>
+</div>
+<div class="overlay" (click)="closeModal.emit()"></div>
