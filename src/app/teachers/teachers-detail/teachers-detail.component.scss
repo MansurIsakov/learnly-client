@@ -3,7 +3,7 @@
 .teacher-detail {
   display: flex;
   flex-direction: column;
-  border: 0.1rem solid $color-primary;
+  border: 0.1rem solid $black;
   border-radius: 2rem;
   padding: 3rem;
   margin-top: 1rem;
@@ -54,6 +54,14 @@
     .btn {
       width: 30%;
       padding: 1rem 0;
+
+      &:first-child {
+        background-color: $color-main;
+      }
+
+      &:last-child {
+        border-color: $color-main;
+      }
     }
   }
 }

@@ -9,7 +9,7 @@
   &__date,
   &-track,
   &-score {
-    background-color: rgba($color-tertiary, 0.9);
+    background-color: rgba($color-main, 0.9);
     color: white;
     border-radius: 2rem;
     padding: 3rem;
@@ -45,7 +45,7 @@
     width: 8rem;
     text-align: center;
     background-color: white;
-    color: $color-primary;
+    color: $black;
     border-radius: 1.5rem;
     padding-bottom: 0.5rem;
 
