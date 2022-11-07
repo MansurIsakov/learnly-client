@@ -29,3 +29,14 @@
     opacity: 0;
   }
 }
+
+@keyframes MoveUp {
+  0% {
+    transform: translateY(-40%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

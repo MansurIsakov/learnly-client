@@ -13,15 +13,14 @@
   width: 100%;
   padding: 3rem;
   display: flex;
-  height: 85vh;
   justify-content: space-between;
+  position: relative;
 }
 
 .module-view {
-  width: 80%;
+  width: 65%;
 }
 
 .module-bar {
-  width: 20%;
-  position: sticky;
+  width: 30%;
 }

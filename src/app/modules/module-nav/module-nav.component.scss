@@ -1,0 +1,66 @@
+@import "~src/styles/index.scss";
+
+.modules-nav {
+  h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+}
+.modules-navbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+    gap: 3rem;
+
+    li {
+      font-size: 2rem;
+      border-bottom: 0.5rem solid rgba($color-main, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        border-bottom: 0.5rem solid $color-main;
+      }
+
+      &.active {
+        font-weight: 500;
+        border-bottom: 0.5rem solid $color-main;
+      }
+    }
+  }
+
+  &__sort {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+
+    p {
+      color: rgba($gray, 0.4);
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    select {
+      background: transparent;
+      padding: 1.5rem 4rem 1.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 1.6rem;
+      border-right: 16px solid transparent;
+      border: 1px solid $color-main;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    img {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
