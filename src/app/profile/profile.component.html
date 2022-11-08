@@ -36,7 +36,7 @@
     </div>
     <div class="profile-modules">
       <h4 class="profile__heading">{{ "Modules" }}</h4>
-      <p *ngIf="user!.status">
+      <p *ngIf="isEmpty(user.modules)">
         You do not have any modules! Set modules
         <a routerLink="/modules">here.</a>
       </p>
@@ -44,7 +44,7 @@
         <div class="profile-modules__icon">
           <img src="./assets/icons/bis.svg" alt="BIS Icon" />
         </div>
-        <span>Computer Science Fundamentals</span>
+        <span>{{ module.moduleName }}</span>
       </div>
     </div>
     <div class="profile-account">

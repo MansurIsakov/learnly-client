@@ -142,6 +142,9 @@ export class ModulesService {
         errorMessage = 'You have reached the maximum number of credits!';
         break;
 
+      case ModuleErrorCode.USER_DOES_NOT_HAVE_MODULE:
+        errorMessage = "You don't have this module!";
+        break;
       default:
         errorMessage = 'An unknown error occurred!';
     }
