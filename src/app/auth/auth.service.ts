@@ -98,9 +98,6 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(3600000);
 
-    // Anton
-    this.modulesService.userModules$.next(user.modules);
-
     localStorage.setItem('userData', JSON.stringify(user));
     localStorage.setItem('userToken', JSON.stringify(token));
   }

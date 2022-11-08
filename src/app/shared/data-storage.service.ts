@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, tap, throwError } from 'rxjs';
+import { catchError, map, of, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseData } from '../common/types/interfaces';
 import { IModule } from '../models/module.model';
@@ -40,8 +40,8 @@ export class DataStorageService {
       .get<ResponseData<IModule[]>>(environment.API_ENDPOINT + '/user/modules')
       .pipe(
         map((modulesResponse) => {
-          this.modulesService.setModules(modulesResponse.results);
-          this.modulesService.credits = modulesResponse.credits;
+          this.modulesService.userModules = modulesResponse.results;
+          this.modulesService.userCredits = modulesResponse.credits;
 
           return modulesResponse.results;
         }),
@@ -54,8 +54,7 @@ export class DataStorageService {
       .get<ResponseData<IModule[]>>(environment.API_ENDPOINT + '/modules')
       .pipe(
         map((resData) => {
-          this.modulesService.setAllModules(resData.results);
-          return resData;
+          return resData.results;
         }),
         catchError(this.handleError)
       );

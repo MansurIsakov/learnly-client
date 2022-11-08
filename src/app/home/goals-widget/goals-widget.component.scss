@@ -25,6 +25,7 @@
     height: 18rem;
     display: flex;
     line-height: 2rem;
+    animation: scaleUp 0.6s;
 
     h2 {
       font-size: 4rem;
@@ -71,6 +72,15 @@
     width: 24rem;
     height: 13rem;
     border-radius: 5rem;
+    animation-name: scaleUp;
+
+    &:first-child {
+      animation: scaleUp 0.7s;
+    }
+
+    &:last-child {
+      animation: scaleUp 1s;
+    }
 
     span {
       color: rgba($color: #fff, $alpha: 0.7);
@@ -101,6 +111,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    animation: scaleUp 0.6s;
 
     &__points {
       p {

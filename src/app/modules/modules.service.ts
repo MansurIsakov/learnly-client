@@ -1,6 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, isEmpty, map, Subject, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  Subject,
+  throwError,
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModuleErrorCode } from '../common/types/errors';
 import { ResponseData } from '../common/types/interfaces';
@@ -10,29 +17,38 @@ import { IUser } from '../models/user.model';
 @Injectable({ providedIn: 'root' })
 export class ModulesService {
   constructor(private http: HttpClient) {}
-  private userModules: IModule[] = [];
-  userModules$ = new Subject<IModule[]>();
-  private allModules: IModule[];
-  allModules$ = new Subject<IModule[]>();
 
-  credits: number;
+  private readonly _userModules = new BehaviorSubject<IModule[]>([]);
+  readonly userModules$ = this._userModules.asObservable();
 
-  getModules() {
-    return this.userModules.slice();
+  private readonly _modules = new BehaviorSubject<IModule[]>([]);
+  readonly modules$ = this._modules.asObservable();
+
+  private _credits = new BehaviorSubject<number>(0);
+  readonly credits$ = this._credits.asObservable();
+
+  get userModules(): IModule[] {
+    return this._userModules.getValue();
   }
 
-  getAllModules() {
-    return this.allModules.slice();
+  set userModules(modules: IModule[]) {
+    this._userModules.next(modules);
   }
 
-  setModules(modules: IModule[]) {
-    this.userModules = modules;
-    this.userModules$.next(this.userModules);
+  get modules(): IModule[] {
+    return this._modules.getValue();
   }
 
-  setAllModules(modules: IModule[]) {
-    this.allModules = modules;
-    this.allModules$.next(this.allModules.slice());
+  set modules(modules: IModule[]) {
+    this._modules.next(modules);
+  }
+
+  get userCredits(): number {
+    return this._credits.getValue();
+  }
+
+  set userCredits(credits: number) {
+    this._credits.next(credits);
   }
 
   setCoreModules() {
@@ -40,7 +56,7 @@ export class ModulesService {
       .get<ResponseData<IUser>>(environment.API_ENDPOINT + '/user/modules/core')
       .pipe(
         map((resData) => {
-          this.setModules(resData.results.modules);
+          this.userModules = resData.results.modules;
           return resData;
         }),
         catchError(this.handleError)
@@ -55,7 +71,11 @@ export class ModulesService {
       .pipe(
         // Anton
         map((resData) => {
-          // this.userModules = resData.results.modules;
+          this.userModules = [
+            ...this.userModules,
+            this.modules.find((module) => module.id === moduleId),
+          ];
+          this.userCredits = this._credits.getValue() + 20;
         }),
         catchError(this.handleError)
       );
@@ -69,25 +89,36 @@ export class ModulesService {
       .pipe(
         // Anton
         map((resData) => {
-          this.userModules.filter((module) => module.id !== moduleId);
+          this.userModules = this.userModules.filter(
+            (module) => module.id !== moduleId
+          );
+          this.userCredits = this._credits.getValue() - 20;
         }),
         catchError(this.handleError)
       );
   }
 
-  getCourseModules(level: string, course: string) {
-    return this.allModules.filter(
-      (module) =>
-        module.moduleLevel === +level && module.courses.includes(course)
+  filteredCourseModules(level: string, course: string) {
+    return this.modules$.pipe(
+      map((modules) =>
+        modules.filter(
+          (module) =>
+            module.moduleLevel === +level && module.courses.includes(course)
+        )
+      )
     );
   }
 
-  getCoreModules(level: string, course: string) {
-    return this.allModules.filter(
-      (module) =>
-        module.type === 'core' &&
-        module.moduleLevel === +level &&
-        module.courses.includes(course)
+  filteredCoreModules(level: string, course: string) {
+    return this.modules$.pipe(
+      map((modules) =>
+        modules.filter(
+          (module) =>
+            module.type === 'core' &&
+            module.moduleLevel === +level &&
+            module.courses.includes(course)
+        )
+      )
     );
   }
 

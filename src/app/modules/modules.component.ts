@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ModulesSection } from '../common/constants/modules.enum';
 import { IModule } from '../models/module.model';
 import { IUser } from '../models/user.model';
+import { DataStorageService } from '../shared/data-storage.service';
 import { ModulesService } from './modules.service';
 
 @Component({
@@ -15,28 +16,37 @@ export class ModulesComponent implements OnInit, OnDestroy {
   error: string = null;
   isCoreModulesNeeded: boolean = false;
   user: IUser = JSON.parse(localStorage.getItem('userData'));
-  sub: Subscription;
-  modules: IModule[];
+  subs: Subscription[] = [];
+  modules$: Observable<IModule[]>;
   canBeChanged: boolean = false;
   modulesSection = ModulesSection.ALLCOURSE;
-  userCredits: number;
+  userCredits$: Observable<number>;
   selectedModule: IModule;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private modulesService: ModulesService
+    private modulesService: ModulesService,
+    private dsService: DataStorageService
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.data.subscribe(({ modules }) => {
-      this.isCoreModulesNeeded = modules.length === 0;
+    this.subs.push(
+      this.dsService.fetchUserModules().subscribe((resData) => {
+        this.modulesService.userModules = resData;
+        this.isCoreModulesNeeded = resData.length === 0;
 
-      if (this.isCoreModulesNeeded) {
-        this.modulesService.setCoreModules().subscribe();
-      }
-    });
+        if (this.isCoreModulesNeeded) {
+          this.modulesService.setCoreModules().subscribe();
+        }
+      })
+    );
 
-    this.userCredits = this.modulesService.credits;
+    this.subs.push(
+      this.dsService.fetchAllModules().subscribe((resData) => {
+        this.modulesService.modules = resData;
+      })
+    );
+
+    this.userCredits$ = this.modulesService.credits$;
 
     this.onLoadModules(this.modulesSection);
   }
@@ -59,26 +69,26 @@ export class ModulesComponent implements OnInit, OnDestroy {
       case ModulesSection.ALLCOURSE:
         this.canBeChanged = true;
 
-        this.modules = this.modulesService.getCourseModules(
+        this.modules$ = this.modulesService.filteredCourseModules(
+          this.user.level,
+          this.user.course
+        );
+        break;
+      case ModulesSection.ALLMODULES:
+        this.canBeChanged = false;
+        this.modules$ = this.modulesService.modules$;
+        break;
+      case ModulesSection.MYMODULES:
+        this.canBeChanged = true;
+        this.modules$ = this.modulesService.userModules$;
+        break;
+      case ModulesSection.COREMODULES:
+        this.canBeChanged = false;
+        this.modules$ = this.modulesService.filteredCoreModules(
           this.user.level,
           this.user.course
         );
 
-        break;
-      case ModulesSection.ALLMODULES:
-        this.canBeChanged = false;
-        this.modules = this.modulesService.getAllModules();
-        break;
-      case ModulesSection.MYMODULES:
-        this.canBeChanged = true;
-        this.modules = this.modulesService.getModules();
-        break;
-      case ModulesSection.COREMODULES:
-        this.canBeChanged = false;
-        this.modules = this.modulesService.getCoreModules(
-          this.user.level,
-          this.user.course
-        );
         break;
       default:
         break;
@@ -90,8 +100,8 @@ export class ModulesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.subs) {
+      this.subs.forEach((sub) => sub.unsubscribe());
     }
   }
 }

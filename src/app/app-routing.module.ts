@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
-import { ModulesResolverService } from './modules/modules-resolver.service';
 import { ModulesComponent } from './modules/modules.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
@@ -45,9 +44,6 @@ const routes: Routes = [
     path: 'modules',
     component: ModulesComponent,
     canActivate: [AuthGuard],
-    resolve: {
-      modules: ModulesResolverService,
-    },
   },
   {
     path: '**',

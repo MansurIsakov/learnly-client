@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IModule } from 'src/app/models/module.model';
 import { ModulesService } from '../modules.service';
 
