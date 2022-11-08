@@ -7,16 +7,23 @@
   <app-nav></app-nav>
   <div class="module">
     <div class="module-view">
-      <app-module-nav></app-module-nav>
-      <app-module-list></app-module-list>
+      <app-module-nav (change)="onChangeModules($event)"></app-module-nav>
+      <app-module-list
+        [modules]="modules"
+        [canBeChanged]="canBeChanged"
+        (onSelectModule)="onSelectModule($event)"
+      ></app-module-list>
     </div>
     <div class="module-bar">
-      <app-module-info></app-module-info>
+      <app-module-info
+        [modulesNumber]="modules.length"
+        [credits]="userCredits"
+        [module]="selectedModule"
+      ></app-module-info>
     </div>
   </div>
 </div>
 <app-core-modules
   *ngIf="isCoreModulesNeeded"
-  (fetchCoreModules)="onFetchCoreModules()"
   (closeModal)="onCloseModal()"
 ></app-core-modules>

@@ -2,10 +2,13 @@
   <h2>Modules +</h2>
   <div class="modules-navbox">
     <ul>
-      <li class="active">All BIS Modules</li>
-      <li>My Modules</li>
-      <li>Core Modules</li>
-      <li>All Modules</li>
+      <li
+        *ngFor="let item of navItems"
+        [ngClass]="{ active: currentModules === item.value }"
+        (click)="onSelect(item.value)"
+      >
+        {{ item.name }}
+      </li>
     </ul>
     <div class="modules-navbox__sort">
       <p>Sort by:</p>

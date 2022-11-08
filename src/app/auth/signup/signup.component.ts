@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
         firstName: new FormControl(null, Validators.required),
         lastName: new FormControl(null, Validators.required),
         course: new FormControl('BIS', Validators.required),
-        level: new FormControl(3, Validators.required),
+        level: new FormControl(4, Validators.required),
         email: new FormControl(null, [
           Validators.required,
           Validators.email,

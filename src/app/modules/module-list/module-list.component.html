@@ -1,3 +1,8 @@
+<app-alert
+  *ngIf="response"
+  [message]="response"
+  (close)="onHandleError()"
+></app-alert>
 <div class="module-list">
   <h4>
     <img
@@ -9,9 +14,15 @@
   </h4>
   <ul class="module-list__box">
     <app-module-item
-      *ngFor="let item of [1, 2, 3, 4, 5, 6, 6, 4, 6]; let i = index"
+      *ngFor="let item of modules; let i = index"
+      [module]="item"
       class="module-item"
       [style.animation-delay]="0.15 * i + 's'"
+      [canBeChanged]="canBeChanged"
+      (addModule)="onTakeModule($event)"
+      (remModule)="onRemoveModule($event)"
+      (click)="selectModule(item)"
     ></app-module-item>
   </ul>
+  <p *ngIf="!modules">Select Modules Tab</p>
 </div>

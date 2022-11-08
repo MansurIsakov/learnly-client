@@ -23,7 +23,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private modulesServie: ModulesService
+    private modulesService: ModulesService
   ) {}
 
   signup(signupData: IUser, password: string) {
@@ -99,7 +99,7 @@ export class AuthService {
     this.autoLogout(3600000);
 
     // Anton
-    this.modulesServie.userModules = user.modules;
+    this.modulesService.userModules$.next(user.modules);
 
     localStorage.setItem('userData', JSON.stringify(user));
     localStorage.setItem('userToken', JSON.stringify(token));

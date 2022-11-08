@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Subject, throwError } from 'rxjs';
+import { catchError, isEmpty, map, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ModuleErrorCode } from '../common/types/errors';
 import { ResponseData } from '../common/types/interfaces';
 import { IModule } from '../models/module.model';
 import { IUser } from '../models/user.model';
@@ -9,52 +10,110 @@ import { IUser } from '../models/user.model';
 @Injectable({ providedIn: 'root' })
 export class ModulesService {
   constructor(private http: HttpClient) {}
-  //   Make it observable to make it reactive
-  userModules: IModule[] = [];
+  private userModules: IModule[] = [];
   userModules$ = new Subject<IModule[]>();
+  private allModules: IModule[];
+  allModules$ = new Subject<IModule[]>();
 
-  setCoreModules(id: string) {
-    return this.http
-      .get<ResponseData<IUser>>(
-        environment.API_ENDPOINT + '/users/' + id + '/modules/core'
-      )
-      .pipe(catchError(this.handleError));
+  credits: number;
+
+  getModules() {
+    return this.userModules.slice();
   }
 
-  getUserModules(id: string) {
-    return this.http
-      .get<ResponseData<IModule>>(
-        environment.API_ENDPOINT + '/users/' + id + '/modules'
-      )
-      .pipe(catchError(this.handleError));
+  getAllModules() {
+    return this.allModules.slice();
   }
 
-  addModule(id: string, moduleId: string) {
-    return this.http
-      .post<ResponseData<IModule>>(
-        environment.API_ENDPOINT + '/users/' + id,
-        moduleId
-      )
-      .pipe(catchError(this.handleError));
+  setModules(modules: IModule[]) {
+    this.userModules = modules;
+    this.userModules$.next(this.userModules);
   }
 
-  deleteModule(id: string, moduleId: string) {
-    return this.http
-      .delete<ResponseData<IModule>>(
-        environment.API_ENDPOINT + '/users/' + id,
-        { body: moduleId }
-      )
-      .pipe(catchError(this.handleError));
+  setAllModules(modules: IModule[]) {
+    this.allModules = modules;
+    this.allModules$.next(this.allModules.slice());
   }
 
-  isModulesEmpty() {
-    console.log(this.userModules);
+  setCoreModules() {
+    return this.http
+      .get<ResponseData<IUser>>(environment.API_ENDPOINT + '/user/modules/core')
+      .pipe(
+        map((resData) => {
+          this.setModules(resData.results.modules);
+          return resData;
+        }),
+        catchError(this.handleError)
+      );
+  }
 
-    return this.userModules.length === 0;
+  addModule(moduleId: string) {
+    return this.http
+      .post<ResponseData<IUser>>(environment.API_ENDPOINT + '/user/modules', {
+        moduleId: moduleId,
+      })
+      .pipe(
+        // Anton
+        map((resData) => {
+          // this.userModules = resData.results.modules;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  removeModule(moduleId: string) {
+    return this.http
+      .delete<ResponseData<IUser>>(environment.API_ENDPOINT + '/user/modules', {
+        body: { moduleId: moduleId },
+      })
+      .pipe(
+        // Anton
+        map((resData) => {
+          this.userModules.filter((module) => module.id !== moduleId);
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getCourseModules(level: string, course: string) {
+    return this.allModules.filter(
+      (module) =>
+        module.moduleLevel === +level && module.courses.includes(course)
+    );
+  }
+
+  getCoreModules(level: string, course: string) {
+    return this.allModules.filter(
+      (module) =>
+        module.type === 'core' &&
+        module.moduleLevel === +level &&
+        module.courses.includes(course)
+    );
   }
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
+
+    if (!errorRes.error || !errorRes.error.code) {
+      return throwError(errorMessage);
+    }
+
+    switch (errorRes.error.code) {
+      case ModuleErrorCode.USER_ALREADY_HAS_MODULE:
+        errorMessage = 'You already have this module!';
+        break;
+
+      case ModuleErrorCode.MODULE_NOT_FOUND:
+        errorMessage = 'Module not found!';
+        break;
+
+      case ModuleErrorCode.USER_MAX_CREDITS:
+        errorMessage = 'You have reached the maximum number of credits!';
+        break;
+
+      default:
+        errorMessage = 'An unknown error occurred!';
+    }
 
     return throwError(errorMessage);
   }

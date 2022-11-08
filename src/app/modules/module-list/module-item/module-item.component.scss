@@ -9,9 +9,13 @@
 .module-item {
   border: 1px solid rgba(gray, 0.2);
   border-radius: 1rem;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   width: 35rem;
+  height: 32rem;
   transition: all 0.3s;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   &:hover {

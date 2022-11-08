@@ -3,12 +3,18 @@ import { Injectable } from '@angular/core';
 import { catchError, map, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseData } from '../common/types/interfaces';
+import { IModule } from '../models/module.model';
 import { ITeacher } from '../models/teacher.model';
+import { ModulesService } from '../modules/modules.service';
 import { TeachersService } from '../teachers/teachers.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-  constructor(private http: HttpClient, private tServices: TeachersService) {}
+  constructor(
+    private http: HttpClient,
+    private tServices: TeachersService,
+    private modulesService: ModulesService
+  ) {}
 
   fetchTeachers() {
     return this.http
@@ -24,6 +30,32 @@ export class DataStorageService {
           this.tServices.setTeachers(teachers);
 
           return teachers;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchUserModules() {
+    return this.http
+      .get<ResponseData<IModule[]>>(environment.API_ENDPOINT + '/user/modules')
+      .pipe(
+        map((modulesResponse) => {
+          this.modulesService.setModules(modulesResponse.results);
+          this.modulesService.credits = modulesResponse.credits;
+
+          return modulesResponse.results;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchAllModules() {
+    return this.http
+      .get<ResponseData<IModule[]>>(environment.API_ENDPOINT + '/modules')
+      .pipe(
+        map((resData) => {
+          this.modulesService.setAllModules(resData.results);
+          return resData;
         }),
         catchError(this.handleError)
       );

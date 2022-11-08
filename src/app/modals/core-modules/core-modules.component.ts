@@ -6,7 +6,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./core-modules.component.scss'],
 })
 export class CoreModulesComponent implements OnInit {
-  @Output() fetchCoreModules = new EventEmitter();
   @Output() closeModal = new EventEmitter();
 
   constructor() {}

@@ -4,39 +4,46 @@
     <div class="module-box">
       <div class="module-box__item">
         <h4>Classes</h4>
-        <p>4/5</p>
+        <p>{{ modulesNumber }} Modules on the screen.</p>
       </div>
       <div class="module-box__item">
-        <h4>Credits</h4>
-        <p>80/ <span>100</span></p>
+        <h4>Your Credits</h4>
+        <p>{{ credits }}/ <span>100</span></p>
       </div>
       <img src="./assets/icons/modules.png" alt="Modules Image" />
     </div>
   </div>
   <div class="module-info__details">
     <h3 class="module__heading">Details</h3>
-    <div class="module-box">
+    <div class="module-box" *ngIf="module">
       <div class="module-box__info">
-        <h4>Database Systems Development</h4>
-        <p>Level 5 module | Core type</p>
+        <h4>{{ module.moduleName }}</h4>
+        <p>
+          Level {{ module.moduleLevel }} module |
+          {{ module.type | titlecase }} type
+        </p>
       </div>
       <div class="module-box__info">
         <p>Module Teachers:</p>
         <ul>
-          <li>Dmitriy Pochitaev</li>
-          <li>Shahbazkia Hamid Reza</li>
+          <li *ngFor="let teacher of module.teachers">{{ teacher }}</li>
         </ul>
       </div>
       <div class="module-box__info">
-        <p><span>Seminars</span> in a week: 3</p>
-        <p><span>Lectures</span> in a week: 1</p>
+        <p>
+          <span>Seminars</span> in a week: {{ countClasses(module, "seminar") }}
+        </p>
+        <p>
+          <span>Lectures</span> in a week: {{ countClasses(module, "lecture") }}
+        </p>
       </div>
       <div class="module-box__info">
         <p>This module is covering in: BIS, BM courses</p>
       </div>
       <div class="module-box__info">
-        <p><span>Credits:</span> 20</p>
+        <p><span>Credits:</span> {{ module.credits }}</p>
       </div>
     </div>
+    <p *ngIf="!module" class="select">Select a module</p>
   </div>
 </div>

@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { IModule } from 'src/app/models/module.model';
+import { ModulesService } from '../../modules.service';
 
 @Component({
   selector: 'app-module-item',
@@ -6,9 +15,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./module-item.component.scss'],
 })
 export class ModuleItemComponent implements OnInit {
+  @Input() module: IModule;
+  @Input() canBeChanged;
+  @Output() addModule: EventEmitter<any> = new EventEmitter();
+  @Output() remModule: EventEmitter<any> = new EventEmitter();
+
   hexString = '0123456789abcdef';
 
-  constructor() {}
+  constructor(private modulesService: ModulesService) {}
 
   ngOnInit(): void {}
 
@@ -28,4 +42,12 @@ export class ModuleItemComponent implements OnInit {
 
     return `linear-gradient(${angle}deg, ${colorOne}, ${colorTwo})`;
   };
+
+  takeModule(moduleId: string) {
+    this.addModule.emit(moduleId);
+  }
+
+  removeModule(moduleId: string) {
+    this.remModule.emit(moduleId);
+  }
 }
