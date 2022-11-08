@@ -9,7 +9,7 @@ import {
   throwError,
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ModuleErrorCode } from '../common/types/errors';
+import { ModuleErrorCode, UserErrorCode } from '../common/types/errors';
 import { ResponseData } from '../common/types/interfaces';
 import { IModule } from '../models/module.model';
 import { IUser } from '../models/user.model';
@@ -133,17 +133,38 @@ export class ModulesService {
       case ModuleErrorCode.USER_ALREADY_HAS_MODULE:
         errorMessage = 'You already have this module!';
         break;
-
       case ModuleErrorCode.MODULE_NOT_FOUND:
         errorMessage = 'Module not found!';
         break;
-
       case ModuleErrorCode.USER_MAX_CREDITS:
         errorMessage = 'You have reached the maximum number of credits!';
         break;
-
       case ModuleErrorCode.USER_DOES_NOT_HAVE_MODULE:
         errorMessage = "You don't have this module!";
+        break;
+      case ModuleErrorCode.USER_NO_CREDITS:
+        errorMessage = "You don't have enough credits!";
+        break;
+      case ModuleErrorCode.USER_ADD_CORE_MODULE:
+        errorMessage = 'You cannot add a core module!';
+        break;
+      case UserErrorCode.INVALID_LEVEL:
+        errorMessage = 'Invalid level!';
+        break;
+      case ModuleErrorCode.USER_ADD_DIFFERENT_LEVEL_MODULE:
+        errorMessage = 'You cannot add a module from a different level!';
+        break;
+      case ModuleErrorCode.USER_ADD_DIFFERENT_COURSE_MODULE:
+        errorMessage = 'You cannot add a module from a different course!';
+        break;
+      case ModuleErrorCode.USER_NO_MODULES:
+        errorMessage = 'You have no modules!';
+        break;
+      case ModuleErrorCode.USER_REMOVE_CORE_MODULE:
+        errorMessage = 'You cannot remove a core module!';
+        break;
+      case ModuleErrorCode.USER_ALREADY_HAS_MODULES:
+        errorMessage = 'You already have these modules!';
         break;
       default:
         errorMessage = 'An unknown error occurred!';
