@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { ModulesComponent } from './modules/modules.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -38,6 +39,11 @@ const routes: Routes = [
     loadChildren: () => {
       return import('./teachers/teachers.module').then((m) => m.TeachersModule);
     },
+  },
+  {
+    path: 'modules',
+    component: ModulesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

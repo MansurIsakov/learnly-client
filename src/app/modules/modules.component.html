@@ -1,0 +1,35 @@
+<div class="card">
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    (close)="onHandleError()"
+  ></app-alert>
+  <app-nav></app-nav>
+  <div class="module">
+    <div class="module-view">
+      <app-module-nav
+        (change)="onChangeModules($event)"
+        (sort)="onSort($event)"
+      ></app-module-nav>
+      <app-module-list
+        [modules]="modules$ | async | filter: sortValue:sortType"
+        [canBeChanged]="canBeChanged"
+        (onSelectModule)="onSelectModule($event)"
+      ></app-module-list>
+      <p *ngIf="(modules$ | async | filter: sortValue:sortType).length === 0">
+        No modules in this category
+      </p>
+    </div>
+    <div class="module-bar">
+      <app-module-info
+        [modulesNumber]="(modules$ | async).length"
+        [credits]="userCredits$ | async"
+        [module]="selectedModule"
+      ></app-module-info>
+    </div>
+  </div>
+</div>
+<app-core-modules
+  *ngIf="isCoreModulesNeeded"
+  (closeModal)="onCloseModal()"
+></app-core-modules>

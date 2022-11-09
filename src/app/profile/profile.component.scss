@@ -13,7 +13,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 70rem;
   padding: 3rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 
   & > div {
     margin: 3rem 0;
@@ -32,10 +32,10 @@
   position: relative;
 
   &__avatar {
-    width: 10rem;
-    height: 10rem;
+    width: 9rem;
+    height: 9rem;
     border-radius: 50%;
-    background-color: $color-tertiary;
+    background-color: $color-main;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,6 +43,15 @@
 
     p {
       font-size: 2.5rem;
+    }
+
+    &::after {
+      content: " ";
+      position: absolute;
+      width: 11rem;
+      height: 11rem;
+      border: 0.5rem solid $color-main;
+      border-radius: 50%;
     }
   }
 
@@ -81,8 +90,8 @@
     gap: 2rem;
 
     p {
-      border: 1px solid $color-primary;
-      border-radius: 2rem;
+      border: 1px solid $black;
+      border-radius: 1rem;
       font-size: 1.6rem;
       font-weight: 600;
       color: $gray;
@@ -95,7 +104,7 @@
     }
 
     &::-webkit-scrollbar {
-      background: $color-tertiary;
+      background: $color-main;
       border-radius: 1rem;
       height: 1rem;
     }
@@ -115,7 +124,7 @@
     width: 7rem;
     height: 7rem;
     border-radius: 50%;
-    background-color: $color-tertiary;
+    background-color: $color-main;
     display: flex;
     align-items: center;
     justify-content: center;

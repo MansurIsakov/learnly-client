@@ -1,0 +1,36 @@
+@import "~src/styles/index.scss";
+
+.module-list {
+  margin-top: 3rem;
+
+  h4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 4rem 0;
+    line-height: 3rem;
+    display: flex;
+    align-items: center;
+    color: rgba($gray, 0.6);
+
+    img {
+      width: 3rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  &__box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    gap: 3rem;
+  }
+}
+
+.module-item {
+  opacity: 0;
+  animation: MoveUp 0.5s ease-in-out forwards;
+}
+
+p {
+  font-size: 2rem;
+}

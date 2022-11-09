@@ -1,0 +1,94 @@
+@import "~src/styles/index.scss";
+
+.module__heading {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.module-info {
+  background-color: rgba(rgb(94, 94, 94), 0.1);
+  border-radius: 1rem;
+  padding: 4rem 3rem;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  right: 15rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  justify-content: space-between;
+
+  &__details {
+    h4 {
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+  &__overall {
+    img {
+      position: absolute;
+      width: 13rem;
+      top: -3rem;
+      right: 5rem;
+    }
+  }
+}
+
+.module-box {
+  background-color: $white;
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+
+  &__info {
+    margin: 1rem 0;
+
+    &:first-child * {
+      text-align: center;
+    }
+
+    &:nth-child(2) {
+      p {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    span {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+  &__item {
+    margin: 2rem 0;
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: $gray;
+    }
+
+    p {
+      font-size: 2rem;
+
+      span {
+        color: $warning;
+        font-weight: bold;
+      }
+    }
+
+    &:nth-child(2) {
+      border: 1px solid $black;
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.select {
+  font-size: 2rem;
+}

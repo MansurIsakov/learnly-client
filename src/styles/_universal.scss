@@ -15,10 +15,10 @@ html {
 body {
   overflow-x: hidden;
   background-color: $white;
-  color: $color-primary;
+  color: $black;
 
   padding: 5rem;
-  background-color: $color-tertiary;
+  background-color: $color-main;
 }
 
 li {
@@ -31,7 +31,7 @@ a {
 }
 
 ::selection {
-  background-color: $color-primary;
+  background-color: $black;
   color: $white;
 }
 
@@ -53,15 +53,15 @@ a {
     width: 100%;
     border: none;
     padding: 1.5rem 0.5rem;
-    border-bottom: 1px solid $color-primary;
+    border-bottom: 1px solid $black;
     background-color: transparent;
-    outline: $color-primary;
+    outline: $black;
     transition: 0.1s all;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
 
     &::placeholder {
-      color: $color-primary;
+      color: $black;
       font-family: "Poppins";
       font-weight: 500;
     }
@@ -69,7 +69,7 @@ a {
     &.emoji {
       width: 10rem;
       align-self: center;
-      background-color: $color-primary;
+      background-color: $color-main;
       border-radius: 50%;
       height: 10rem;
       color: $white;
@@ -78,7 +78,7 @@ a {
 
     &.ng-invalid.ng-touched {
       border-radius: 1rem;
-      border: 1px solid $color-primary;
+      border: 1px solid $black;
     }
   }
 
@@ -111,12 +111,13 @@ a {
   padding: 1.5rem 0;
   border-radius: 1rem;
   border: none;
-  background-color: $color-primary;
+  background-color: $black;
   color: $white;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
   height: 5rem;
+  transition: all 0.3s ease;
 
   &:disabled {
     background-color: $gray;
@@ -125,8 +126,12 @@ a {
 
   &--outline {
     background-color: transparent;
-    border: 1px solid $color-primary;
-    color: $color-primary;
+    border: 1px solid $black;
+    color: $black;
+  }
+
+  &:active {
+    transform: translateY(3px);
   }
 }
 
@@ -141,7 +146,7 @@ a {
   width: 100%;
   padding: 3rem;
   box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 0.1);
-  border-radius: 2rem;
+  border-radius: 1rem;
   min-height: 92vh;
 }
 
@@ -154,7 +159,7 @@ a {
   width: 100vw;
   height: 100vh;
   z-index: 10000;
-  background-color: $color-tertiary;
+  background-color: $color-main;
 
   display: flex;
   justify-content: center;

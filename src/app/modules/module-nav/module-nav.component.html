@@ -1,0 +1,30 @@
+<div class="modules-nav">
+  <h2>Modules +</h2>
+  <div class="modules-navbox">
+    <ul>
+      <li
+        *ngFor="let item of navItems"
+        [ngClass]="{ active: currentModules === item.value }"
+        (click)="onSelect(item.value)"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+    <div class="modules-navbox__sort">
+      <p>Sort by:</p>
+      <select
+        name="sort"
+        id="sort"
+        [(ngModel)]="filterInput"
+        (change)="selectSort()"
+      >
+        <option value="coreType">Core</option>
+        <option value="optionalType">Optional</option>
+        <option value="level4">Level 4</option>
+        <option value="level5">Level 5</option>
+        <option value="level6">Level 6</option>
+      </select>
+      <img src="./assets/icons/arrow-down.svg" alt="Arrow Down Icon" />
+    </div>
+  </div>
+</div>

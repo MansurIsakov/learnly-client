@@ -1,3 +1,5 @@
+import { IModule } from './module.model';
+
 export interface IUser {
   _id?: string;
   firstName: string;
@@ -8,7 +10,7 @@ export interface IUser {
   role?: string;
   emoji?: string;
   status?: string[];
-  modules?: string[];
+  modules?: IModule[];
   credits: number;
   dob?: string;
   _createdAt?: string;
@@ -27,7 +29,7 @@ export class UserModel implements IUser {
   emoji?: string;
   dob?: string;
   status?: string[];
-  modules?: string[];
+  modules?: IModule[];
   credits: number;
   _createdAt?: string;
   updatedAt?: string;

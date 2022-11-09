@@ -1,0 +1,16 @@
+<div class="module-item">
+  <div class="module-item__head">
+    <div class="module-gradient" [style.background]="generateGrad()"></div>
+    <p>{{ module.type | titlecase }} Module</p>
+  </div>
+  <h4>{{ module.moduleName }}</h4>
+  <div
+    class="module-item__actions"
+    *ngIf="canBeChanged && module.type !== 'core'"
+  >
+    <button class="btn" (click)="takeModule(module.id)">Take Module</button>
+    <button class="btn btn--outline" (click)="removeModule(module.id)">
+      Remove Module
+    </button>
+  </div>
+</div>
