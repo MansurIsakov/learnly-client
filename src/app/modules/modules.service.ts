@@ -69,7 +69,6 @@ export class ModulesService {
         moduleId: moduleId,
       })
       .pipe(
-        // Anton
         map((resData) => {
           this.userModules = [
             ...this.userModules,
@@ -87,7 +86,6 @@ export class ModulesService {
         body: { moduleId: moduleId },
       })
       .pipe(
-        // Anton
         map((resData) => {
           this.userModules = this.userModules.filter(
             (module) => module.id !== moduleId
