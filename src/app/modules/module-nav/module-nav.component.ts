@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ModulesSection } from 'src/app/common/constants/modules.enum';
 
 @Component({
@@ -8,10 +8,11 @@ import { ModulesSection } from 'src/app/common/constants/modules.enum';
 })
 export class ModuleNavComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter();
-  // Anton
+  @Output() sort: EventEmitter<any> = new EventEmitter();
   currentModules = ModulesSection.ALLCOURSE;
   userCourse = JSON.parse(localStorage.getItem('userData')).course;
   userLevel = JSON.parse(localStorage.getItem('userData')).level;
+  filterInput: string = '';
 
   navItems: { name: string; value: ModulesSection }[] = [
     {
@@ -39,5 +40,9 @@ export class ModuleNavComponent implements OnInit {
   onSelect(value: ModulesSection) {
     this.currentModules = value;
     this.change.emit(value);
+  }
+
+  selectSort() {
+    this.sort.emit(this.filterInput);
   }
 }

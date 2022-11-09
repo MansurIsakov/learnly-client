@@ -12,11 +12,17 @@
     </ul>
     <div class="modules-navbox__sort">
       <p>Sort by:</p>
-      <select name="sort" id="sort">
-        <option value="name">Name</option>
-        <option value="credits">Core</option>
-        <option value="credits">Optional</option>
-        <option value="level">Level</option>
+      <select
+        name="sort"
+        id="sort"
+        [(ngModel)]="filterInput"
+        (change)="selectSort()"
+      >
+        <option value="coreType">Core</option>
+        <option value="optionalType">Optional</option>
+        <option value="level4">Level 4</option>
+        <option value="level5">Level 5</option>
+        <option value="level6">Level 6</option>
       </select>
       <img src="./assets/icons/arrow-down.svg" alt="Arrow Down Icon" />
     </div>

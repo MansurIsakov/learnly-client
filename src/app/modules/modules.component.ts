@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ModulesSection } from '../common/constants/modules.enum';
@@ -22,6 +22,8 @@ export class ModulesComponent implements OnInit, OnDestroy {
   modulesSection = ModulesSection.ALLCOURSE;
   userCredits$: Observable<number>;
   selectedModule: IModule;
+  sortValue: string | number = '';
+  sortType: string = '';
 
   constructor(
     private modulesService: ModulesService,
@@ -35,7 +37,11 @@ export class ModulesComponent implements OnInit, OnDestroy {
         this.isCoreModulesNeeded = resData.length === 0;
 
         if (this.isCoreModulesNeeded) {
-          this.modulesService.setCoreModules().subscribe();
+          this.subs.push(
+            this.modulesService.setCoreModules().subscribe((resData) => {
+              this.modulesService.userCredits = resData.results.credits;
+            })
+          );
         }
       })
     );
@@ -97,6 +103,26 @@ export class ModulesComponent implements OnInit, OnDestroy {
 
   onSelectModule(module: IModule) {
     this.selectedModule = module;
+  }
+
+  onSort(sortValue: string) {
+    if (sortValue === 'coreType') {
+      this.sortType = 'type';
+      this.sortValue = 'core';
+    } else if (sortValue === 'optionalType') {
+      this.sortType = 'type';
+      this.sortValue = 'optional';
+    } else if (sortValue === 'level4') {
+      this.sortType = 'moduleLevel';
+      this.sortValue = 4;
+    } else if (sortValue === 'level5') {
+      this.sortType = 'moduleLevel';
+      this.sortValue = 5;
+    } else if (sortValue === 'level6') {
+      this.sortType = 'moduleLevel';
+      this.sortValue = 6;
+    }
+    return this.sortType, this.sortValue;
   }
 
   ngOnDestroy(): void {

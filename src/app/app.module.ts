@@ -23,6 +23,7 @@ import { ModuleNavComponent } from './modules/module-nav/module-nav.component';
 import { ModuleListComponent } from './modules/module-list/module-list.component';
 import { ModuleItemComponent } from './modules/module-list/module-item/module-item.component';
 import { CoreModulesComponent } from './modals/core-modules/core-modules.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CoreModulesComponent } from './modals/core-modules/core-modules.compone
     ModuleListComponent,
     ModuleItemComponent,
     CoreModulesComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
