@@ -17,12 +17,11 @@ export class NavComponent implements OnInit {
     { name: 'My Day', link: '/home' },
     { name: 'Profile', link: `/profile/${this.userId}` },
     { name: 'Modules', link: '/modules' },
-    { name: 'Calendar', link: '/calendar' },
+    { name: 'Schedule', link: '/schedule' },
     { name: 'Exams', link: '/exams' },
     { name: 'ToDo', link: '/todo' },
     { name: 'Teachers', link: '/teachers' },
     { name: 'Settings', link: '/settings' },
-    { name: 'Admin', link: '/admin' },
   ];
 
   onLogout() {

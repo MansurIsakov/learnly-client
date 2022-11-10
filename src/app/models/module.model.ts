@@ -1,3 +1,5 @@
+import { IClass } from '../common/types/interfaces';
+
 export interface IModule {
   moduleLevel: number;
   moduleCode: string;
@@ -5,7 +7,7 @@ export interface IModule {
   credits: number;
   type: string;
   teachers: [];
-  classes: object[];
+  classes: IClass[];
   courses: string[];
   id: string;
 }
@@ -17,7 +19,7 @@ export class ModuleModel implements IModule {
   credits: number;
   type: string;
   teachers: [];
-  classes: object[];
+  classes: IClass[];
   courses: string[];
   id: string;
 

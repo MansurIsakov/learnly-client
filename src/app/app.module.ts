@@ -24,6 +24,10 @@ import { ModuleListComponent } from './modules/module-list/module-list.component
 import { ModuleItemComponent } from './modules/module-list/module-item/module-item.component';
 import { CoreModulesComponent } from './modals/core-modules/core-modules.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleListComponent } from './schedule/schedule-list/schedule-list.component';
+import { ScheduleItemComponent } from './schedule/schedule-list/schedule-item/schedule-item.component';
+import { ScheduleEditComponent } from './schedule/schedule-edit/schedule-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     ModuleItemComponent,
     CoreModulesComponent,
     FilterPipe,
+    ScheduleComponent,
+    ScheduleListComponent,
+    ScheduleItemComponent,
+    ScheduleEditComponent,
   ],
   imports: [
     BrowserModule,

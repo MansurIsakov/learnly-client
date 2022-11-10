@@ -1,0 +1,59 @@
+@import "~src/styles/index.scss";
+
+.schedule {
+  &__item {
+    background-color: $white;
+    border: 3px solid $color-main;
+    border-radius: 1rem;
+    padding: 2rem 4rem;
+    position: relative;
+    color: $black;
+    font-weight: 500;
+    margin: 3rem 0;
+
+    img {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      right: 2rem;
+      cursor: pointer;
+      transform: rotate(180deg);
+      transition: all 0.5s ease;
+      border-radius: 50%;
+      padding: 0.5rem;
+
+      &:hover {
+        border: 1px solid $color-main;
+        scale: 1.05;
+      }
+
+      &.active {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  &__content {
+    border-radius: 1rem;
+    margin: 3rem 0;
+    display: none;
+
+    ul {
+      width: 100rem;
+    }
+
+    li {
+      background-color: $color-main;
+      color: $white;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      margin: 1rem 0;
+      border-radius: 1rem;
+      padding: 2rem 4rem;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+}

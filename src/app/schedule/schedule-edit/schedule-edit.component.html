@@ -1,0 +1,39 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="schedule-edit">
+    <div class="schedule-modules" *ngIf="modules$ | async as modules">
+      <h2>Modules</h2>
+      <select [(ngModel)]="currentModule">
+        <option [value]="module.moduleName" *ngFor="let module of modules">
+          {{ module.moduleName }}
+        </option>
+      </select>
+      <div class="schedule-box" *ngIf="currentModule">
+        <h3>{{ currentModule }}</h3>
+        <!-- <ul>
+          <li class="schedule-module" *ngFor="let slot of module.classes">
+            <h4>{{ slot.moduleName }}</h4>
+            <p>
+              {{
+                "Time: " + slot.time + "-" + (+slot.time + 2) + " | " + slot.day
+                  | titlecase
+              }}
+            </p>
+            <p>{{ "Group: " + slot.groups }}</p>
+            <p>{{ slot.tutor + " | Venue: " + slot.venue }}</p>
+            <div class="schedule-box__actions">
+              <button class="btn">Add</button>
+              <button class="btn btn--outline">Remove</button>
+            </div>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+    <div class="schedule-days"></div>
+  </div>
+  <!-- Check if use has modules -->
+  <p class="no-modules" *ngIf="false">
+    You did not set up modules! Select <a routerLink="/modules">modules</a> to
+    make schedule!
+  </p>
+</div>

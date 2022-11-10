@@ -17,4 +17,5 @@ export interface IClass {
   tutor: string;
   type: string;
   venue: string;
+  moduleName: string;
 }

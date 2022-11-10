@@ -1,0 +1,19 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="schedule">
+    <button class="btn schedule-btn" routerLink="/schedule-edit">
+      Schedule Settings
+    </button>
+    <ng-container *ngIf="schedule$ | async as schedule; else errorTmpl">
+      <app-schedule-list
+        class="schedule__box"
+        [schedule]="schedule.days"
+      ></app-schedule-list>
+    </ng-container>
+  </div>
+  <!-- Check if use has modules -->
+  <ng-template class="no-modules" #errorTmpl>
+    You did not set up schedule! Go <a routerLink="/schedule-edit">here</a> to
+    make schedule!
+  </ng-template>
+</div>
