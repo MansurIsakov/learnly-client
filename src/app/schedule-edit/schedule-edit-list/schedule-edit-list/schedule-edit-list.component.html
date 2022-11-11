@@ -1,3 +1,8 @@
+<app-alert
+  *ngIf="response"
+  [message]="response"
+  (close)="onHandleError()"
+></app-alert>
 <div class="schedule-box">
   <h3>{{ currentModule.moduleName }}</h3>
 
@@ -5,6 +10,8 @@
     <app-schedule-edit-item
       *ngFor="let class of currentModule.classes"
       [class]="class"
+      (addClassEvent)="addClass($event)"
+      (removeClassEvent)="removeClass($event)"
     ></app-schedule-edit-item>
   </ul>
 </div>

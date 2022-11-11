@@ -11,7 +11,9 @@
     {{ class.tutor + " | Venue: " + class.venue }}
   </p>
   <div class="schedule-module__actions">
-    <button class="btn">Add</button>
-    <button class="btn btn--outline">Remove</button>
+    <button class="btn" (click)="addClass(class)">Add</button>
+    <button class="btn btn--outline" (click)="removeClass(class)">
+      Remove
+    </button>
   </div>
 </li>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { formatConstant } from 'src/app/common/helpers/formatConstant';
 import { DAYS } from 'src/app/common/constants/days.const';
 import { isEmpty } from 'src/app/common/helpers/isEmpty';

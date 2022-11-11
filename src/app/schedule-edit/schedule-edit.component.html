@@ -20,7 +20,10 @@
       </ng-template>
     </div>
 
-    <app-schedule-days class="schedule-days"></app-schedule-days>
+    <app-schedule-days
+      class="schedule-days"
+      [schedule]="schedule$ | async"
+    ></app-schedule-days>
   </div>
   <!-- Check if user has modules -->
   <p class="no-modules" *ngIf="false">

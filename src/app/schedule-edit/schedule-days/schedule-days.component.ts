@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DAYS } from 'src/app/common/constants/days.const';
 import { formatConstant } from 'src/app/common/helpers/formatConstant';
@@ -11,6 +11,8 @@ import { ScheduleService } from 'src/app/schedule/schedule.service';
   styleUrls: ['./schedule-days.component.scss'],
 })
 export class ScheduleDaysComponent implements OnInit {
+  @Input() schedule: ISchedule;
+
   days$: Observable<ISchedule>;
   formatConst;
   daysConst = DAYS;
@@ -20,6 +22,6 @@ export class ScheduleDaysComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.days$ = this.scheduleService.fetchSchedule();
+    this.days$ = this.scheduleService.schedule$;
   }
 }

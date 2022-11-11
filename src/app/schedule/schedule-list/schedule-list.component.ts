@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IClass } from 'src/app/common/types/interfaces';
-import { ISchedule } from 'src/app/models/schedule.model';
 
 @Component({
   selector: 'app-schedule-list',
