@@ -1,0 +1,21 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="schedule">
+    <button class="btn schedule-btn" routerLink="/schedule-edit">
+      Schedule Settings
+    </button>
+    <ng-container *ngIf="schedule$ | async as schedule">
+      <app-schedule-list
+        class="schedule__box"
+        [schedule]="schedule.days"
+      ></app-schedule-list>
+    </ng-container>
+  </div>
+</div>
+<app-core-modules
+  *ngIf="isModulesNeeded"
+  (closeModal)="onCloseModal()"
+  title="Welcome to schedule section!"
+  text="Firstly, make sure to add all needed modules to your account! Then, come back to set up the schedule."
+  (closeModal)="onCloseModal()"
+></app-core-modules>

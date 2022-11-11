@@ -1,0 +1,24 @@
+<div class="schedule__item">
+  {{ formatConst(dayIndex, daysConst) }}
+  <img
+    src="./assets/icons/arrow.svg"
+    alt="Arrow Icon"
+    *ngIf="!isEmpty(day)"
+    [class.active]="isOpen"
+    (click)="toggleOpen()"
+  />
+  <div class="schedule__content" [class.active]="isOpen">
+    <ul>
+      <li
+        *ngFor="let class of day; let i = index"
+        [style.animation-delay]="0.15 * i + 's'"
+      >
+        <h4>{{ class.time + " - " + (+class.time + 2) }}</h4>
+        <p>{{ "Module: " + class.moduleName }}</p>
+        <p>{{ "Venue: " + class.venue }}</p>
+        <p>{{ "Tutor - " + class.tutor + " | Seminar for " + class.groups }}</p>
+      </li>
+    </ul>
+  </div>
+  <p *ngIf="isEmpty(day)">The day is empty</p>
+</div>

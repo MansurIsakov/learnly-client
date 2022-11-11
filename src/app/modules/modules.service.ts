@@ -1,13 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  map,
-  Observable,
-  Subject,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModuleErrorCode, UserErrorCode } from '../common/types/errors';
 import { ResponseData } from '../common/types/interfaces';

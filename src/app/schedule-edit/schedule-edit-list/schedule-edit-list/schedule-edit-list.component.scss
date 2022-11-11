@@ -1,0 +1,9 @@
+.schedule-box {
+  margin: 2rem 0;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+  }
+}

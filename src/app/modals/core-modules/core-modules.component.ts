@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-core-modules',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./core-modules.component.scss'],
 })
 export class CoreModulesComponent implements OnInit {
+  @Input() title: string;
+  @Input() text: string;
   @Output() closeModal = new EventEmitter();
 
   constructor() {}

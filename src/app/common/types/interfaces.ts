@@ -1,5 +1,5 @@
 export interface IConst {
-  target: string;
+  target: string | number;
   name: string;
 }
 
@@ -17,4 +17,5 @@ export interface IClass {
   tutor: string;
   type: string;
   venue: string;
+  moduleName: string;
 }

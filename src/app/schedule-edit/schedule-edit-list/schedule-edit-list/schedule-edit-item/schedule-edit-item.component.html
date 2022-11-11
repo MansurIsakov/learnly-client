@@ -1,0 +1,19 @@
+<li class="schedule-module">
+  <h4>{{ class.moduleName }}</h4>
+  <p>
+    {{
+      "Time: " + class.time + "-" + (+class.time + 2) + " | " + class.day
+        | titlecase
+    }}
+  </p>
+  <p>{{ "Group: " + class.groups }}</p>
+  <p>
+    {{ class.tutor + " | Venue: " + class.venue }}
+  </p>
+  <div class="schedule-module__actions">
+    <button class="btn" (click)="addClass(class)">Add</button>
+    <button class="btn btn--outline" (click)="removeClass(class)">
+      Remove
+    </button>
+  </div>
+</li>
