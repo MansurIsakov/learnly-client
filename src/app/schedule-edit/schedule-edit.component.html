@@ -1,0 +1,30 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="schedule-edit">
+    <div class="schedule-modules" *ngIf="modules$ | async as modules">
+      <h2>Modules</h2>
+      <select (change)="findModule($event, modules)" class="schedule-dropdown">
+        <option value="0">List of modules</option>
+        <option [value]="module.id" *ngFor="let module of modules">
+          {{ module.moduleName }}
+        </option>
+      </select>
+
+      <ng-container *ngIf="currentModule; else defaultTmpl">
+        <app-schedule-edit-list
+          [currentModule]="currentModule"
+        ></app-schedule-edit-list>
+      </ng-container>
+      <ng-template #defaultTmpl>
+        <p>Choose the module from the dropdown</p>
+      </ng-template>
+    </div>
+
+    <app-schedule-days class="schedule-days"></app-schedule-days>
+  </div>
+  <!-- Check if user has modules -->
+  <p class="no-modules" *ngIf="false">
+    You did not set up modules! Select <a routerLink="/modules">modules</a> to
+    make schedule!
+  </p>
+</div>

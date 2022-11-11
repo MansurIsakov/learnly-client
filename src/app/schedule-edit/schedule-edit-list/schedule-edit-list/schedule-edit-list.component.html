@@ -1,0 +1,10 @@
+<div class="schedule-box">
+  <h3>{{ currentModule.moduleName }}</h3>
+
+  <ul>
+    <app-schedule-edit-item
+      *ngFor="let class of currentModule.classes"
+      [class]="class"
+    ></app-schedule-edit-item>
+  </ul>
+</div>

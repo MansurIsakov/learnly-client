@@ -8,7 +8,7 @@ import { ISchedule } from 'src/app/models/schedule.model';
   styleUrls: ['./schedule-list.component.scss'],
 })
 export class ScheduleListComponent implements OnInit {
-  @Input() schedule: any;
+  @Input() schedule: IClass[][];
 
   constructor() {}
 

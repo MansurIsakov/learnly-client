@@ -1,0 +1,37 @@
+@import "~src/styles/index.scss";
+
+.schedule-module {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  width: 40rem;
+  border: 1px solid $color-main;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  margin: 1rem 0;
+
+  h4 {
+    text-align: center;
+  }
+
+  &:hover {
+    background-color: $color-main;
+    color: $white;
+  }
+
+  &__actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+
+    .btn {
+      width: 10rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

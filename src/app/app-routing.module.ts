@@ -6,7 +6,7 @@ import { ModulesComponent } from './modules/modules.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ScheduleEditComponent } from './schedule/schedule-edit/schedule-edit.component';
+import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 
 const routes: Routes = [

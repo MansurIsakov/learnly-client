@@ -3,29 +3,13 @@ import { IClass } from '../common/types/interfaces';
 export interface ISchedule {
   id: string;
   owner: string;
-  days: {
-    monday: IClass[];
-    tuesday: IClass[];
-    wednesday: IClass[];
-    thursday: IClass[];
-    friday: IClass[];
-    saturday: IClass[];
-    sunday: IClass[];
-  };
+  days: [IClass[], IClass[], IClass[], IClass[], IClass[], IClass[], IClass[]];
 }
 
 export class ScheduleModel implements ISchedule {
   id: string;
   owner: string;
-  days: {
-    monday: IClass[];
-    tuesday: IClass[];
-    wednesday: IClass[];
-    thursday: IClass[];
-    friday: IClass[];
-    saturday: IClass[];
-    sunday: IClass[];
-  };
+  days: [IClass[], IClass[], IClass[], IClass[], IClass[], IClass[], IClass[]];
 
   constructor(source: ISchedule) {
     this.id = source.id;

@@ -1,0 +1,11 @@
+<div class="schedule-days" *ngIf="days$ | async as days">
+  <div class="schedule-box" *ngFor="let day of days.days; let i = index">
+    <h3>{{ formatConst(i, daysConst) }}</h3>
+
+    <ul class="schedule-box__list">
+      <li class="schedule-box__item" *ngFor="let class of day">
+        {{ class.moduleName + " at " + class.time + " - " + (+class.time + 2) }}
+      </li>
+    </ul>
+  </div>
+</div>

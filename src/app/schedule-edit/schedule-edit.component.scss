@@ -1,0 +1,44 @@
+@import "~src/styles/index.scss";
+
+.card {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.schedule-edit {
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.schedule-modules {
+  width: 65%;
+}
+
+.schedule-days {
+  width: 33%;
+  height: 85vh;
+}
+
+.no-modules {
+  text-align: center;
+  font-size: 2rem;
+  margin: 5rem 0;
+}
+
+.schedule-dropdown {
+  margin: 2rem 0;
+  border: 1px solid $color-main;
+  padding: 1.5rem 3rem;
+  border-radius: 1rem;
+  background-color: transparent;
+
+  option {
+    background-color: $color-main;
+  }
+}
