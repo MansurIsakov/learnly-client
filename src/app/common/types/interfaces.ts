@@ -1,5 +1,5 @@
 export interface IConst {
-  target: string;
+  target: string | number;
   name: string;
 }
 

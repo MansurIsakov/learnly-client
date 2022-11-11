@@ -12,7 +12,5 @@ export class ScheduleListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.schedule);
-  }
+  ngOnInit(): void {}
 }

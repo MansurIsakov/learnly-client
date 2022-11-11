@@ -1,4 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { formatConstant } from 'src/app/common/helpers/formatConstant';
+import { DAYS } from 'src/app/common/constants/days.const';
+import { isEmpty } from 'src/app/common/helpers/isEmpty';
 
 @Component({
   selector: 'app-schedule-item',
@@ -7,10 +10,23 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 })
 export class ScheduleItemComponent implements OnInit {
   @Input() day: any;
+  @Input() dayIndex: number;
+  formatConst;
+  daysConst = DAYS;
+  isEmpty = isEmpty;
+  isOpen: boolean = false;
 
-  constructor() {}
+  constructor() {
+    this.formatConst = formatConstant;
+  }
 
   ngOnInit(): void {
-    console.log(this.day);
+    if (this.dayIndex === 0) {
+      this.isOpen = true;
+    }
+  }
+
+  toggleOpen() {
+    this.isOpen = !this.isOpen;
   }
 }

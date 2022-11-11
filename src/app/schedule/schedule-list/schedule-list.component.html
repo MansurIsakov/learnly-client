@@ -1,7 +1,8 @@
 <ul class="schedule-list">
   <h3>Days</h3>
   <app-schedule-item
-    *ngFor="let item of schedule"
+    *ngFor="let item of schedule; let index = index"
     [day]="item"
+    [dayIndex]="index"
   ></app-schedule-item>
 </ul>
