@@ -11,8 +11,25 @@ import { TeachersService } from '../teachers.service';
 export class TeachersListComponent implements OnInit {
   @Input() teachers: ITeacher[];
   isLoading: boolean = false;
+  page: number = 1;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  startIndex(): number {
+    return (this.page - 1) * 6;
+  }
+
+  endIndex(): number {
+    return this.page * 6;
+  }
+
+  hasNextPage(): boolean {
+    return this.endIndex() < this.teachers.length;
+  }
+
+  paginatedTeachersList(): ITeacher[] {
+    return this.teachers.slice(this.startIndex(), this.endIndex());
+  }
 }
