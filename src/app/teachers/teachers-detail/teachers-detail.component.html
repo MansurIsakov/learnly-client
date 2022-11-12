@@ -32,7 +32,9 @@
   </div>
   <div class="teacher-detail__actions">
     <!-- TODO: Connect Calendar Logic with Teachers -->
-    <button class="btn" type="submit">Find Lectures</button>
+    <button class="btn" type="submit" routerLink="/schedule-edit">
+      Find Lectures
+    </button>
     <a class="btn btn--outline" [href]="'mailto:' + teacher.email">
       Send Message
     </a>

@@ -5,4 +5,23 @@
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-gap: 2rem;
   padding: 1rem 5rem;
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+
+    .btn {
+      width: 20%;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: transparent;
+        border: 2px solid $color-main;
+        color: $color-main;
+        font-size: 1.7rem;
+      }
+    }
+  }
 }

@@ -1,6 +1,12 @@
+<div class="teachers-list__actions">
+  <button *ngIf="page > 1" (click)="page = page - 1" class="btn">Back</button>
+  <button *ngIf="hasNextPage()" (click)="page = +page + 1" class="btn">
+    Forward
+  </button>
+</div>
 <ul class="teachers-list">
   <app-teachers-item
-    *ngFor="let teacherEL of teachers"
+    *ngFor="let teacherEL of paginatedTeachersList()"
     [teacher]="teacherEL"
     [teacherId]="teacherEL._id"
   >
