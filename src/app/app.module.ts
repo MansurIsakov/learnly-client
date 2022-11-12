@@ -5,7 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core.module';
 import { AuthModule } from './auth/auth.module';
@@ -32,6 +36,9 @@ import { ScheduleEditItemComponent } from './schedule-edit/schedule-edit-list/sc
 import { ScheduleEditListComponent } from './schedule-edit/schedule-edit-list/schedule-edit-list/schedule-edit-list.component';
 import { ScheduleDaysComponent } from './schedule-edit/schedule-days/schedule-days.component';
 import { FormatConstPipe } from './pipes/formatConst.pipe';
+import { SettingsComponent } from './settings/settings.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 ScheduleEditItemComponent;
 ScheduleEditListComponent;
 
@@ -59,6 +66,7 @@ ScheduleEditListComponent;
     ScheduleEditItemComponent,
     ScheduleDaysComponent,
     FormatConstPipe,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +78,14 @@ ScheduleEditListComponent;
     TeachersModule,
     CoreModule,
     SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+      },
+    }),
   ],
   providers: [
     {
@@ -86,3 +102,7 @@ ScheduleEditListComponent;
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

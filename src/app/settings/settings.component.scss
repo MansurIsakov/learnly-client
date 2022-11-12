@@ -1,0 +1,79 @@
+@import "~src/styles/index.scss";
+
+.card {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings {
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &__heading {
+    font-size: 2.5rem;
+  }
+}
+
+.settings-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $black;
+  padding: 3rem;
+  width: 70rem;
+  margin: 10rem 0;
+  border-radius: 1rem;
+
+  &__lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+
+    .btn {
+      width: 20%;
+    }
+  }
+
+  &__theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        font-size: 2rem;
+        font-weight: 600;
+
+        span {
+          transform: translateY(-0.5rem) scale(1.05);
+        }
+      }
+    }
+    span {
+      width: 7rem;
+      height: 7rem;
+      background-color: navy;
+      border-radius: 1rem;
+      transition: all 0.3s;
+    }
+  }
+}

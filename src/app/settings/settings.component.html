@@ -1,0 +1,35 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="settings">
+    <div class="settings-box">
+      <h2 class="settings__heading">{{ "SETTINGS.THEME" | translate }}</h2>
+      <ul class="settings-box__theme">
+        <li><span></span> Blue</li>
+        <li><span></span> Blue</li>
+        <li><span></span> Blue</li>
+        <li><span></span> Blue</li>
+      </ul>
+    </div>
+    <div class="settings-box">
+      <h2 class="settings__heading">{{ "SETTINGS.LANGUAGE" | translate }}</h2>
+      <div class="settings-box__lang">
+        <button
+          class="btn"
+          [class.btn--outline]="!isLangActive('ru')"
+          type="button"
+          (click)="onChangeLang('ru')"
+        >
+          Русский
+        </button>
+        <button
+          class="btn"
+          [class.btn--outline]="!isLangActive('en')"
+          type="button"
+          (click)="onChangeLang('en')"
+        >
+          English
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

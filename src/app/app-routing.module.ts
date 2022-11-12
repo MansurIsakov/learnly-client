@@ -8,6 +8,7 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
 import { ProfileComponent } from './profile/profile.component';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,11 @@ const routes: Routes = [
   {
     path: 'schedule-edit',
     component: ScheduleEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard],
   },
 
