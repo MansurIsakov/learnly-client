@@ -4,7 +4,6 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { finalize, Subscription } from 'rxjs';
 import { MONTHS } from 'src/app/common/constants/months.const';
-import { formatConstant } from 'src/app/common/helpers/formatConstant';
 import { IUser } from 'src/app/models/user.model';
 import { ProfileService } from '../profile.service';
 
@@ -16,7 +15,6 @@ import { ProfileService } from '../profile.service';
 export class ProfileEditComponent implements OnInit, OnDestroy {
   userId: string;
   editForm: FormGroup;
-  formatConstant;
   monthsConst = MONTHS;
   sub: Subscription[] = [];
 
@@ -25,7 +23,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     private location: Location,
     private route: ActivatedRoute
   ) {
-    this.formatConstant = formatConstant;
     this.userId = this.route.snapshot.params['id'];
   }
 

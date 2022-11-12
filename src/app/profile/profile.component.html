@@ -21,8 +21,8 @@
     <div class="profile-edu">
       <h4 class="profile__heading">Education</h4>
       <p>Westminster International University in Tashkent, WIUT</p>
-      <p>{{ "Course: " + formatConstant(user.course, coursesConst) }}</p>
-      <p>{{ "Level: " + formatConstant(user.level, levelsConst) }}</p>
+      <p>{{ "Course: " + (user.course | formatConst: coursesConst) }}</p>
+      <p>{{ "Level: " + (user.level | formatConst: levelsConst) }}</p>
     </div>
     <div class="profile-status">
       <h4 class="profile__heading">{{ "My Status" }}</h4>

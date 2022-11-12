@@ -5,6 +5,6 @@
   <h2 class="uni__info">{{ uniName }}</h2>
   <!--! use async pipe below -->
   <p class="uni__student">
-    {{ course + " | " + formatConstant(level, levelsConst) }}
+    {{ course + " | " + (level | formatConst: levelsConst) }}
   </p>
 </div>

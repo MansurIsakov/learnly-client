@@ -31,6 +31,7 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleEditItemComponent } from './schedule-edit/schedule-edit-list/schedule-edit-list/schedule-edit-item/schedule-edit-item.component';
 import { ScheduleEditListComponent } from './schedule-edit/schedule-edit-list/schedule-edit-list/schedule-edit-list.component';
 import { ScheduleDaysComponent } from './schedule-edit/schedule-days/schedule-days.component';
+import { FormatConstPipe } from './pipes/formatConst.pipe';
 ScheduleEditItemComponent;
 ScheduleEditListComponent;
 
@@ -57,6 +58,7 @@ ScheduleEditListComponent;
     ScheduleEditListComponent,
     ScheduleEditItemComponent,
     ScheduleDaysComponent,
+    FormatConstPipe,
   ],
   imports: [
     BrowserModule,
