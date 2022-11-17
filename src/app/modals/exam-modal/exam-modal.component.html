@@ -15,27 +15,40 @@
         type="date"
         id="examDate"
         name="examDate"
+        #examDate="ngModel"
         [ngModel]="exam?.examDate"
         required
         min="2000-01-01"
         max="2024-01-01"
       />
+      <span class="error" *ngIf="!examDate.valid && examDate.touched"
+        >Please enter a date for the exam!</span
+      >
     </div>
     <div class="modal-form__control">
       <label for="examType">Exam Type</label>
-      <select name="examType" id="examType" [ngModel]="exam?.examType || ''">
+      <select
+        name="examType"
+        id="examType"
+        #examType="ngModel"
+        [ngModel]="exam?.examType || ''"
+      >
         <option value="" selected disabled hidden>Choose Exam Type</option>
         <option value="CourseWork">Course Work</option>
         <option value="In-Class">In-Class Exam</option>
         <option value="Viva">Viva</option>
         <option value="GroupWork">Group Work</option>
       </select>
+      <span class="error" *ngIf="!examType.valid && examType.touched"
+        >Please select the exam type for the exam!</span
+      >
     </div>
     <div class="modal-form__control">
       <label for="examModule">Exam Module</label>
       <select
         name="examModule"
         id="examModule"
+        #examModule="ngModel"
         [ngModel]="exam?.examModule || ''"
         required
       >
@@ -44,6 +57,9 @@
           {{ module }}
         </option>
       </select>
+      <span class="error" *ngIf="!examModule.valid && examModule.touched"
+        >Please select the exam type for the exam!</span
+      >
     </div>
 
     <button class="btn" type="submit" [disabled]="!examForm.valid">

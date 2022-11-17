@@ -10,9 +10,14 @@
         type="text"
         id="taskTitle"
         name="taskTitle"
-        [ngModel]="task?.taskTitle"
+        #taskTitle="ngModel"
+        [(ngModel)]="task.taskTitle"
+        ngModel
         required
       />
+      <span class="error" *ngIf="!taskTitle.valid && taskTitle.touched"
+        >Please enter a title for the task!</span
+      >
     </div>
 
     <div class="modal-form__control">
@@ -20,10 +25,16 @@
       <textarea
         id="taskDescription"
         name="taskDescription"
-        [ngModel]="task?.taskDescription"
+        #taskDescription="ngModel"
+        [(ngModel)]="task.taskDescription"
         required
         maxlength="256"
       ></textarea>
+      <span
+        class="error"
+        *ngIf="!taskDescription.valid && taskDescription.touched"
+        >Please enter a description for the task!</span
+      >
     </div>
 
     <button class="btn" type="submit" [disabled]="!tasksForm.valid">
