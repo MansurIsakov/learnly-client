@@ -15,6 +15,7 @@ export class TasksComponent implements OnInit {
   isModalActive: boolean = false;
   isEmpty = isEmpty;
   task: ITask;
+  page: number = 1;
 
   constructor(private tasksService: TasksService) {}
 
@@ -36,5 +37,27 @@ export class TasksComponent implements OnInit {
   onEditTask(task: ITask) {
     this.task = task;
     this.isModalActive = true;
+  }
+
+  startIndex(): number {
+    return (this.page - 1) * 5;
+  }
+
+  endIndex(): number {
+    return this.page * 5;
+  }
+
+  hasNextPage(tasks: ITask[]): boolean {
+    return this.endIndex() < tasks.length;
+  }
+
+  paginatedTasksList(tasks: ITask[]): ITask[] {
+    return tasks.slice(this.startIndex(), this.endIndex());
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }

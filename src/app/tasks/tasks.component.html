@@ -13,7 +13,7 @@
       </p>
       <ul *ngIf="!isEmpty(tasks)">
         <app-tasks-item
-          *ngFor="let task of tasks"
+          *ngFor="let task of paginatedTasksList(tasks)"
           [task]="task"
           (editTask)="onEditTask($event)"
         ></app-tasks-item>
@@ -23,18 +23,18 @@
         <span class="highlight" (click)="onOpenModal()">Create One.</span>
       </div>
 
-      <!-- <div class="exams__actions">
+      <div class="tasks__actions">
         <button *ngIf="page > 1" (click)="page = page - 1" class="btn">
           Back
         </button>
         <button
-          *ngIf="hasNextPage(exams)"
+          *ngIf="hasNextPage(tasks)"
           (click)="page = +page + 1"
           class="btn"
         >
           Forward
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
