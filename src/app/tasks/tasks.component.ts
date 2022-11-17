@@ -16,6 +16,7 @@ export class TasksComponent implements OnInit {
   isEmpty = isEmpty;
   task: ITask;
   page: number = 1;
+  searchValue: string;
 
   constructor(private tasksService: TasksService) {}
 
@@ -64,6 +65,10 @@ export class TasksComponent implements OnInit {
     }, 0);
 
     return completedTaskCounte;
+  }
+
+  searchEventHandler(searchValue: string) {
+    this.searchValue = searchValue;
   }
 
   ngOnDestroy(): void {

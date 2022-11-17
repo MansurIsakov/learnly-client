@@ -1,0 +1,10 @@
+<div class="search">
+  <input
+    type="text"
+    class="search__bar"
+    placeholder="Type task title..."
+    (keyup)="onSearchChange()"
+    [(ngModel)]="searchValue"
+  />
+  <img src="./assets/icons/search.svg" alt="Search Icon" class="search__icon" />
+</div>

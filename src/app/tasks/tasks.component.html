@@ -16,9 +16,15 @@
           {{ "Total number of completed tasks: " + completedTasks(tasks) }}
         </p>
       </div>
+      <app-tasks-search-bar
+        (searchEvent)="searchEventHandler($event)"
+      ></app-tasks-search-bar>
       <ul *ngIf="!isEmpty(tasks)">
         <app-tasks-item
-          *ngFor="let task of paginatedTasksList(tasks)"
+          *ngFor="
+            let task of paginatedTasksList(tasks)
+              | search: searchValue:'taskTitle'
+          "
           [task]="task"
           (editTask)="onEditTask($event)"
         ></app-tasks-item>

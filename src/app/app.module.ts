@@ -45,6 +45,8 @@ import { ExamModalComponent } from './modals/exam-modal/exam-modal.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksItemComponent } from './tasks/tasks-item/tasks-item.component';
 import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component';
+import { TasksSearchBarComponent } from './tasks/tasks-search-bar/tasks-search-bar.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component'
     TasksComponent,
     TasksItemComponent,
     TasksModalComponent,
+    TasksSearchBarComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
