@@ -39,8 +39,13 @@ export class TasksModalComponent implements OnInit {
         this.closeModal.emit();
       });
     } else {
+      const updatedTask = {
+        ...form.value,
+        isCompleted: this.task.isCompleted,
+      };
+
       this.sub = this.tasksService
-        .updateTask(this.task.id, form.value)
+        .updateTask(this.task.id, updatedTask)
         .subscribe(() => {
           this.closeModal.emit();
         });
