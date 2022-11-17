@@ -19,3 +19,11 @@ export interface IClass {
   venue: string;
   moduleName: string;
 }
+
+export interface IExam {
+  id: string;
+  examDate: string;
+  examType: string;
+  examModule: string;
+  isPassed: boolean;
+}

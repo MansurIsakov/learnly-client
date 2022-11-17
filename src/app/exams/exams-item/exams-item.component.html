@@ -1,0 +1,15 @@
+<div class="exam__block">
+  <div class="exam__info">
+    <p>{{ "Exam Module: " + exam.examModule }}</p>
+    <p>{{ exam.examType }}</p>
+  </div>
+  <p class="highlight" style="font-weight: 500">
+    {{ exam.examDate | date: "dd/MM/yyyy" }}
+  </p>
+  <div class="exam__actions">
+    <button class="btn" type="button" (click)="onEditExam()">Edit</button>
+    <button class="btn" type="button" (click)="onExamDelete(exam.id)">
+      Delete
+    </button>
+  </div>
+</div>

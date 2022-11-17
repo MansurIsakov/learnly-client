@@ -39,8 +39,9 @@ import { FormatConstPipe } from './pipes/formatConst.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-ScheduleEditItemComponent;
-ScheduleEditListComponent;
+import { ExamsComponent } from './exams/exams.component';
+import { ExamsItemComponent } from './exams/exams-item/exams-item.component';
+import { ExamModalComponent } from './modals/exam-modal/exam-modal.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,9 @@ ScheduleEditListComponent;
     ScheduleDaysComponent,
     FormatConstPipe,
     SettingsComponent,
+    ExamsComponent,
+    ExamsItemComponent,
+    ExamModalComponent,
   ],
   imports: [
     BrowserModule,

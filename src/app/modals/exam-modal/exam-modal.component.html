@@ -1,0 +1,55 @@
+<div class="modal">
+  <button class="btn--close-modal" (click)="closeModal.emit()">&times;</button>
+  <h2 class="modal__header">
+    {{ isNew() ? "Create New Exam" : "Update the Exam" }}
+  </h2>
+  <form
+    class="modal-form"
+    #examForm="ngForm"
+    (ngSubmit)="onSubmit(examForm)"
+    *ngIf="userModules"
+  >
+    <div class="modal-form__control">
+      <label for="examDate">Exam Date</label>
+      <input
+        type="date"
+        id="examDate"
+        name="examDate"
+        [ngModel]="exam?.examDate"
+        required
+        min="2000-01-01"
+        max="2024-01-01"
+      />
+    </div>
+    <div class="modal-form__control">
+      <label for="examType">Exam Type</label>
+      <select name="examType" id="examType" [ngModel]="exam?.examType || ''">
+        <option value="" selected disabled hidden>Choose Exam Type</option>
+        <option value="CourseWork">Course Work</option>
+        <option value="In-Class">In-Class Exam</option>
+        <option value="Viva">Viva</option>
+        <option value="GroupWork">Group Work</option>
+      </select>
+    </div>
+    <div class="modal-form__control">
+      <label for="examModule">Exam Module</label>
+      <select
+        name="examModule"
+        id="examModule"
+        [ngModel]="exam?.examModule || ''"
+        required
+      >
+        <option value="" selected disabled hidden>Choose Module</option>
+        <option [value]="module" *ngFor="let module of userModules">
+          {{ module }}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="!examForm.valid">
+      {{ isNew() ? "Submit" : "Update" }}
+    </button>
+  </form>
+  <p *ngIf="!userModules">First, set up <a routerLink="/modules">modules</a></p>
+</div>
+<div class="overlay" (click)="closeModal.emit()"></div>

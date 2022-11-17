@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { ExamsComponent } from './exams/exams.component';
 import { HomeComponent } from './home/home.component';
 import { ModulesComponent } from './modules/modules.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -63,7 +64,11 @@ const routes: Routes = [
     component: SettingsComponent,
     canActivate: [AuthGuard],
   },
-
+  {
+    path: 'exams',
+    component: ExamsComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: '**',
     component: NotFoundComponent,

@@ -1,0 +1,51 @@
+@import "~src/styles/index.scss";
+
+.card {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exams {
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  &__header {
+    display: flex;
+    gap: 3rem;
+
+    .btn {
+      width: 10%;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  &--empty {
+    font-size: 2.5rem;
+  }
+
+  &__total {
+    font-size: 1.8rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 2rem;
+
+    .btn {
+      width: 15rem;
+    }
+  }
+}

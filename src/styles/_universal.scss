@@ -176,3 +176,8 @@ a {
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+.highlight {
+  cursor: pointer;
+  color: var(--primary);
+}
