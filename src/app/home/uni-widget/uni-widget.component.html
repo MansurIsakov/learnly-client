@@ -3,8 +3,11 @@
     <img src="./assets/img/wiut-logo.jpeg" alt="WIUT Logo" />
   </div>
   <h2 class="uni__info">{{ uniName }}</h2>
-  <!--! use async pipe below -->
   <p class="uni__student">
-    {{ course + " | " + (level | formatConst: levelsConst) }}
+    {{
+      (user.course | formatConst: coursesConst) +
+        " | " +
+        (user.level | formatConst: levelsConst)
+    }}
   </p>
 </div>

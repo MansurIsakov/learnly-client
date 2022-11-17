@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { DAYS } from '../common/constants/days.const';
 import { ScheduleErrorCode } from '../common/types/errors';
 import { IClass, ResponseData } from '../common/types/interfaces';
 import { IModule } from '../models/module.model';
@@ -71,6 +72,17 @@ export class ScheduleService {
       .pipe(
         map((resData) => {
           this.scheduleData = resData.results;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getTodaySchedule(dayIndex: number) {
+    return this.http
+      .get<ResponseData<ISchedule>>(environment.API_ENDPOINT + '/schedule')
+      .pipe(
+        map((resData) => {
+          return resData.results.days[dayIndex];
         }),
         catchError(this.handleError)
       );

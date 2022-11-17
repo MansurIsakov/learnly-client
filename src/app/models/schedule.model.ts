@@ -3,13 +3,13 @@ import { IClass } from '../common/types/interfaces';
 export interface ISchedule {
   id: string;
   owner: string;
-  days: [IClass[], IClass[], IClass[], IClass[], IClass[], IClass[], IClass[]];
+  days: IClass[][];
 }
 
 export class ScheduleModel implements ISchedule {
   id: string;
   owner: string;
-  days: [IClass[], IClass[], IClass[], IClass[], IClass[], IClass[], IClass[]];
+  days: IClass[][];
 
   constructor(source: ISchedule) {
     this.id = source.id;

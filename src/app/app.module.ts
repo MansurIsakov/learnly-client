@@ -47,6 +47,7 @@ import { TasksItemComponent } from './tasks/tasks-item/tasks-item.component';
 import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component';
 import { TasksSearchBarComponent } from './tasks/tasks-search-bar/tasks-search-bar.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { TodayItemComponent } from './home/today-item/today-item.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { SearchPipe } from './pipes/search.pipe';
     TasksModalComponent,
     TasksSearchBarComponent,
     SearchPipe,
+    TodayItemComponent,
   ],
   imports: [
     BrowserModule,

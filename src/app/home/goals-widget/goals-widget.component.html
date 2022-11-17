@@ -3,28 +3,30 @@
     <h2>
       Hello,
       <span>
-        {{ name }}
+        {{ user.firstName }}
       </span>
     </h2>
     <div class="goals-calendar">
-      <div class="goals-calendar__month">Nov</div>
-      <p class="goals-calendar__date">28</p>
-      <span class="goals-calendar__time">08:10</span>
+      <div class="goals-calendar__month">
+        {{ time | date: "MMMM" }}
+      </div>
+      <p class="goals-calendar__date">{{ time | date: "dd" }}</p>
+      <span class="goals-calendar__time">{{ time | date: "HH:mm" }}</span>
     </div>
   </div>
   <div class="goals-track__box">
     <div class="goals-track goals-track--attendance">
-      <p>12/30</p>
+      <p>{{ completedTasks + "/" + tasks }}</p>
       <span>Lectures attended</span>
     </div>
     <div class="goals-track goals-track--exams">
-      <p>2</p>
+      <p>{{ (exam$ | async)?.length }}</p>
       <span>Exams to pass</span>
     </div>
   </div>
   <div class="goals-score">
     <div class="goals-score__points">
-      <p>540</p>
+      <p #animatedPoints>{{ points }}</p>
       <span>Points collected</span>
     </div>
     <svg

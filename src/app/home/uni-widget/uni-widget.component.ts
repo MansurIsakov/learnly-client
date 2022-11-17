@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { COURSES } from 'src/app/common/constants/courses.const';
 import { LEVELS } from 'src/app/common/constants/levels.const';
+import { IUser } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-uni-widget',
@@ -7,10 +9,11 @@ import { LEVELS } from 'src/app/common/constants/levels.const';
   styleUrls: ['./uni-widget.component.scss'],
 })
 export class UniWidgetComponent implements OnInit {
+  @Input() user: IUser;
+
   uniName = 'Westminster International University in Tashkent';
-  course = 'Business Information Systems';
-  level = '3';
   levelsConst = LEVELS;
+  coursesConst = COURSES;
 
   constructor() {}
 
