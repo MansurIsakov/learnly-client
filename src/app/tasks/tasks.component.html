@@ -8,9 +8,14 @@
       </button>
     </div>
     <div class="tasks__box">
-      <p class="tasks__total" *ngIf="!isEmpty(tasks)">
-        {{ "Total number of tasks: " + tasks.length }}
-      </p>
+      <div class="tasks__stats">
+        <p class="tasks__total" *ngIf="!isEmpty(tasks)">
+          {{ "Total number of tasks: " + tasks.length }}
+        </p>
+        <p class="tasks__total" *ngIf="!isEmpty(tasks)">
+          {{ "Total number of completed tasks: " + completedTasks(tasks) }}
+        </p>
+      </div>
       <ul *ngIf="!isEmpty(tasks)">
         <app-tasks-item
           *ngFor="let task of paginatedTasksList(tasks)"

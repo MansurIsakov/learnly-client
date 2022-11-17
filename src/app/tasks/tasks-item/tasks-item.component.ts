@@ -18,7 +18,7 @@ export class TasksItemComponent implements OnInit {
   ngOnInit(): void {}
 
   isCompleted(): boolean {
-    return this.task.taskStatus;
+    return this.task.isCompleted;
   }
 
   updateTask() {
@@ -26,7 +26,7 @@ export class TasksItemComponent implements OnInit {
   }
 
   toggleTask(taskId: string, task: ITask) {
-    const toggledTask = { ...task, taskStatus: !task.taskStatus };
+    const toggledTask = { ...task, isCompleted: !task.isCompleted };
 
     this.subs.push(
       this.tasksService.updateTask(taskId, toggledTask).subscribe()

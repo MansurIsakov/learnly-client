@@ -32,5 +32,5 @@ export interface ITask {
   id: string;
   taskTitle: string;
   taskDescription: string;
-  taskStatus: boolean;
+  isCompleted: boolean;
 }

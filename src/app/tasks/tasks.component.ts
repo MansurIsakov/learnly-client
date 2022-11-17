@@ -55,6 +55,17 @@ export class TasksComponent implements OnInit {
     return tasks.slice(this.startIndex(), this.endIndex());
   }
 
+  completedTasks(tasks: ITask[]): number {
+    let completedTaskCounte = tasks.reduce((acc: number, task) => {
+      if (task.isCompleted) {
+        acc++;
+      }
+      return acc;
+    }, 0);
+
+    return completedTaskCounte;
+  }
+
   ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();

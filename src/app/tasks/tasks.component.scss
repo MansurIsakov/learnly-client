@@ -53,4 +53,9 @@
       width: 15rem;
     }
   }
+
+  &__stats {
+    display: flex;
+    gap: 2rem;
+  }
 }
