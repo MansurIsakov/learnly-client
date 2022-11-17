@@ -1,9 +1,12 @@
 <div class="card">
   <app-nav></app-nav>
   <div class="schedule">
-    <button class="btn schedule-btn" routerLink="/schedule-edit">
-      Schedule Settings
-    </button>
+    <div class="schedule__header">
+      <h2>Schedule</h2>
+      <button class="btn schedule-btn" routerLink="/schedule-edit">
+        Schedule Settings
+      </button>
+    </div>
     <ng-container *ngIf="schedule$ | async as schedule">
       <app-schedule-list
         class="schedule__box"

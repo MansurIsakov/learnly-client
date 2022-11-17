@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.exams {
+.tasks {
   font-size: 1.4rem;
   width: 100%;
   padding: 3rem;
@@ -18,16 +18,16 @@
 
   &__header {
     display: flex;
-    gap: 3rem;
+    align-items: center;
+    flex-direction: column;
 
     .btn {
-      width: 10%;
-
-      &:hover {
-        background-color: var(--primary);
-        color: $white;
-      }
+      width: 5%;
     }
+  }
+
+  &__title {
+    font-size: 4rem;
   }
 
   &__box {

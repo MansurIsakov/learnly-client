@@ -1,0 +1,42 @@
+<div class="card">
+  <app-nav></app-nav>
+  <div class="tasks" *ngIf="tasks$ | async as tasks">
+    <div class="tasks__header">
+      <h1 class="tasks__title">Tasks Tracker</h1>
+      <button class="btn" type="button" (click)="onOpenModal()">
+        Add Task
+      </button>
+    </div>
+    <div class="tasks__box">
+      <p class="tasks__total" *ngIf="!isEmpty(tasks)">
+        {{ "Total number of tasks: " + tasks.length }}
+      </p>
+      <ul *ngIf="!isEmpty(tasks)">
+        <app-tasks-item
+          *ngFor="let task of tasks"
+          [task]="task"
+          (editTask)="onEditTask($event)"
+        ></app-tasks-item>
+      </ul>
+      <div *ngIf="isEmpty(tasks)" class="tasks--empty">
+        No tasks found.
+        <span class="highlight" (click)="onOpenModal()">Create One.</span>
+      </div>
+
+      <!-- <div class="exams__actions">
+        <button *ngIf="page > 1" (click)="page = page - 1" class="btn">
+          Back
+        </button>
+        <button
+          *ngIf="hasNextPage(exams)"
+          (click)="page = +page + 1"
+          class="btn"
+        >
+          Forward
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<app-tasks-modal *ngIf="isModalActive" (closeModal)="onClose()" [task]="task">
+</app-tasks-modal>

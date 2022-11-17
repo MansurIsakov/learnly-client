@@ -1,0 +1,19 @@
+<div class="task__block" [style.backgroundColor]="isCompleted() ? 'gray' : ''">
+  <div class="task__info">
+    <p class="task__title">{{ task.taskTitle }}</p>
+    <p class="task__desc">{{ task.taskDescription }}</p>
+  </div>
+  <div class="task__actions">
+    <input
+      type="checkbox"
+      [checked]="isCompleted()"
+      (click)="toggleTask(task.id, task)"
+    />
+    <button type="button" (click)="updateTask()">
+      <img src="./assets/icons/update.svg" alt="Update Icon" />
+    </button>
+    <button type="button" (click)="deleteTask(task.id)">
+      <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+    </button>
+  </div>
+</div>

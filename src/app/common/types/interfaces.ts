@@ -27,3 +27,10 @@ export interface IExam {
   examModule: string;
   isPassed: boolean;
 }
+
+export interface ITask {
+  id: string;
+  taskTitle: string;
+  taskDescription: string;
+  taskStatus: boolean;
+}

@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
   {
     path: 'exams',
     component: ExamsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tasks',
+    component: TasksComponent,
     canActivate: [AuthGuard],
   },
   {

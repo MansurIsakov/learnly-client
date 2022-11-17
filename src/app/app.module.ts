@@ -42,6 +42,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ExamsComponent } from './exams/exams.component';
 import { ExamsItemComponent } from './exams/exams-item/exams-item.component';
 import { ExamModalComponent } from './modals/exam-modal/exam-modal.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { TasksItemComponent } from './tasks/tasks-item/tasks-item.component';
+import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { ExamModalComponent } from './modals/exam-modal/exam-modal.component';
     ExamsComponent,
     ExamsItemComponent,
     ExamModalComponent,
+    TasksComponent,
+    TasksItemComponent,
+    TasksModalComponent,
   ],
   imports: [
     BrowserModule,

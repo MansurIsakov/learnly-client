@@ -97,11 +97,17 @@
     }
 
     input,
-    select {
+    select,
+    textarea {
       width: 40rem;
       border: 1px solid $gray;
       border-radius: 1rem;
       padding: 1.5rem 3rem;
+    }
+
+    textarea {
+      resize: none;
+      height: 10rem;
     }
   }
 

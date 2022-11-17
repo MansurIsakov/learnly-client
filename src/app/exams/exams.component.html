@@ -9,7 +9,7 @@
     </div>
     <div class="exams__box">
       <p class="exams__total">{{ "Total number of exams: " + exams.length }}</p>
-      <ul>
+      <ul *ngIf="!isEmpty(exams)">
         <app-exams-item
           *ngFor="let exam of paginatedExamsList(exams)"
           [exam]="exam"

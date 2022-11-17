@@ -13,13 +13,22 @@
   padding: 3rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   position: relative;
 
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    h2 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+  }
+
   &-btn {
-    position: absolute;
-    left: 0rem;
-    top: 10rem;
-    width: 10%;
+    width: 20rem;
     transition: all 0.3s;
 
     &:hover {
@@ -28,7 +37,7 @@
   }
 
   &__box {
-    margin: 10rem 0;
+    margin: 5rem auto;
   }
 }
 

@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
     { name: 'Modules', link: '/modules' },
     { name: 'Schedule', link: '/schedule' },
     { name: 'Exams', link: '/exams' },
-    { name: 'ToDo', link: '/todo' },
+    { name: 'ToDo', link: '/tasks' },
     { name: 'Teachers', link: '/teachers' },
     { name: 'Settings', link: '/settings' },
   ];
