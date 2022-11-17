@@ -27,7 +27,7 @@
       margin: 0 auto;
 
       &:hover {
-        background-color: $color-main;
+        background-color: var(--primary);
       }
     }
   }

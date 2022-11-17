@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 2rem 3rem;
   width: 40rem;
-  border: 1px solid $color-main;
+  border: 1px solid var(--primary);
   border-radius: 1rem;
   transition: all 0.2s;
   margin: 1rem 0;
@@ -17,7 +17,7 @@
   }
 
   &:hover {
-    background-color: $color-main;
+    background-color: var(--primary);
     color: $white;
   }
 

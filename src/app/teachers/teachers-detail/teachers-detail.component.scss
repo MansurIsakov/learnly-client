@@ -56,11 +56,11 @@
       padding: 1rem 0;
 
       &:first-child {
-        background-color: $color-main;
+        background-color: var(--primary);
       }
 
       &:last-child {
-        border-color: $color-main;
+        border-color: var(--primary);
       }
     }
   }

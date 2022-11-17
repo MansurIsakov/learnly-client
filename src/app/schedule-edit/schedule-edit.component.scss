@@ -33,12 +33,12 @@
 
 .schedule-dropdown {
   margin: 2rem 0;
-  border: 1px solid $color-main;
+  border: 1px solid var(--primary);
   padding: 1.5rem 3rem;
   border-radius: 1rem;
   background-color: transparent;
 
   option {
-    background-color: $color-main;
+    background-color: var(--primary);
   }
 }

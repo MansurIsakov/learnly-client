@@ -38,7 +38,7 @@
       transition: all 0.3s ease;
 
       &:first-child:hover {
-        background-color: $color-main;
+        background-color: var(--primary);
       }
     }
   }

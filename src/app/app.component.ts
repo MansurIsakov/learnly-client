@@ -13,5 +13,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoLogin();
+
+    const color = localStorage.getItem('color');
+    if (color) {
+      document.documentElement.style.setProperty('--primary', color);
+    }
   }
 }

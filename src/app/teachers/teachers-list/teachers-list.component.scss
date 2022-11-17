@@ -18,8 +18,8 @@
 
       &:hover {
         background-color: transparent;
-        border: 2px solid $color-main;
-        color: $color-main;
+        border: 2px solid var(--primary);
+        color: var(--primary);
         font-size: 1.7rem;
       }
     }

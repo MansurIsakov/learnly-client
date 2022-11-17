@@ -17,17 +17,17 @@
 
     li {
       font-size: 2rem;
-      border-bottom: 0.5rem solid rgba($color-main, 0.2);
+      border-bottom: 0.5rem solid rgba(var(--primary), 0.2);
       cursor: pointer;
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        border-bottom: 0.5rem solid $color-main;
+        border-bottom: 0.5rem solid var(--primary);
       }
 
       &.active {
         font-weight: 500;
-        border-bottom: 0.5rem solid $color-main;
+        border-bottom: 0.5rem solid var(--primary);
       }
     }
   }
@@ -50,7 +50,7 @@
       border-radius: 1rem;
       font-size: 1.6rem;
       border-right: 16px solid transparent;
-      border: 1px solid $color-main;
+      border: 1px solid var(--primary);
       appearance: none;
       cursor: pointer;
     }

@@ -4,10 +4,18 @@
     <div class="settings-box">
       <h2 class="settings__heading">{{ "SETTINGS.THEME" | translate }}</h2>
       <ul class="settings-box__theme">
-        <li><span></span> Blue</li>
-        <li><span></span> Blue</li>
-        <li><span></span> Blue</li>
-        <li><span></span> Blue</li>
+        <li (click)="changeColor(Colors.Teal)">
+          <span class="settings-box__theme--teal"></span>Teal
+        </li>
+        <li (click)="changeColor(Colors.Violet)">
+          <span class="settings-box__theme--violet"></span> Blue Violet
+        </li>
+        <li (click)="changeColor(Colors.Cappucino)">
+          <span class="settings-box__theme--cappuccino"></span> Cappuccino
+        </li>
+        <li (click)="changeColor(Colors.Midnight)">
+          <span class="settings-box__theme--midnight"></span> Midnight Blue
+        </li>
       </ul>
     </div>
     <div class="settings-box">
