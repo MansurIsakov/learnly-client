@@ -35,8 +35,7 @@ export class ModuleListComponent implements OnInit, OnDestroy {
   onTakeModule(moduleId: string) {
     this.subs.push(
       this.modulesService.addModule(moduleId).subscribe(
-        (resData) => {
-          console.log(resData);
+        () => {
           this.response = 'Successfully added module';
         },
         (errorMessage) => {
@@ -49,8 +48,7 @@ export class ModuleListComponent implements OnInit, OnDestroy {
   onRemoveModule(moduleId: string) {
     this.subs.push(
       this.modulesService.removeModule(moduleId).subscribe(
-        (resData) => {
-          console.log(resData);
+        () => {
           this.response = 'Successfully removed module';
         },
         (errorMessage) => {
