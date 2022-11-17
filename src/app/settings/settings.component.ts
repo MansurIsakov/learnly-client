@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
 
   onChangeLang(lang: string) {
     this.lang = lang;
-    this.translateService.use('en');
+    this.translateService.use(lang);
   }
 
   isLangActive(lang: string) {

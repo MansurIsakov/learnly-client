@@ -84,6 +84,7 @@ ScheduleEditListComponent;
         useFactory: (http: HttpClient) => {
           return new TranslateHttpLoader(http);
         },
+        // deps: [HttpClient],
       },
     }),
   ],

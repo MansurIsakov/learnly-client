@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LoaderInterceptor } from '../interceptors/loader-interceptor.service';
 import { SharedModule } from '../shared/shared.module';
 import { TeachersDetailComponent } from './teachers-detail/teachers-detail.component';
 import { TeachersItemComponent } from './teachers-list/teachers-item/teachers-item.component';
