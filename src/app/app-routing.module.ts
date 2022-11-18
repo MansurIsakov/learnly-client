@@ -19,8 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'auth',
@@ -30,13 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'profile/:id/edit',
-    component: ProfileEditComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./profile/profile.module').then((m) => m.ProfileModule);
+    },
   },
   {
     path: 'teachers',
@@ -52,13 +47,9 @@ const routes: Routes = [
   },
   {
     path: 'schedule',
-    component: ScheduleComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'schedule-edit',
-    component: ScheduleEditComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./schedule/schedule.module').then((m) => m.ScheduleModule);
+    },
   },
   {
     path: 'settings',
@@ -67,13 +58,15 @@ const routes: Routes = [
   },
   {
     path: 'exams',
-    component: ExamsComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./exams/exams.module').then((m) => m.ExamsModule);
+    },
   },
   {
     path: 'tasks',
-    component: TasksComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./tasks/tasks.module').then((m) => m.TasksModule);
+    },
   },
   {
     path: '**',
