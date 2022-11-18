@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IConst } from '../common/types/interfaces';
+import { IConst } from '../../common/types/interfaces';
 
 @Pipe({
   name: 'formatConst',

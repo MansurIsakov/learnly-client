@@ -21,13 +21,6 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { TeachersModule } from './teachers/teachers.module';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
-import { ModulesComponent } from './modules/modules.component';
-import { ModuleInfoComponent } from './modules/module-info/module-info.component';
-import { ModuleNavComponent } from './modules/module-nav/module-nav.component';
-import { ModuleListComponent } from './modules/module-list/module-list.component';
-import { ModuleItemComponent } from './modules/module-list/module-item/module-item.component';
-import { CoreModulesComponent } from './modals/core-modules/core-modules.component';
-import { FilterPipe } from './pipes/filter.pipe';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ScheduleListComponent } from './schedule/schedule-list/schedule-list.component';
 import { ScheduleItemComponent } from './schedule/schedule-list/schedule-item/schedule-item.component';
@@ -35,7 +28,6 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleEditItemComponent } from './schedule-edit/schedule-edit-list/schedule-edit-list/schedule-edit-item/schedule-edit-item.component';
 import { ScheduleEditListComponent } from './schedule-edit/schedule-edit-list/schedule-edit-list/schedule-edit-list.component';
 import { ScheduleDaysComponent } from './schedule-edit/schedule-days/schedule-days.component';
-import { FormatConstPipe } from './pipes/formatConst.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -46,8 +38,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TasksItemComponent } from './tasks/tasks-item/tasks-item.component';
 import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component';
 import { TasksSearchBarComponent } from './tasks/tasks-search-bar/tasks-search-bar.component';
-import { SearchPipe } from './pipes/search.pipe';
 import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/schedule-class.component';
+import { ModulesModule } from './modules/modules.module';
 
 @NgModule({
   declarations: [
@@ -58,13 +50,6 @@ import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/
     GoalsWidgetComponent,
     ProfileComponent,
     ProfileEditComponent,
-    ModulesComponent,
-    ModuleInfoComponent,
-    ModuleNavComponent,
-    ModuleListComponent,
-    ModuleItemComponent,
-    CoreModulesComponent,
-    FilterPipe,
     ScheduleComponent,
     ScheduleListComponent,
     ScheduleItemComponent,
@@ -72,7 +57,6 @@ import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/
     ScheduleEditListComponent,
     ScheduleEditItemComponent,
     ScheduleDaysComponent,
-    FormatConstPipe,
     SettingsComponent,
     ExamsComponent,
     ExamsItemComponent,
@@ -81,7 +65,6 @@ import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/
     TasksItemComponent,
     TasksModalComponent,
     TasksSearchBarComponent,
-    SearchPipe,
     ScheduleClassComponent,
   ],
   imports: [
@@ -94,6 +77,7 @@ import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/
     TeachersModule,
     CoreModule,
     SharedModule,
+    ModulesModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

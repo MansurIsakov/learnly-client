@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IModule } from '../models/module.model';
+import { IModule } from '../../models/module.model';
 
 @Pipe({
   name: 'filter',

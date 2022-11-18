@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { ExamsComponent } from './exams/exams.component';
 import { HomeComponent } from './home/home.component';
-import { ModulesComponent } from './modules/modules.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -47,8 +46,9 @@ const routes: Routes = [
   },
   {
     path: 'modules',
-    component: ModulesComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./modules/modules.module').then((m) => m.ModulesModule);
+    },
   },
   {
     path: 'schedule',
