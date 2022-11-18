@@ -1,21 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-import { ExamsComponent } from './exams/exams.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
-import { ScheduleComponent } from './schedule/schedule.component';
 import { SettingsComponent } from './settings/settings.component';
-import { TasksComponent } from './tasks/tasks.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
     path: 'home',
@@ -52,11 +46,6 @@ const routes: Routes = [
     },
   },
   {
-    path: 'settings',
-    component: SettingsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'exams',
     loadChildren: () => {
       return import('./exams/exams.module').then((m) => m.ExamsModule);
@@ -69,13 +58,18 @@ const routes: Routes = [
     },
   },
   {
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
