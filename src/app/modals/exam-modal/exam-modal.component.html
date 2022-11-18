@@ -31,7 +31,7 @@
         name="examType"
         id="examType"
         #examType="ngModel"
-        [ngModel]="exam?.examType || ''"
+        [ngModel]="exam?.examType ?? ''"
       >
         <option value="" selected disabled hidden>Choose Exam Type</option>
         <option value="CourseWork">Course Work</option>
@@ -49,7 +49,7 @@
         name="examModule"
         id="examModule"
         #examModule="ngModel"
-        [ngModel]="exam?.examModule || ''"
+        [ngModel]="exam?.examModule ?? ''"
         required
       >
         <option value="" selected disabled hidden>Choose Module</option>
