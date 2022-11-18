@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ExamErrorCode } from '../common/types/errors';
 import { IExam, ResponseData } from '../common/types/interfaces';
 
 @Injectable({ providedIn: 'root' })
@@ -75,6 +76,20 @@ export class ExamsService {
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
 
+    if (!errorRes.error || !errorRes.error.code) {
+      return throwError(errorMessage);
+    }
+
+    switch (errorRes.error.code) {
+      case ExamErrorCode.EXAM_ALREADY_EXISTS:
+        errorMessage = errorRes.error.message;
+        break;
+      case ExamErrorCode.EXAM_NOT_FOUND:
+        errorMessage = errorRes.error.message;
+        break;
+      default:
+        errorMessage = 'An unknown error occurred!';
+    }
     return throwError(errorMessage);
   }
 }
