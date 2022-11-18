@@ -12,7 +12,6 @@ import { ISchedule } from '../models/schedule.model';
 export class ScheduleService {
   constructor(private http: HttpClient) {}
 
-  //   Remove any
   private readonly _schedule = new BehaviorSubject<ISchedule>(null);
   readonly schedule$ = this._schedule.asObservable();
 

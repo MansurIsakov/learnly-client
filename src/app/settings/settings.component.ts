@@ -49,6 +49,5 @@ export class SettingsComponent implements OnInit {
         localStorage.setItem('color', '#18184d');
         break;
     }
-    // document.documentElement.style.setProperty('--primary', color);
   }
 }

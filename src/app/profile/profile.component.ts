@@ -14,7 +14,6 @@ import { finalize, Observable } from 'rxjs';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  // isLoading: boolean = false;
   user$: Observable<IUser>;
   userId: string;
   levelsConst = LEVELS;
@@ -32,13 +31,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.isLoading = true;
-
-    this.user$ = this.profileService.getProfile(this.userId).pipe(
-      finalize(() => {
-        // this.isLoading = false;
-      })
-    );
+    this.user$ = this.profileService.getProfile(this.userId);
   }
 
   deleteAccount(id: string) {
