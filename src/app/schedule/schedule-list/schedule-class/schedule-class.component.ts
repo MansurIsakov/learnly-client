@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IClass } from 'src/app/common/types/interfaces';
 
 @Component({
-  selector: 'app-today-item',
-  templateUrl: './today-item.component.html',
-  styleUrls: ['./today-item.component.scss'],
+  selector: 'app-schedule-class',
+  templateUrl: './schedule-class.component.html',
+  styleUrls: ['./schedule-class.component.scss'],
 })
-export class TodayItemComponent implements OnInit {
+export class ScheduleClassComponent implements OnInit {
   @Input() class: IClass;
   @Input() index: number;
 

@@ -9,15 +9,11 @@
   />
   <div class="schedule__content" [class.active]="isOpen">
     <ul>
-      <li
+      <app-schedule-class
         *ngFor="let class of day; let i = index"
-        [style.animation-delay]="0.15 * i + 's'"
-      >
-        <h4>{{ class.time + " - " + (+class.time + 2) }}</h4>
-        <p>{{ "Module: " + class.moduleName }}</p>
-        <p>{{ "Venue: " + class.venue }}</p>
-        <p>{{ "Tutor - " + class.tutor + " | Seminar for " + class.groups }}</p>
-      </li>
+        [class]="class"
+        [index]="i"
+      ></app-schedule-class>
     </ul>
   </div>
   <p *ngIf="isEmpty(day)">The day is empty</p>

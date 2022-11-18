@@ -8,11 +8,11 @@
 
     <div class="home__today" *ngIf="todaySchedule$ | async as todaySchedule">
       <h3>{{ dayIndex | formatConst: daysConst }}</h3>
-      <app-today-item
+      <app-schedule-class
         *ngFor="let class of todaySchedule; let i = index"
         [index]="i"
         [class]="class"
-      ></app-today-item>
+      ></app-schedule-class>
       <p *ngIf="isEmpty(todaySchedule)" class="home__empty">
         You do not have classes today!
       </p>

@@ -47,7 +47,7 @@ import { TasksItemComponent } from './tasks/tasks-item/tasks-item.component';
 import { TasksModalComponent } from './modals/tasks-modal/tasks-modal.component';
 import { TasksSearchBarComponent } from './tasks/tasks-search-bar/tasks-search-bar.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { TodayItemComponent } from './home/today-item/today-item.component';
+import { ScheduleClassComponent } from './schedule/schedule-list/schedule-class/schedule-class.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,7 @@ import { TodayItemComponent } from './home/today-item/today-item.component';
     TasksModalComponent,
     TasksSearchBarComponent,
     SearchPipe,
-    TodayItemComponent,
+    ScheduleClassComponent,
   ],
   imports: [
     BrowserModule,

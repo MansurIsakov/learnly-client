@@ -1,6 +1,6 @@
 @import "~src/styles/index.scss";
 
-.schedule__item {
+li {
   background-color: var(--primary);
   color: $white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
@@ -9,7 +9,6 @@
   border-radius: 1rem;
   padding: 2rem 4rem;
   opacity: 0;
-  animation: MoveUp 0.5s ease-in-out forwards;
-  width: 100%;
-  font-size: 1.2rem;
+  animation: MoveRight 0.5s ease-in-out forwards;
+  font-size: 1.4rem;
 }
