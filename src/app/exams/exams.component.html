@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-default">
   <app-nav></app-nav>
   <div class="exams" *ngIf="exams$ | async as exams">
     <div class="exams__header">
@@ -7,7 +7,7 @@
         Add Exam
       </button>
     </div>
-    <div class="exams__box">
+    <div class="exams__box flex-align-center">
       <p class="exams__total">{{ "Total number of exams: " + exams.length }}</p>
       <ul *ngIf="!isEmpty(exams)">
         <app-exams-item

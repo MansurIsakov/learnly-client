@@ -1,16 +1,16 @@
-<div class="card">
+<div class="card card-default">
   <app-alert
     *ngIf="error"
     [message]="error"
     (close)="onHandleError()"
   ></app-alert>
-  <div class="auth-form">
+  <div class="auth-form flex-align-center">
     <img
       src="./assets/img/logo_nobg.png"
       alt="Logo 'leanrly.'"
       class="auth-form__logo"
     />
-    <div class="auth-form__box">
+    <div class="auth-form__box flex-center">
       <div class="auth-form__greeting">
         <h1>Welcome back!</h1>
         <p class="auth-form__greeting-text">

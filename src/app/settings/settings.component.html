@@ -1,26 +1,26 @@
-<div class="card">
+<div class="card card-default">
   <app-nav></app-nav>
-  <div class="settings">
+  <div class="settings flex-align-center">
     <div class="settings-box">
       <h2 class="settings__heading">{{ "SETTINGS.THEME" | translate }}</h2>
-      <ul class="settings-box__theme">
-        <li (click)="changeColor(Colors.Teal)">
+      <ul class="settings-box__theme flex-center">
+        <li (click)="changeColor(Colors.Teal)" class="flex-align-center">
           <span class="settings-box__theme--teal"></span>Teal
         </li>
-        <li (click)="changeColor(Colors.Violet)">
+        <li (click)="changeColor(Colors.Violet)" class="flex-align-center">
           <span class="settings-box__theme--violet"></span> Blue Violet
         </li>
-        <li (click)="changeColor(Colors.Cappucino)">
+        <li (click)="changeColor(Colors.Cappucino)" class="flex-align-center">
           <span class="settings-box__theme--cappuccino"></span> Cappuccino
         </li>
-        <li (click)="changeColor(Colors.Midnight)">
+        <li (click)="changeColor(Colors.Midnight)" class="flex-align-center">
           <span class="settings-box__theme--midnight"></span> Midnight Blue
         </li>
       </ul>
     </div>
     <div class="settings-box">
       <h2 class="settings__heading">{{ "SETTINGS.LANGUAGE" | translate }}</h2>
-      <div class="settings-box__lang">
+      <div class="settings-box__lang flex-center">
         <button
           class="btn"
           [class.btn--outline]="!isLangActive('ru')"

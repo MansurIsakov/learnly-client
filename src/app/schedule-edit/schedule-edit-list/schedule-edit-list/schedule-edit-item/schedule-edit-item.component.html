@@ -1,4 +1,4 @@
-<li class="schedule-module">
+<li class="schedule-module flex-align-center">
   <h4>{{ class.moduleName }}</h4>
   <p>
     {{
@@ -11,8 +11,8 @@
     {{ class.tutor + " | Venue: " + class.venue }}
   </p>
   <div class="schedule-module__actions">
-    <button class="btn" (click)="addClass(class)">Add</button>
-    <button class="btn btn--outline" (click)="removeClass(class)">
+    <button class="btn flex-center" (click)="addClass(class)">Add</button>
+    <button class="btn btn--outline flex-center" (click)="removeClass(class)">
       Remove
     </button>
   </div>

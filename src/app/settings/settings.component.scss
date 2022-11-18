@@ -1,20 +1,14 @@
 @import "~src/styles/index.scss";
 
 .card {
-  background-color: $white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .settings {
   font-size: 1.4rem;
   width: 100%;
   padding: 3rem;
-  display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
   position: relative;
 
   &__heading {
@@ -32,9 +26,6 @@
   border-radius: 1rem;
 
   &__lang {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 3rem;
     margin-top: 3rem;
 
@@ -44,16 +35,10 @@
   }
 
   &__theme {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 3rem;
     margin-top: 2rem;
 
     li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       font-size: 1.5rem;
       font-weight: 500;
       cursor: pointer;

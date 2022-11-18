@@ -1,6 +1,6 @@
 <div class="modules-nav">
   <h2>Modules +</h2>
-  <div class="modules-navbox">
+  <div class="modules-navbox flex-center">
     <ul>
       <li
         *ngFor="let item of navItems"
@@ -10,7 +10,7 @@
         {{ item.name }}
       </li>
     </ul>
-    <div class="modules-navbox__sort">
+    <div class="modules-navbox__sort flex-center">
       <p>Sort by:</p>
       <select
         name="sort"

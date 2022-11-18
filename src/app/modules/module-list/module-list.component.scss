@@ -8,8 +8,7 @@
     font-weight: 300;
     margin: 4rem 0;
     line-height: 3rem;
-    display: flex;
-    align-items: center;
+    justify-content: flex-start;
     color: rgba($gray, 0.6);
 
     img {

@@ -14,7 +14,7 @@
       <span class="goals-calendar__time">{{ time | date: "HH:mm" }}</span>
     </div>
   </div>
-  <div class="goals-track__box">
+  <div class="goals-track__box flex-center">
     <div class="goals-track goals-track--attendance">
       <p>{{ completedTasks + "/" + tasks }}</p>
       <span>Task Tracker</span>
@@ -24,7 +24,7 @@
       <span>Exams to pass</span>
     </div>
   </div>
-  <div class="goals-score">
+  <div class="goals-score flex-center">
     <div class="goals-score__points">
       <p #animatedPoints>{{ points }}</p>
       <span>Points collected</span>

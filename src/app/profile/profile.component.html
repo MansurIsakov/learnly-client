@@ -1,4 +1,4 @@
-<div class="card" *ngIf="user$ | async as user">
+<div class="card card-default" *ngIf="user$ | async as user">
   <app-alert
     *ngIf="error"
     [message]="error"
@@ -7,7 +7,7 @@
   <app-nav></app-nav>
   <div class="profile">
     <div class="profile-header">
-      <div class="profile-header__avatar">
+      <div class="profile-header__avatar flex-center">
         <p>{{ user?.emoji }}</p>
       </div>
       <div class="profile-header__info">
@@ -27,7 +27,9 @@
     <div class="profile-status">
       <h4 class="profile__heading">{{ "My Status" }}</h4>
       <div *ngIf="!isEmpty(user.status)" class="profile-status__list">
-        <p *ngFor="let status of user.status">{{ status }}</p>
+        <p *ngFor="let status of user.status" class="flex-center">
+          {{ status }}
+        </p>
       </div>
       <p *ngIf="isEmpty(user.status)">
         You do not have any status! Set status in
@@ -41,7 +43,7 @@
         <a routerLink="/modules">here.</a>
       </p>
       <div class="profile-modules__item" *ngFor="let module of user.modules">
-        <div class="profile-modules__icon">
+        <div class="profile-modules__icon flex-center">
           <img src="./assets/icons/bis.svg" alt="BIS Icon" />
         </div>
         <span>{{ module.moduleName }}</span>

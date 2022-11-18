@@ -1,9 +1,9 @@
 <div class="card" *ngIf="user$ | async as user">
-  <div class="home-info">
+  <div class="home-info flex-align-center">
     <app-uni-widget [user]="user"></app-uni-widget>
     <app-goals-widget [user]="user"></app-goals-widget>
   </div>
-  <div class="home-desk">
+  <div class="home-desk flex-align-center">
     <app-nav></app-nav>
 
     <div class="home__today" *ngIf="todaySchedule$ | async as todaySchedule">

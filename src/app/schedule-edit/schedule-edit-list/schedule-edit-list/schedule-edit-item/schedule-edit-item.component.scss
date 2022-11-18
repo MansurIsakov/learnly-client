@@ -1,10 +1,7 @@
 @import "~src/styles/index.scss";
 
 .schedule-module {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
   padding: 2rem 3rem;
   width: 40rem;
   border: 1px solid var(--primary);
@@ -29,9 +26,6 @@
     .btn {
       width: 10rem;
       height: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 }

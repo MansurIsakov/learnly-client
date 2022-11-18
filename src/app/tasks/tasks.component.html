@@ -1,13 +1,13 @@
-<div class="card">
+<div class="card card-default">
   <app-nav></app-nav>
   <div class="tasks" *ngIf="tasks$ | async as tasks">
-    <div class="tasks__header">
+    <div class="tasks__header flex-align-center">
       <h1 class="tasks__title">Tasks Tracker</h1>
       <button class="btn" type="button" (click)="onOpenModal()">
         Add Task
       </button>
     </div>
-    <div class="tasks__box">
+    <div class="tasks__box flex-align-center">
       <div class="tasks__stats">
         <p class="tasks__total" *ngIf="!isEmpty(tasks)">
           {{ "Total number of tasks: " + tasks.length }}
